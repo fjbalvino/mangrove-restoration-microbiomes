@@ -4,14 +4,7 @@ Code and provenance for **Locality and depth structure sediment microbiomes acro
 mangrove restoration stages**: 51 metagenomes, 17 profiles, three localities and
 three sediment depths (5, 20 and 40 cm).
 
-**Status: audited review candidate, not a complete end-to-end reproduction release.**
-The current manuscript and supplementary PDFs were compared with the collected
-code and saved results. Two predictor-lineage discrepancies require resolution:
-the TITAN2 MHI branch used pre-003b values, and the depth-wise variance partition
-used an ECI vector different from the current integrated metadata. See
-[audit findings](docs/AUDIT_FINDINGS.md) before using archived statistics.
-
-## Scientific order
+## Analysis workflow
 
 | Directory | Analysis | Manuscript output |
 |---|---|---|
@@ -31,49 +24,82 @@ historical output IDs remain unchanged to preserve lineage. The index scripts
 are not a shell pipeline: HI uses an archived calibration, not the current
 taxon-selection output. Consult the contracts before executing individual files.
 
-## Which code is current?
-
-`scripts_finales/` and code snapshots inside `resultados_finales/` take precedence.
-The exact code saved with a result establishes its producer; a later working copy
-is not retrospectively attributed to that result. Older `Scripts/` and `Results/`
-files are retained only for verified upstream provenance (notably archived HI and
-the 044/082A matrices). The separately delivered **809 residualization package**
-is authoritative for networks. It ran in GPT, not landalab.
-
-The audit captured 523 script copies representing 410 unique SHA-256 versions.
-All are catalogued in `docs/SCRIPT_INDEX.tsv`; 33 analysis/figure source versions
-are explicitly mapped to manuscript sections, in addition to the final 809 bundle
-and new audit utilities. Static cataloguing is not line-by-line validation of all
-410 programs. The mapping and exact-copy identities are available in
-`docs/METHODS_CODE_CROSSWALK.tsv` and `docs/CURRENT_SOURCE_LINEAGE.tsv`.
-
 ## Reproduce the available components
 
-With Python, NumPy and pandas available:
+These commands check or reproduce three components of the analysis. Run them
+from the root of the complete analysis package, with its scripts and input
+files present. The GitHub `main` branch currently contains only this README;
+the directories referenced below must also be available locally.
+
+### 1. Verify the historical HI
+
+This command reconstructs the archived HI from its original CLR matrix and
+metadata. It removes the fitted effects of locality and categorical depth,
+obtains the first principal component of the residuals, and orients its sign
+using the preserved and degraded reference groups. It then compares the
+reconstructed values with the archived HI and checks that the archived values
+match the HI column in the integrated metadata.
+
+Requires Python, NumPy and pandas, plus the four CSV files in
+`source_data/indices/`.
 
 ```bash
 set +e
 bash tools/run_monitored.sh python3 checks/verify_historical_hi.py
 ```
 
-Figure 4 from its included audited tables:
+**Output:** `validation/HI_reconstruction_audit.json`, with numerical differences
+and a PASS/FAIL result at a maximum absolute-error tolerance of `1e-9`.
+This checks consistency with the historical calibration; it does not provide
+independent biological validation of the index.
+
+### 2. Regenerate Figure 4
+
+This command verifies the bundled input files and redraws Figure 4, including
+panels A–D, from the saved statistical tables and plotting configuration.
+It uses the existing model results without refitting the upstream gene models.
+
+Requires Python, NumPy, pandas and Matplotlib, plus the contents of
+`workflow/08_figures_tables/figure4_bundle/`.
 
 ```bash
 set +e
 bash workflow/08_figures_tables/08_02_run_figure4.sh local
 ```
 
-Final networks (requires the versions in the bundled `requirements.txt`):
+**Output:** a new timestamped directory under
+`workflow/08_figures_tables/figure4_bundle/outputs/`, containing the figure,
+individual panels, input copies and run metadata. The `local` argument selects
+this output location; `FIG4_OUT_ROOT` can override it.
+
+### 3. Recalculate the functional networks
+
+This command runs the 809 analysis using the included 200-KO CLR matrix and
+metadata for 51 samples. It compares three network constructions: unadjusted;
+adjusted for locality and depth; and additionally adjusted for the four
+environmental axes. It estimates ridge partial correlations and sample-specific
+LIONESS networks, then evaluates network metrics, their associations with
+HI/MHI, and their sensitivity using profile-level resampling and permutations.
+
+Requires the input files in `workflow/07_networks/network809/inputs/` and the
+package versions specified in
+`workflow/07_networks/network809/requirements.txt`.
 
 ```bash
 set +e
 bash workflow/07_networks/07_01_run_residual_networks.sh
 ```
 
-The network calculation is substantial; it is not launched automatically by
-repository checks. Launchers use one numerical thread and monitor every 30 s.
-For landalab paths and the next targeted data collection, see
-[reproduction instructions](docs/REPRODUCIBILITY.md).
+**Output:** a timestamped analysis directory and execution log under
+`workflow/07_networks/network809/results/`. Set `OUT809` to change the output
+root or `PY809` to select a Python interpreter. The resampling makes this a
+substantial calculation; repository checks do not launch it automatically.
+
+The launchers limit numerical libraries to one thread and report progress
+every 30 seconds. `set +e` disables automatic shell termination on command
+failure; it does not suppress errors or make a failed analysis successful.
+In the complete package, [reproduction instructions](docs/REPRODUCIBILITY.md)
+describe landalab paths and additional data requirements.
 
 ## Inputs, outputs and transparency
 
