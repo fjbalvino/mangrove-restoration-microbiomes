@@ -1,0 +1,59 @@
+{
+  "script": "06_gene_associations/06_02_MHI_mixed_models.R",
+  "original_source": "/home/fjbalvino/Tipping_points/scripts_finales/603b_asociaciones_MHI_por_profundidad.R",
+  "original_sha256": "3bbf650e53d676f6fd3a2ca0d9e32394fed4bb0e15786a2fcaf677d48cad567a",
+  "purpose_and_status": "Corrected 003b MHI, REML/lmerTest, profile random intercept; separate MHI multiplicity families.",
+  "inputs_static_expressions": [
+    "read_tsv <- function(p) read.delim(p, check.names = FALSE)",
+    "if (!nzchar(source_run)) source_run <- trimws(readLines(pointer, n = 1L))",
+    "s <- read_tsv(paths[1])",
+    "m <- read.csv(paths[2], check.names = FALSE)",
+    "selection <- read_tsv(paths[4])",
+    "z <- tryCatch(read.delim(con, check.names = FALSE), finally = close(con))"
+  ],
+  "outputs_static_expressions": [
+    "write_tsv <- function(x, p) data.table::fwrite(x, p, sep = \"\\t\", na = \"NA\")",
+    "writeLines(capture.output(sessionInfo()), file.path(run, \"logs\", \"603b_sessionInfo.txt\"))",
+    "write_tsv(data.frame(input = paths, md5 = unname(hashes)), file.path(run, \"tables\", \"603b_inputs.tsv\"))",
+    "write_tsv(m, file.path(run, \"tables\", \"603b_metadata_used.tsv\"))",
+    "write_tsv(data.frame(MHI_mean = mhi_mean, MHI_sd = mhi_sd, standardization_n = 51),",
+    "saveRDS(part, file.path(run, \"checkpoints\", sprintf(\"batch_%04d.rds\", h)))",
+    "write_tsv(r, file.path(run, \"tables\", \"603b_all_results.tsv\"))",
+    "write_tsv(diagnostics, file.path(run, \"tables\", \"603b_fit_diagnostics.tsv\"))",
+    "write_tsv(families, file.path(run, \"tables\", \"603b_test_families.tsv\"))",
+    "write_tsv(data.frame(status = status, mode = mode, samples = 51, profiles = 17,",
+    "writeLines(run, tmp)"
+  ],
+  "path_literals": [
+    "/home/fjbalvino/Tipping_points/resultados_finales",
+    "LATEST_601b_preparar_CLR_proteico_por_muestra.txt",
+    "601b_run_summary.tsv",
+    "601b_metadata_51samples.csv",
+    "601b_top_100000_CLR_features_x_samples.tsv.gz",
+    "601b_selected_features_top_100000.tsv",
+    "CLR no numerico/no finito",
+    "603b_sessionInfo.txt",
+    ".R",
+    "603b_inputs.tsv",
+    "603b_metadata_used.tsv",
+    "603b_scaling.tsv",
+    "batch_%04d.rds",
+    "/",
+    "603b_all_results.tsv",
+    "603b_fit_diagnostics.tsv",
+    "603b_test_families.tsv",
+    "603b_run_summary.tsv",
+    ".txt"
+  ],
+  "packages_static": [
+    "data.table",
+    "emmeans",
+    "lme4",
+    "lmerTest",
+    "p",
+    "parallel",
+    "tools"
+  ],
+  "resolution": "static expressions; runtime arguments and branches not asserted to be resolved",
+  "execution_here": "not rerun"
+}

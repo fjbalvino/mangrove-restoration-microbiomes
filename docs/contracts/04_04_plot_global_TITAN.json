@@ -1,0 +1,55 @@
+{
+  "script": "04_taxonomic_change_points/04_04_plot_global_TITAN.R",
+  "original_source": "/home/fjbalvino/Tipping_points/scripts_finales/404_graficar_resumen_TITAN2_global.R",
+  "original_sha256": "5d0f5acf3cb7ab10c3f5f814c758915dbf58132147efec69b296f976d3a529c4",
+  "purpose_and_status": "Renders stored TITAN results; does not repair an obsolete predictor.",
+  "inputs_static_expressions": [
+    "DEFAULT401 <- if (file.exists(LATEST401)) trimws(readLines(LATEST401, warn = FALSE, n = 1L)) else NA_character_",
+    "x <- readr::read_csv(ANN_ALL_FILE, show_col_types = FALSE)",
+    "sumz <- readr::read_csv(SUMZ_FILE, show_col_types = FALSE)",
+    "support <- readr::read_csv(support_file, show_col_types = FALSE) %>%"
+  ],
+  "outputs_static_expressions": [
+    "ggsave(",
+    "readr::write_csv(",
+    "writeLines("
+  ],
+  "path_literals": [
+    "Water / inundation",
+    "Vegetation / landscape",
+    "Nutrients / redox",
+    "/home/fjbalvino/Tipping_points/resultados_finales",
+    "LATEST_401_TITAN2_global_taxa_bimodales_gradientes_ambientales.txt",
+    "Usa --out401 /ruta/al/output/401",
+    "402_titan_sumz_thresholds_all_gradients.csv",
+    "403_titan_indval_all_gradients_annotated.csv",
+    "403_titan_indval_reliable90_annotated.csv",
+    "403_titan_indval_reliable95_annotated.csv",
+    "402_titan_indval_all_gradients.csv",
+    " / ",
+    "404_threshold_forest_data_used.csv",
+    "Labels: [number of z-minus / number of z-plus indicators].",
+    "404_threshold_forest_legend.txt",
+    ".csv",
+    "404_panelB_selection_audit.csv",
+    "404_panelB_legend.txt",
+    "Density/synchrony of taxon-specific change points across gradients.",
+    "404_nature_style_figures_index.csv",
+    "404_sessionInfo.txt"
+  ],
+  "packages_static": [
+    "dplyr",
+    "forcats",
+    "ggplot2",
+    "ggridges",
+    "grid",
+    "readr",
+    "scales",
+    "stringr",
+    "svglite",
+    "tibble",
+    "tidyr"
+  ],
+  "resolution": "static expressions; runtime arguments and branches not asserted to be resolved",
+  "execution_here": "not rerun"
+}

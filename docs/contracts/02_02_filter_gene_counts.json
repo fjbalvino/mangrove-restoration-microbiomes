@@ -1,0 +1,56 @@
+{
+  "script": "02_metagenomics/02_02_filter_gene_counts.py",
+  "original_source": "/home/fjbalvino/Tipping_points/scripts_finales/502_construir_matriz_proteica_filtrada.py",
+  "original_sha256": "9e5df3dd06b93c6101d62ce6f20df9a4efa01942d45c34b586258d56dba1d42b",
+  "purpose_and_status": "Maintained successor of historical 044. The manuscript consumed archived 044 counts; equivalent output from this successor has not been demonstrated.",
+  "inputs_static_expressions": [
+    "run_003 = Path(latest_003.read_text(encoding=\"utf-8\").strip())"
+  ],
+  "outputs_static_expressions": [
+    "def write_tsv(path, header, rows):",
+    "write_tsv("
+  ],
+  "path_literals": [
+    "/home/fjbalvino/Tipping_points/FINAL_ANNOTATED_ABUNDANCE_noMZ_bacteria_fran.tsv",
+    "/home/fjbalvino/Tipping_points/resultados_finales",
+    "LATEST_003_integrar_ejes_ECI_HI_en_metadata.txt",
+    "003_metadata_integrada_canon_51.csv",
+    "502_log.txt",
+    "Feature/query column: {query_col}",
+    "502_sample_matching.tsv",
+    "La metadata debe contener exactamente {args.expected_profiles} perfiles completos 5/20/40",
+    "502_metadata_aligned_{len(common_samples)}samples.csv",
+    "502_excluded_samples.tsv",
+    "502_protein_filtered_counts_{len(common_samples)}samples.tsv.gz",
+    "502_retained_feature_stats.tsv.gz",
+    "{(filt_col_detected[i] / n_retained) if n_retained else 0:.10g}",
+    "502_sample_qc_raw_common_samples.tsv",
+    "502_sample_qc_filtered_matrix.tsv",
+    "{n / n_retained if n_retained else 0:.10g}",
+    "502_retained_prevalence_distribution.tsv",
+    "502_retained_total_abundance_distribution.tsv",
+    "502_retained_origin_sample_counts.tsv",
+    "502_top_retained_features_by_total.tsv",
+    "502_construir_matriz_proteica_filtrada.py",
+    "{n_retained / n_seen if n_seen else 0:.10g}",
+    "502_filter_summary.tsv",
+    "LATEST_502_construir_matriz_proteica_filtrada.txt",
+    "  {tables_dir / ('502_metadata_aligned_' + str(len(common_samples)) + 'samples.csv')}",
+    "  {tables_dir / '502_filter_summary.tsv'}"
+  ],
+  "packages_static": [
+    "argparse",
+    "collections",
+    "csv",
+    "datetime",
+    "gzip",
+    "heapq",
+    "math",
+    "os",
+    "pathlib",
+    "re",
+    "sys"
+  ],
+  "resolution": "static expressions; runtime arguments and branches not asserted to be resolved",
+  "execution_here": "not rerun"
+}

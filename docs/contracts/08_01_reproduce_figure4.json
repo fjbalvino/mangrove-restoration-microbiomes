@@ -1,0 +1,62 @@
+{
+  "script": "08_figures_tables/08_01_reproduce_figure4.py",
+  "original_source": "/home/fjbalvino/Tipping_points/scripts_finales/Figura4_reproduccion_documentada_20260916.zip::figura4_replicable_20260916/code/reproduce_figure4.py",
+  "original_sha256": "3a98ffaa6f33c70859c90360d25efb976dcac442b5fbc14ccab344540818bb61",
+  "purpose_and_status": "Frozen-table figure renderer; requires the Figure4 bundle input layout. Full model fitting is separate.",
+  "inputs_static_expressions": [
+    "cfg = json.loads(config_path.read_text())",
+    "manifest = json.loads(manifest_path.read_text())",
+    "counts = pd.read_csv(source / \"Figure4_counts_q010_q005.tsv\", sep=\"\\t\")",
+    "stats = pd.read_csv(source / \"Figure4_interactions_original_statistics.tsv\", sep=\"\\t\")",
+    "samples = pd.read_csv(source / \"Figure4_two_candidates_sample_data.tsv\", sep=\"\\t\")",
+    "reread = pd.read_csv(out / \"tables\" / \"panels_C_D_effects_and_detection.tsv\", sep=\"\\t\")"
+  ],
+  "outputs_static_expressions": [
+    "path.write_text(json.dumps(value, ensure_ascii=False, indent=2, allow_nan=False) + \"\\n\")",
+    "common.to_csv(out / \"tables\" / \"panel_A_counts.tsv\", sep=\"\\t\", index=False)",
+    "depth_counts.to_csv(out / \"tables\" / \"panel_B_counts.tsv\", sep=\"\\t\", index=False)",
+    "slopes.to_csv(out / \"tables\" / \"panels_C_D_effects_and_detection.tsv\", sep=\"\\t\", index=False)",
+    "stats[stats.family == \"axis_by_depth\"].to_csv(out / \"tables\" / \"panels_C_D_interaction_tests.tsv\", sep=\"\\t\", index=False)"
+  ],
+  "path_literals": [
+    "SHA256SUMS.json",
+    "plot.json",
+    "Figure4_counts_q010_q005.tsv",
+    "Figure4_interactions_original_statistics.tsv",
+    "Figure4_two_candidates_sample_data.tsv",
+    "panel_A_counts.tsv",
+    "panel_B_counts.tsv",
+    "panels_C_D_effects_and_detection.tsv",
+    "panels_C_D_interaction_tests.tsv",
+    "Input/data validation: PASS ({len(checks)} checks)",
+    "{int(row.n_detected)}/{int(row.n_samples)}",
+    "validation.json",
+    "run_metadata.json"
+  ],
+  "packages_static": [
+    "__future__",
+    "argparse",
+    "datetime",
+    "hashlib",
+    "importlib.metadata",
+    "json",
+    "matplotlib",
+    "matplotlib.colors",
+    "matplotlib.lines",
+    "matplotlib.patches",
+    "matplotlib.pyplot",
+    "numpy",
+    "os",
+    "pandas",
+    "pathlib",
+    "platform",
+    "resource",
+    "shutil",
+    "sys",
+    "threading",
+    "time",
+    "traceback"
+  ],
+  "resolution": "static expressions; runtime arguments and branches not asserted to be resolved",
+  "execution_here": "not rerun"
+}

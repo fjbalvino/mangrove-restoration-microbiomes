@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.venv/
+local_runs/
+results/
+*.log
+workflow/05_functional_reference/convergence808/inputs/
+workflow/07_networks/network809/inputs/
+workflow/07_networks/network809/results/
+workflow/08_figures_tables/figure4_bundle/inputs/
+workflow/08_figures_tables/figure4_bundle/outputs/
+validation/
+config/*.local.json

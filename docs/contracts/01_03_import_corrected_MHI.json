@@ -1,0 +1,56 @@
+{
+  "script": "01_environment_indices/01_03_import_corrected_MHI.py",
+  "original_source": "/home/fjbalvino/Tipping_points/scripts_finales/003b_integrar_MHI_ambiental_validado.py",
+  "original_sha256": "3d7de01f8d2b0c9f5a1acc0fbe56eb957e28e691f519956394f33c0d7464f306",
+  "purpose_and_status": "Imports the hash-verified 57-row historical environmental calibration; preserves the archived HI.",
+  "inputs_static_expressions": [
+    "return hashlib.sha256(path.read_bytes()).hexdigest()",
+    "def read_csv(path):",
+    "fields, base, base_ids = read_csv(sources[\"base_csv\"])",
+    "_, mhi, mhi_ids = read_csv(sources[\"mhi_csv\"])",
+    "_, canon, canon_ids = read_csv(sources[\"canon_csv\"])",
+    "saved_fields, saved, _ = read_csv(target)"
+  ],
+  "outputs_static_expressions": [
+    "(out / \"logs/003b_provenance.json\").write_text(",
+    "temporary.write_text(str(out) + \"\\n\", encoding=\"utf-8\")"
+  ],
+  "path_literals": [
+    "/home/fjbalvino/Tipping_points",
+    "IDs vacios/duplicados: {path}",
+    "resultados_finales/003_integrar_ejes_ECI_HI_en_metadata_20260909_232743/tables/003_metadata_integrada_canon_51.csv",
+    "/home/fjbalvino/R/Ciencia-Frontera/resultados/46_merge_mhi_metadata_20260216_223800/metadata_with_MHI.csv",
+    "resultados_finales/202_construir_matriz_CLR_y_eje_bimodal_20260912_005021/tables/202_metadata_raw1031_alineada.csv",
+    "tables/003_metadata_integrada_canon_51.csv",
+    "tables/003b_cambios_MHI.tsv",
+    "{key}.csv",
+    "{NAME}.py",
+    "logs/003b_provenance.json",
+    "tables/003b_run_summary.tsv",
+    "LATEST_{NAME}.txt"
+  ],
+  "packages_static": [
+    "all",
+    "argparse",
+    "condition",
+    "csv",
+    "datetime",
+    "decimal",
+    "hashlib",
+    "json",
+    "len",
+    "math",
+    "math.isfinite",
+    "os",
+    "path.is_file",
+    "pathlib",
+    "rows",
+    "saved_fields",
+    "set",
+    "sha",
+    "shutil",
+    "sorted"
+  ],
+  "resolution": "static expressions; runtime arguments and branches not asserted to be resolved",
+  "execution_here": "not rerun"
+}

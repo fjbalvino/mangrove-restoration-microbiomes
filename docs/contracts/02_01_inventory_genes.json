@@ -1,0 +1,56 @@
+{
+  "script": "02_metagenomics/02_01_inventory_genes.R",
+  "original_source": "/home/fjbalvino/Tipping_points/scripts_finales/501_inventariar_universo_proteico.R",
+  "original_sha256": "b5db501f8a2efbc9ea9cf1d33ea464e235e91029768c1800864369bceda779c4",
+  "purpose_and_status": "Inventory of the already assembled/annotated abundance table; raw-read producer not recovered.",
+  "inputs_static_expressions": [
+    "run003 <- readLines(latest003, warn = FALSE)[1]",
+    "header_line <- readLines(input_tsv, n = 1, warn = FALSE)",
+    "meta_raw <- read_csv(meta_csv, show_col_types = FALSE)"
+  ],
+  "outputs_static_expressions": [
+    "write.table(",
+    "ggsave(out_file, p, width = 10, height = 5, dpi = 300, bg = \"white\")",
+    "write_tsv(",
+    "write_tsv(profile_gate, file.path(out_dir, \"tables\", \"501_auditoria_canon_51.tsv\"))",
+    "ggsave(",
+    "writeLines(out_dir, latest_file)"
+  ],
+  "path_literals": [
+    "/home/fjbalvino/Tipping_points/FINAL_ANNOTATED_ABUNDANCE_noMZ_bacteria_fran.tsv",
+    "/home/fjbalvino/Tipping_points/resultados_finales",
+    "LATEST_003_integrar_ejes_ECI_HI_en_metadata.txt",
+    "003_metadata_integrada_canon_51.csv",
+    "501_log.txt",
+    "501_header_columns.tsv",
+    "Feature/query column: %s",
+    "501_metadata_sample_matching.tsv",
+    "501_auditoria_canon_51.tsv",
+    "501 requiere exactamente 17 perfiles completos 5/20/40.",
+    "501_feature_summary.tsv.gz",
+    "501_sample_sums.tsv",
+    "501_sample_detection.tsv",
+    "501_prevalence_distribution.tsv",
+    "501_total_abundance_bins.tsv",
+    "501_origin_sample_feature_counts.tsv",
+    "501_top_features_by_total.tsv",
+    "501_inventariar_universo_proteico.R",
+    "501_inventory_summary.tsv",
+    "Total protein/ORF abundance per sample",
+    "Detected protein/ORF features per sample",
+    "Protein/ORF prevalence distribution",
+    "Protein/ORF total abundance bins",
+    "LATEST_501_inventariar_universo_proteico.txt"
+  ],
+  "packages_static": [
+    "dplyr",
+    "ggplot2",
+    "purrr",
+    "readr",
+    "stringr",
+    "tibble",
+    "tidyr"
+  ],
+  "resolution": "static expressions; runtime arguments and branches not asserted to be resolved",
+  "execution_here": "not rerun"
+}

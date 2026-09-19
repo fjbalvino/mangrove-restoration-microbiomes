@@ -1,0 +1,145 @@
+{
+  "figsize_inches": [
+    11.69,
+    8.27
+  ],
+  "axes_rectangles_points": {
+    "A": [
+      168.336,
+      53.5896,
+      419.221385,
+      225.359041
+    ],
+    "B": [
+      569.752615,
+      53.5896,
+      820.638,
+      225.359041
+    ],
+    "C": [
+      168.336,
+      349.969963,
+      419.221385,
+      506.124
+    ],
+    "D": [
+      569.752615,
+      349.969963,
+      820.638,
+      506.124
+    ]
+  },
+  "axis_order": [
+    "MHI",
+    "vegetation_landscape_PC1",
+    "water_inundation_PC1",
+    "moisture_stress_PC1",
+    "physicochemical_PC1",
+    "nutrients_redox_PC1"
+  ],
+  "depths_cm": [
+    5,
+    20,
+    40
+  ],
+  "primary_q": 0.1,
+  "negative_color": "#0072b2",
+  "positive_color": "#d55e00",
+  "depth_colors": {
+    "5": "#0072b2",
+    "20": "#e69f00",
+    "40": "#009e73"
+  },
+  "dark": "#23313d",
+  "muted": "#58636d",
+  "A_xlim": [
+    -179,
+    225
+  ],
+  "CD_xlim": [
+    -0.9,
+    3.27
+  ],
+  "B_color_anchors": [
+    [
+      0.0,
+      "#ffffff"
+    ],
+    [
+      0.006872852233676976,
+      "#fefefe"
+    ],
+    [
+      0.010309278350515464,
+      "#fdfefe"
+    ],
+    [
+      0.013745704467353952,
+      "#fcfdfd"
+    ],
+    [
+      0.044673539518900345,
+      "#f6faf9"
+    ],
+    [
+      0.061855670103092786,
+      "#f2f9f7"
+    ],
+    [
+      0.10996563573883161,
+      "#e9f4f2"
+    ],
+    [
+      0.13745704467353953,
+      "#e3f1ef"
+    ],
+    [
+      0.281786941580756,
+      "#c6e3de"
+    ],
+    [
+      0.3642611683848797,
+      "#b0d7d2"
+    ],
+    [
+      0.38144329896907214,
+      "#a8d2cf"
+    ],
+    [
+      0.3951890034364261,
+      "#a0cecb"
+    ],
+    [
+      0.4054982817869416,
+      "#9dccc9"
+    ],
+    [
+      0.6254295532646048,
+      "#328d9a"
+    ],
+    [
+      0.8384879725085911,
+      "#16667a"
+    ],
+    [
+      1.0,
+      "#164f66"
+    ]
+  ],
+  "candidates": [
+    {
+      "panel": "C",
+      "feature_id": "CZ5_2.contigs_935909",
+      "axis": "moisture_stress_PC1",
+      "title": "Putative ferredoxin",
+      "axis_label": "Moisture signal (NDMI)"
+    },
+    {
+      "panel": "D",
+      "feature_id": "CZ1_3.contigs_1220634",
+      "axis": "nutrients_redox_PC1",
+      "title": "Carbohydrate-processing candidate",
+      "axis_label": "Nutrients / sulfide"
+    }
+  ]
+}

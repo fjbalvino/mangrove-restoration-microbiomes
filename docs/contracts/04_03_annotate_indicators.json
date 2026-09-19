@@ -1,0 +1,44 @@
+{
+  "script": "04_taxonomic_change_points/04_03_annotate_indicators.R",
+  "original_source": "/home/fjbalvino/Tipping_points/scripts_finales/403_anotar_taxonomia_indicadores_TITAN2.R",
+  "original_sha256": "5be068821821c00be25ecf54c83fbaec338cc468c802ca8c551c32cf7341c300",
+  "purpose_and_status": "Joins taxonomic annotation to TITAN indicators.",
+  "inputs_static_expressions": [
+    "RUN001 <- if (file.exists(LATEST001)) trimws(readLines(LATEST001, warn = FALSE, n = 1L)) else NA_character_",
+    "DEFAULT401 <- if (file.exists(LATEST401)) trimws(readLines(LATEST401, warn = FALSE, n = 1L)) else NA_character_",
+    "ps <- readRDS(PS_RDS)",
+    "taxa_used <- readr::read_csv(taxa_used_file, show_col_types = FALSE) %>%",
+    "ind <- readr::read_csv(f, show_col_types = FALSE)"
+  ],
+  "outputs_static_expressions": [
+    "readr::write_csv(",
+    "readr::write_csv(ann, out_file)"
+  ],
+  "path_literals": [
+    "/home/fjbalvino/Tipping_points/resultados_finales",
+    "LATEST_001_auditar_estructura_metadata.txt",
+    "001_phyloseq_canon_51.rds",
+    "LATEST_401_TITAN2_global_taxa_bimodales_gradientes_ambientales.txt",
+    "Usa --out401 /ruta/al/output/401",
+    "401_nonviral_bimodal_taxa_used.csv",
+    "403_taxonomy_map_from_phyloseq.csv",
+    "_annotated.csv",
+    "/",
+    "403_titan_indval_all_gradients_annotated.csv",
+    "403_titan_indval_reliable95_annotated.csv",
+    "403_titan_indval_reliable90_annotated.csv",
+    "403_titan_taxonomy_match_audit.csv",
+    "403_titan_taxonomic_response_summary.csv",
+    "403_sessionInfo.txt"
+  ],
+  "packages_static": [
+    "dplyr",
+    "phyloseq",
+    "readr",
+    "stringr",
+    "tibble",
+    "tidyr"
+  ],
+  "resolution": "static expressions; runtime arguments and branches not asserted to be resolved",
+  "execution_here": "not rerun"
+}

@@ -1,119 +1,86 @@
 # Mangrove restoration microbiomes
 
-Code and provenance for **Locality and depth structure sediment microbiomes across
-mangrove restoration stages**: 51 metagenomes, 17 profiles, three localities and
-three sediment depths (5, 20 and 40 cm).
+Analysis code and essential available inputs for **Locality and depth structure
+sediment microbiomes across mangrove restoration stages**: 51 metagenomes,
+17 sediment profiles, three localities and depths of 5, 20 and 40 cm.
+
+This repository contains scripts, configuration, metadata, fixed index-calibration
+inputs and functional matrices. Figures, fitted models, permutation/bootstrap
+draws and statistical result tables are generated locally and are not included.
 
 ## Analysis workflow
 
-| Directory | Analysis | Manuscript output |
-|---|---|---|
-| `00_preflight` | Sample identity and complete-profile checks | Cohort |
-| `01_environment_indices` | Environmental axes, calibrated MHI, archived HI | Methods; index supplements |
-| `02_metagenomics` | Gene-count filtering and KO/PFAM aggregation | Functional inputs |
-| `03_taxonomic_structure` | Screening, diversity, composition, variance partition | Fig. 1 |
-| `04_taxonomic_change_points` | Global and depth-resolved TITAN2 | Fig. 2 |
-| `05_functional_reference` | Functional composition and local reference proximity | Fig. 3 |
-| `06_gene_associations` | Protein CLR, mixed models and annotation | Fig. 4 |
-| `07_networks` | Final residualized ridge/LIONESS analysis, 809 | Network supplementary analyses |
-| `08_figures_tables` | Frozen-table figure reproduction | Fig. 4 |
-| `supplementary/hfr` | Historical HFR audit and held-out evaluation | Excluded recovery claim; provenance only |
+| Directory under `workflow/` | Purpose |
+|---|---|
+| `00_preflight` | Sample identity and complete-profile checks |
+| `01_environment_indices` | Environmental axes and fixed HI/MHI calibrations |
+| `02_metagenomics` | Protein filtering and KO/PFAM aggregation |
+| `03_taxonomic_structure` | Taxonomic screening, diversity and composition |
+| `04_taxonomic_change_points` | Global and depth-wise TITAN2 |
+| `05_functional_reference` | Functional composition and reference proximity |
+| `06_gene_associations` | Protein CLR, mixed models and annotation |
+| `07_networks` | Residualized ridge/LIONESS networks |
+| `08_figures_tables` | Rendering from newly generated model-result tables |
 
-Directories are under `workflow/`. New filenames make manuscript order explicit;
-historical output IDs remain unchanged to preserve lineage. The index scripts
-are not a shell pipeline: HI uses an archived calibration, not the current
-taxon-selection output. Consult the contracts before executing individual files.
+## Included inputs
 
-## Reproduce the available components
+- Integrated 51-sample metadata and the fixed historical HI/MHI calibration inputs.
+- Complete KO and PFAM count matrices, stored once.
+- The fixed 51-sample × 200-KO CLR matrix for the matched network analysis.
+- Small sample-order and provenance controls required by the gene-CLR producer.
 
-These commands check or reproduce three components of the analysis. Run them
-from the root of the complete analysis package, with its scripts and input
-files present. The GitHub `main` branch currently contains only this README;
-the directories referenced below must also be available locally.
+[INPUTS_MINIMAL.tsv](docs/INPUTS_MINIMAL.tsv) records each input's role, bytes and
+SHA-256. Historical calibration matrices are retained because fitting new indices
+would change the study predictors.
 
-### 1. Verify the historical HI
+## Run the available components
 
-This command reconstructs the archived HI from its original CLR matrix and
-metadata. It removes the fitted effects of locality and categorical depth,
-obtains the first principal component of the residuals, and orients its sign
-using the preserved and degraded reference groups. It then compares the
-reconstructed values with the archived HI and checks that the archived values
-match the HI column in the integrated metadata.
-
-Requires Python, NumPy and pandas, plus the four CSV files in
-`source_data/indices/`.
+Install the versions in `requirements-analysis.txt`, then run from this root:
 
 ```bash
 set +e
-bash tools/run_monitored.sh python3 checks/verify_historical_hi.py
+python3 checks/check_minimal_repository.py
+python3 checks/verify_historical_hi.py
+python3 checks/verify_environmental_mhi.py
+python3 tools/prepare_runtime_inputs.py
 ```
 
-**Output:** `validation/HI_reconstruction_audit.json`, with numerical differences
-and a PASS/FAIL result at a maximum absolute-error tolerance of `1e-9`.
-This checks consistency with the historical calibration; it does not provide
-independent biological validation of the index.
-
-### 2. Regenerate Figure 4
-
-This command verifies the bundled input files and redraws Figure 4, including
-panels A–D, from the saved statistical tables and plotting configuration.
-It uses the existing model results without refitting the upstream gene models.
-
-Requires Python, NumPy, pandas and Matplotlib, plus the contents of
-`workflow/08_figures_tables/figure4_bundle/`.
+The staging command copies verified inputs to the legacy bundle paths expected
+by the Python modules; those duplicate runtime copies are ignored by Git.
 
 ```bash
 set +e
-bash workflow/08_figures_tables/08_02_run_figure4.sh local
-```
-
-**Output:** a new timestamped directory under
-`workflow/08_figures_tables/figure4_bundle/outputs/`, containing the figure,
-individual panels, input copies and run metadata. The `local` argument selects
-this output location; `FIG4_OUT_ROOT` can override it.
-
-### 3. Recalculate the functional networks
-
-This command runs the 809 analysis using the included 200-KO CLR matrix and
-metadata for 51 samples. It compares three network constructions: unadjusted;
-adjusted for locality and depth; and additionally adjusted for the four
-environmental axes. It estimates ridge partial correlations and sample-specific
-LIONESS networks, then evaluates network metrics, their associations with
-HI/MHI, and their sensitivity using profile-level resampling and permutations.
-
-Requires the input files in `workflow/07_networks/network809/inputs/` and the
-package versions specified in
-`workflow/07_networks/network809/requirements.txt`.
-
-```bash
-set +e
+# Primary functional composition; requires the R packages imported by the script.
+bash workflow/05_functional_reference/05_00_run_primary_composition.sh
+# Supplementary functional convergence; computes results and resampling draws.
+bash workflow/05_functional_reference/05_04_run_convergence_sensitivity.sh
+# Functional networks; includes substantial reconstruction resampling.
 bash workflow/07_networks/07_01_run_residual_networks.sh
 ```
 
-**Output:** a timestamped analysis directory and execution log under
-`workflow/07_networks/network809/results/`. Set `OUT809` to change the output
-root or `PY809` to select a Python interpreter. The resampling makes this a
-substantial calculation; repository checks do not launch it automatically.
+Outputs are timestamped. The launchers report progress and propagate failures.
+The network code reconstructs the exact archived permutation schedule using
+seed 1032 and the fixed sample order; previous 802/803 fitted objects are unnecessary.
 
-The launchers limit numerical libraries to one thread and report progress
-every 30 seconds. `set +e` disables automatic shell termination on command
-failure; it does not suppress errors or make a failed analysis successful.
-In the complete package, [reproduction instructions](docs/REPRODUCIBILITY.md)
-describe landalab paths and additional data requirements.
+## Inputs still required from the analysis server
 
-## Inputs, outputs and transparency
+The canonical `001_phyloseq_canon_51.rds` and full
+`044_protein_filtered_counts_51samples.tsv.gz` were not available for inclusion.
+The unchanged gene-CLR producer also checks four upstream 044 metadata/QC files.
+[MISSING_INPUTS.tsv](docs/MISSING_INPUTS.tsv) lists the six exact paths.
 
-Every selected scientific script has a documentation header, its source hash and
-method attribution. Dynamic expressions are explicitly labelled; they are not
-invented resolved file paths. Complete static contracts are in `docs/contracts/`.
-`docs/INPUTS.tsv`, `OUTPUTS.tsv`, `FROZEN_FILES.tsv` and `MISSING_INPUTS.tsv`
-distinguish input expressions, saved evidence and unavailable bytes.
+```bash
+set +e
+# Run on landalab; copies only the six listed inputs and computes SHA-256.
+bash tools/run_monitored.sh python3 tools/collect_required_inputs.py --group core
+```
 
-The original capsule SHA-256 is
-`9c3707137004532fa2bc5fe582b4a1ca9e46c8a714987ee6e7a6db5cd905e59b`.
-All 3,291 entries in its checksum manifest were verified on receipt.
+The selected 100,000-gene CLR/count matrices are generated by `06_01_full_catalogue_CLR.py`
+from the full protein matrix and its verified metadata/QC controls; they are not
+separate required source datasets. Gene annotation additionally needs a matching
+annotation catalogue (or a validated subset) on the server. Figure 4 needs the
+derived gene-model tables before its plotting script can run.
 
-This review archive retains the authors' source code and does not grant a new
-licence over pre-existing work. See `docs/AI_ASSISTANCE.md` for curation provenance.
-Raw sequence data are reported under BioProject PRJNA1502944 in the manuscript;
-public availability of those reads has not been checked in this code audit.
+See [execution requirements](docs/REPRODUCIBILITY.md),
+[methods](docs/METHODS.md), [code changes](docs/MINIMAL_CHANGES.md), and
+[Español](README_ES.md). A complete raw-read-to-paper rerun is not claimed.

@@ -1,0 +1,52 @@
+{
+  "script": "05_functional_reference/05_02_partial_dbRDA.R",
+  "original_source": "/home/fjbalvino/Tipping_points/scripts_finales/603_dbRDA_funcional_parcial_restauracion.R",
+  "original_sha256": "3995341c2c2a70d0c3683a4c842dd710a0ed669dfcf3b6b6fb2a23ab57c3ed2a",
+  "purpose_and_status": "Constrained ordination of the frozen 602 functional matrices; Fig. 3a,b.",
+  "inputs_static_expressions": [
+    "check <- read.delim(inputs[[\"summary\"]], check.names = FALSE)",
+    "prep <- readRDS(inputs[[\"preprocessed\"]])",
+    "previous <- readRDS(inputs[[\"analysis\"]])"
+  ],
+  "outputs_static_expressions": [
+    "writeLines(OUT, file.path(BASE, paste0(\"LATEST_ATTEMPT_\", SCRIPT_ID, \".txt\")))",
+    "write.table(",
+    "write_tsv(md[, required], \"603_metadata_used.tsv\")",
+    "write_tsv(",
+    "saveRDS(perms, file.path(OUT, \"rds\", \"603_permutations.rds\"))",
+    "ggsave(",
+    "write_tsv(result_tbl, \"603_partial_dbRDA_results.tsv\")",
+    "write_tsv(do.call(rbind, scores_out), \"603_sample_scores.tsv\")",
+    "write_tsv(do.call(rbind, axes_out), \"603_axis_variance.tsv\")",
+    "saveRDS(models, file.path(OUT, \"rds\", \"603_partial_dbRDA_models.rds\"))",
+    "writeLines(",
+    "writeLines(c(",
+    "writeLines(OUT, file.path(BASE, paste0(\"LATEST_\", SCRIPT_ID, \".txt\")))"
+  ],
+  "path_literals": [
+    "/home/fjbalvino/Tipping_points/resultados_finales",
+    "602_primary_preprocessed_data.rds",
+    "602_analysis_results.rds",
+    "602_run_summary.tsv",
+    ".txt",
+    "603_metadata_used.tsv",
+    "603_permutation_audit.tsv",
+    "603_permutations.rds",
+    "Unexpected F/R2 mismatch with 602: ",
+    "603_partial_dbRDA_results.tsv",
+    "603_sample_scores.tsv",
+    "603_axis_variance.tsv",
+    "603_partial_dbRDA_models.rds",
+    "603_inputs.tsv",
+    "603_sessionInfo.txt",
+    "603_analysis_notes.txt",
+    "603_run_summary.tsv"
+  ],
+  "packages_static": [
+    "ggplot2",
+    "tools",
+    "vegan"
+  ],
+  "resolution": "static expressions; runtime arguments and branches not asserted to be resolved",
+  "execution_here": "not rerun"
+}

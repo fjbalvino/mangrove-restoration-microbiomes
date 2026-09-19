@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "Please cite the associated manuscript; publication metadata will be added on acceptance."
+title: "Locality and depth structure sediment microbiomes across mangrove restoration stages: analysis code"
+type: software
+version: 0.2.0
+date-released: 2026-09-18
+authors:
+  - family-names: Balvino-Olvera
+    given-names: Francisco J.
+  - family-names: Bustos-Díaz
+    given-names: Edder D.
+  - family-names: Álvarez-Martínez
+    given-names: Roberto
+  - family-names: Hernández-Oaxaca
+    given-names: Diana
+  - family-names: González-González
+    given-names: Irma
+  - family-names: Méndez-Castro
+    given-names: Laura Iveth
+  - family-names: López-Ruiz
+    given-names: Frida
+  - family-names: Pérez-Ceballos
+    given-names: Rosela
+  - family-names: Vázquez-Rosas-Landa
+    given-names: Mirna
+repository-code: "https://github.com/fjbalvino/mangrove-restoration-microbiomes"

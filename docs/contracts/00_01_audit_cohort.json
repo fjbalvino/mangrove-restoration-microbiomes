@@ -1,0 +1,62 @@
+{
+  "script": "00_preflight/00_01_audit_cohort.R",
+  "original_source": "/home/fjbalvino/Tipping_points/scripts_finales/001_auditar_estructura_metadata.R",
+  "original_sha256": "a2d30465616b3540fb025a455cb1cb9f3b1ade2a66860dc14524e2f7a846ee00",
+  "purpose_and_status": "Cohort identity, complete profiles and reference coverage; phyloseq object required.",
+  "inputs_static_expressions": [
+    "first <- readLines(path, n = 1L, warn = FALSE)",
+    "read_delim(path, delim = delim, show_col_types = FALSE, guess_max = 100000)",
+    "ps_source <- readRDS(PS_RDS)"
+  ],
+  "outputs_static_expressions": [
+    "writeLines(OUT_DIR, file.path(OUT_ROOT, paste0(\"LATEST_ATTEMPT_\", SCRIPT_ID, \".txt\")))",
+    "write_csv(tibble(missing_column = missing_required),",
+    "write_csv(column_audit, file.path(TABLE_DIR, \"001_columnas_y_faltantes.csv\"))",
+    "write_csv(invalid_rows, file.path(TABLE_DIR, \"001_filas_con_diseno_invalido.csv\"))",
+    "write_csv(duplicate_samples, file.path(TABLE_DIR, \"001_ids_muestra_duplicados.csv\"))",
+    "write_csv(profile_audit, file.path(TABLE_DIR, \"001_auditoria_perfiles.csv\"))",
+    "write_csv(design_counts, file.path(TABLE_DIR, \"001_conteos_diseno_localidad_estadio.csv\"))",
+    "write_csv(reference_audit, file.path(TABLE_DIR, \"001_disponibilidad_referencias_localidad_profundidad.csv\"))",
+    "write_csv(ps_matching, file.path(TABLE_DIR, \"001_matching_metadata_phyloseq.csv\"))",
+    "write_csv(md_canon, file.path(TABLE_DIR, \"001_metadata_canon_51.csv\"))",
+    "write_csv(gates, file.path(TABLE_DIR, \"001_compuertas_diseno.csv\"))",
+    "write_csv(md, file.path(TABLE_DIR, \"001_metadata_diseno_normalizada.csv\"))",
+    "write_csv(summary_tbl, file.path(TABLE_DIR, \"001_resumen_diseno.csv\"))",
+    "saveRDS(ps_canon, file.path(RDS_DIR, \"001_phyloseq_canon_51.rds\"))",
+    "writeLines(OUT_DIR, LATEST_FILE)",
+    "writeLines("
+  ],
+  "path_literals": [
+    "/home/fjbalvino/Tipping_points/Results/044_build_protein_filtered_matrix_HI_20260529_000843/tables/044_metadata_aligned_51samples.csv",
+    "/home/fjbalvino/R/Ciencia-Frontera/resultados/phyloseq_withConservedDegraded_20260130_1730/rank_S/phyloseq_FILTRADO_rank_S.rds",
+    "/home/fjbalvino/Tipping_points/resultados_finales",
+    ".txt",
+    "001_log.txt",
+    "001 metadata/design audit\\nInput:",
+    "001_missing_required_columns.csv",
+    "001_columnas_y_faltantes.csv",
+    "001_filas_con_diseno_invalido.csv",
+    "001_ids_muestra_duplicados.csv",
+    "001_auditoria_perfiles.csv",
+    "001_conteos_diseno_localidad_estadio.csv",
+    "001_disponibilidad_referencias_localidad_profundidad.csv",
+    "001_matching_metadata_phyloseq.csv",
+    "001_metadata_canon_51.csv",
+    "001_compuertas_diseno.csv",
+    "001_metadata_diseno_normalizada.csv",
+    "001_resumen_diseno.csv",
+    "001_phyloseq_canon_51.rds",
+    "Las profundidades 5/20/40 cm son submuestras repetidas del mismo perfil.",
+    "001_LEEME_resultado_auditoria.txt"
+  ],
+  "packages_static": [
+    "dplyr",
+    "phyloseq",
+    "readr",
+    "stringr",
+    "tibble",
+    "tidyr"
+  ],
+  "resolution": "static expressions; runtime arguments and branches not asserted to be resolved",
+  "execution_here": "not rerun"
+}

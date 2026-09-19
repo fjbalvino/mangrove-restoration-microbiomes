@@ -1,0 +1,35 @@
+{
+  "script": "04_taxonomic_change_points/04_02_extract_IndVal.R",
+  "original_source": "/home/fjbalvino/Tipping_points/scripts_finales/402_recuperar_tablas_IndVal_desde_RDS.R",
+  "original_sha256": "e5bfa1d62fbe36dccf033d9853177655ae211155df8b638d589047a5f4ab0853",
+  "purpose_and_status": "Extracts complete indicator statistics; the 401 one-row indicator summary is not a taxon count.",
+  "inputs_static_expressions": [
+    "DEFAULT401 <- if (file.exists(LATEST401)) trimws(readLines(LATEST401, warn = FALSE, n = 1L)) else NA_character_",
+    "obj <- readRDS(rds)"
+  ],
+  "outputs_static_expressions": [
+    "readr::write_csv(std, out_file)",
+    "readr::write_csv("
+  ],
+  "path_literals": [
+    "\\nobj$sppmax names/dim preview:\\n",
+    "/home/fjbalvino/Tipping_points/resultados_finales",
+    "LATEST_401_TITAN2_global_taxa_bimodales_gradientes_ambientales.txt",
+    "Usa --out401 /ruta/al/output/401",
+    ".txt",
+    ".csv",
+    "402_titan_indval_all_gradients.csv",
+    "402_titan_sumz_thresholds_all_gradients.csv",
+    "402_titan_indval_reliable_summary.csv"
+  ],
+  "packages_static": [
+    "TITAN2",
+    "dplyr",
+    "readr",
+    "stringr",
+    "tibble",
+    "tidyr"
+  ],
+  "resolution": "static expressions; runtime arguments and branches not asserted to be resolved",
+  "execution_here": "not rerun"
+}

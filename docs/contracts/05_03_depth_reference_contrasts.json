@@ -1,0 +1,44 @@
+{
+  "script": "05_functional_reference/05_03_depth_reference_contrasts.R",
+  "original_source": "/home/fjbalvino/Tipping_points/scripts_finales/604_distancias_funcionales_por_profundidad.R",
+  "original_sha256": "c1f2d5ab09569965079a7ce96392d556afa8f450ed415bdf916e86d93251d84b",
+  "purpose_and_status": "Locality/depth matched conserved contrasts relative to Degraded; Fig. 3c,d.",
+  "inputs_static_expressions": [
+    "z <- read.delim(path, colClasses = \"character\", check.names = FALSE)",
+    "r <- read_tsv(files[1], c(\"status\", \"pseudocount\", \"samples\", \"profiles\"))",
+    "s <- read_tsv(files[2], c(",
+    "p <- read_tsv(files[3], c("
+  ],
+  "outputs_static_expressions": [
+    "ggsave(",
+    "write.table(",
+    "write_tsv(d, \"604_distances_and_local_contrasts.tsv\")",
+    "write_tsv(counts, \"604_profile_counts_by_cell.tsv\")",
+    "write_tsv(summary_cells, \"604_descriptive_stage_means.tsv\")",
+    "write_tsv(",
+    "writeLines(OUT, file.path(BASE, paste0(\"LATEST_\", STEM, \".txt\")))"
+  ],
+  "path_literals": [
+    "/home/fjbalvino/Tipping_points/resultados_finales",
+    "602_run_summary.tsv",
+    "602_reference_distance_by_sample.tsv",
+    "602_reference_distance_by_profile.tsv",
+    "Auditoria OK: pc=1; 51 muestras/17 perfiles; 3 referencias y 14 comparados.\\n",
+    "[PNG/PDF]\\n",
+    "604_distances_and_local_contrasts.tsv",
+    "604_profile_counts_by_cell.tsv",
+    "604_descriptive_stage_means.tsv",
+    "604_inputs.tsv",
+    "sessionInfo.txt",
+    "604_run_summary.tsv",
+    ".txt"
+  ],
+  "packages_static": [
+    "ggplot2",
+    "grid",
+    "gtable",
+    "tools"
+  ],
+  "resolution": "static expressions; runtime arguments and branches not asserted to be resolved",
+  "execution_here": "not rerun"
+}

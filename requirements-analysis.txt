@@ -1,0 +1,6 @@
+# Numerical versions observed in the recovered 808/809 environment.
+# Figure 4 retains its more detailed requirements-lock.txt in its bundle.
+numpy==2.3.5
+pandas==2.2.3
+scipy==1.17.0
+matplotlib==3.10.8

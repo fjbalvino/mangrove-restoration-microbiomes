@@ -1,0 +1,52 @@
+sample_id,locality,restoration4,depth_cm,lat_block,profile_id
+CC3_1,Carmen,Advanced restoration,5,18.67167,Carmen::18.67167
+CC3_2,Carmen,Advanced restoration,20,18.67167,Carmen::18.67167
+CC3_3,Carmen,Advanced restoration,40,18.67167,Carmen::18.67167
+CC4_1,Carmen,Degraded,5,18.68291,Carmen::18.68291
+CC4_2,Carmen,Degraded,20,18.68291,Carmen::18.68291
+CC4_3,Carmen,Degraded,40,18.68291,Carmen::18.68291
+CC2_1,Carmen,Early restoration,5,18.68474,Carmen::18.68474
+CC2_2,Carmen,Early restoration,20,18.68474,Carmen::18.68474
+CC2_3,Carmen,Early restoration,40,18.68474,Carmen::18.68474
+CC1_1,Carmen,Intermediate restoration,5,18.69209,Carmen::18.69209
+CC1_2,Carmen,Intermediate restoration,20,18.69209,Carmen::18.69209
+CC1_3,Carmen,Intermediate restoration,40,18.69209,Carmen::18.69209
+CC5_1,Carmen,Conserved,5,18.70541,Carmen::18.70541
+CC5_2,Carmen,Conserved,20,18.70541,Carmen::18.70541
+CC5_3,Carmen,Conserved,40,18.70541,Carmen::18.70541
+CC6_1,Carmen,Intermediate restoration,5,18.71388,Carmen::18.71388
+CC6_2,Carmen,Intermediate restoration,20,18.71388,Carmen::18.71388
+CC6_3,Carmen,Intermediate restoration,40,18.71388,Carmen::18.71388
+CZ3_3,Cozumel,Conserved,5,20.54246,Cozumel::20.54246
+CZ3_2,Cozumel,Conserved,20,20.54246,Cozumel::20.54246
+CZ3_1,Cozumel,Conserved,40,20.54246,Cozumel::20.54246
+CZ1_3,Cozumel,Degraded,5,20.54319,Cozumel::20.54319
+CZ1_2,Cozumel,Degraded,20,20.54319,Cozumel::20.54319
+CZ1_1,Cozumel,Degraded,40,20.54319,Cozumel::20.54319
+CZ4_3,Cozumel,Intermediate restoration,5,20.54863,Cozumel::20.54863
+CZ4_2,Cozumel,Intermediate restoration,20,20.54863,Cozumel::20.54863
+CZ4_1,Cozumel,Intermediate restoration,40,20.54863,Cozumel::20.54863
+CZ2_3,Cozumel,Intermediate restoration,5,20.54896,Cozumel::20.54896
+CZ2_2,Cozumel,Intermediate restoration,20,20.54896,Cozumel::20.54896
+CZ2_1,Cozumel,Intermediate restoration,40,20.54896,Cozumel::20.54896
+CZ6_3,Cozumel,Early restoration,5,20.54906,Cozumel::20.54906
+CZ6_2,Cozumel,Early restoration,20,20.54906,Cozumel::20.54906
+CZ6_1,Cozumel,Early restoration,40,20.54906,Cozumel::20.54906
+CZ5_3,Cozumel,Advanced restoration,5,20.54991,Cozumel::20.54991
+CZ5_2,Cozumel,Advanced restoration,20,20.54991,Cozumel::20.54991
+CZ5_1,Cozumel,Advanced restoration,40,20.54991,Cozumel::20.54991
+TX1_3,Tuxpan,Conserved,5,21.00552,Tuxpan::21.00552
+TX1_2,Tuxpan,Conserved,20,21.00552,Tuxpan::21.00552
+TX1_1,Tuxpan,Conserved,40,21.00552,Tuxpan::21.00552
+TX6_3,Tuxpan,Early restoration,5,21.01265,Tuxpan::21.01265
+TX6_2,Tuxpan,Early restoration,20,21.01265,Tuxpan::21.01265
+TX6_1,Tuxpan,Early restoration,40,21.01265,Tuxpan::21.01265
+TX5_3,Tuxpan,Intermediate restoration,5,21.01393,Tuxpan::21.01393
+TX5_2,Tuxpan,Intermediate restoration,20,21.01393,Tuxpan::21.01393
+TX5_1,Tuxpan,Intermediate restoration,40,21.01393,Tuxpan::21.01393
+TX4_3,Tuxpan,Advanced restoration,5,21.01561,Tuxpan::21.01561
+TX4_2,Tuxpan,Advanced restoration,20,21.01561,Tuxpan::21.01561
+TX4_1,Tuxpan,Advanced restoration,40,21.01561,Tuxpan::21.01561
+TX3_3,Tuxpan,Degraded,5,21.04519,Tuxpan::21.04519
+TX3_2,Tuxpan,Degraded,20,21.04519,Tuxpan::21.04519
+TX3_1,Tuxpan,Degraded,40,21.04519,Tuxpan::21.04519
