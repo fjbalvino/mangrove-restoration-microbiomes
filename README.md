@@ -5,8 +5,13 @@ sediment microbiomes across mangrove restoration stages**: 51 metagenomes,
 17 sediment profiles, three localities and depths of 5, 20 and 40 cm.
 
 This repository contains scripts, configuration, metadata, fixed index-calibration
-inputs and functional matrices. Figures, fitted models, permutation/bootstrap
+inputs and compact functional matrices. Figures, fitted models, permutation/bootstrap
 draws and statistical result tables are generated locally and are not included.
+
+The current code-and-small-input delivery is complete. Large functional source
+matrices held on the analysis server will be uploaded separately in a later step.
+The compressed KO/PFAM aggregates already included here total about 1.8 MB;
+they are distinct from those large source matrices.
 
 ## Analysis workflow
 
@@ -62,7 +67,11 @@ Outputs are timestamped. The launchers report progress and propagate failures.
 The network code reconstructs the exact archived permutation schedule using
 seed 1032 and the fixed sample order; previous 802/803 fitted objects are unnecessary.
 
-## Inputs still required from the analysis server
+## Server inputs for the later data upload
+
+The large functional source matrices are intentionally deferred. Their transfer
+from the server will be handled separately from this code delivery. Once uploaded,
+their download locations, byte sizes and SHA-256 checksums should be recorded here.
 
 The canonical `001_phyloseq_canon_51.rds` and full
 `044_protein_filtered_counts_51samples.tsv.gz` were not available for inclusion.
@@ -71,7 +80,8 @@ The unchanged gene-CLR producer also checks four upstream 044 metadata/QC files.
 
 ```bash
 set +e
-# Run on landalab; copies only the six listed inputs and computes SHA-256.
+# Later, on landalab: collect the six listed inputs and compute SHA-256.
+# This command creates a local archive; it does not upload data.
 bash tools/run_monitored.sh python3 tools/collect_required_inputs.py --group core
 ```
 

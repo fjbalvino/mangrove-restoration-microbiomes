@@ -1,5 +1,20 @@
 # Inputs and execution
 
+## Delivery scope
+
+The current delivery comprises code, configuration, metadata and the compact
+inputs listed in `INPUTS_MINIMAL.tsv`. Large functional source matrices remain
+on the analysis server for a separate later upload, as requested by the project
+owner. Their transfer is not required to finish this code delivery, but the
+analyses that depend on them still require access to those files.
+
+The canonical phyloseq and upstream metadata/QC files listed in
+`MISSING_INPUTS.tsv` also remain to be supplied. The collection command in the
+README creates a local archive on the server; it does not publish that archive.
+After the data upload, record the actual filenames, download locations, byte
+sizes and SHA-256 checksums. Archived inventory sizes should be checked against
+the files actually transferred.
+
 ## Available entry points
 
 | Component | Required source input | Current availability |

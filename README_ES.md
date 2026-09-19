@@ -4,6 +4,12 @@ Repositorio mínimo: código, configuración y entradas analíticas disponibles.
 Las figuras, tablas estadísticas, modelos ajustados y remuestreos se generan
 localmente; no forman parte de los archivos publicados.
 
+La entrega actual de código y entradas pequeñas está terminada. Las matrices
+funcionales grandes del servidor se subirán por separado en una etapa posterior.
+Los agregados KO/PFAM ya incluidos ocupan unos 1,8 MB comprimidos y son distintos
+de esas matrices de origen. Cuando se complete la transferencia, se añadirán
+las ubicaciones de descarga, tamaños y sumas SHA-256.
+
 Se incluyen los metadatos de 51 muestras, las calibraciones fijas de HI/MHI,
 las matrices completas KO/PFAM y la matriz CLR de los 200 KO usados en redes.
 Cada entrada está documentada con su SHA-256 en
