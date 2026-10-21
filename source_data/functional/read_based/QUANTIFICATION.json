@@ -1,0 +1,37 @@
+{
+  "scope": "Starting point for functional composition and core reanalysis; does not rerun FASTQ mapping",
+  "samples": 51,
+  "sites": 17,
+  "count_unit": "Uniquely assigned paired-end fragments; either or both mates may provide support; multilabel terms receive equal fractions",
+  "RPK_definition": "assigned fragments * 1000 / reference nucleotide length, before functional aggregation",
+  "normalization": "No genomic-equivalent correction. Full-layer relative abundances and per-million sensitivity are derived during analysis.",
+  "annotation_policy": "All linked protein clusters must have the same nonempty annotation set in a layer; missing or conflicting units are excluded from that layer",
+  "read_policy": {
+    "min_identity_numerator": 95,
+    "min_identity_denominator": 100,
+    "min_query_coverage_numerator": 95,
+    "min_query_coverage_denominator": 100,
+    "best_scores": [
+      "AS",
+      "ms"
+    ],
+    "maximum_reported_nonsupplementary_hits_per_end": 100,
+    "end_mapping": "independent --frag=no",
+    "fragment_policy": "union of both end candidate sets",
+    "assignment": "one count only for a singleton union; both-mate and single-mate support separate",
+    "ambiguity": "withheld; no fractional redistribution or EM",
+    "interpretation": "unique among reported passing candidates, not exhaustive biological uniqueness",
+    "index": "native minimap2 multipart -I4G with --split-prefix global candidate merge",
+    "query_names": "sample-global ordinal; unchanged by chunk subdivision or resume",
+    "initial_chunk_fragments": 20000000,
+    "partition_limitation": "Seeding and chaining occur per index part; equality with single-part mapping is not asserted."
+  },
+  "upstream_producer_sha256": "19ca796a8c9dbde089b57b7bdc44da65e9beaa38d16ca6befe29ab5791ce3540",
+  "upstream_source_summary_sha256": "291304fdcfd922c1853832ba32c54cf8f304fd0cc6545dbfa448e4cd1bc210f4",
+  "upstream_audit": {
+    "checks_passed": 1037,
+    "checks_failed": 0,
+    "scope": "Checks the transferred export and its numerical consistency; does not independently rerun read mapping, all sequence-to-annotation joins, or ecological tests."
+  },
+  "total_filtered_fragments": 6414602297
+}

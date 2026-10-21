@@ -5,13 +5,17 @@ sediment microbiomes across mangrove restoration stages**: 51 metagenomes,
 17 sediment profiles, three localities and depths of 5, 20 and 40 cm.
 
 This repository contains scripts, configuration, metadata, fixed index-calibration
-inputs and compact functional matrices. Figures, fitted models, permutation/bootstrap
-draws and statistical result tables are generated locally and are not included.
+inputs and functional matrices. Figures, PDFs, fitted models, permutation/bootstrap
+draws and full statistical result tables are generated locally. A compact numerical
+fixture is included to verify the corrected functional section.
 
-The current code-and-small-input delivery is complete. Large functional source
-matrices held on the analysis server will be uploaded separately in a later step.
-The compressed KO/PFAM aggregates already included here total about 1.8 MB;
-they are distinct from those large source matrices.
+Section 05 now uses the corrected read-based KO/PFAM matrices, with separate
+fragment-count and length-adjusted inputs supplied separately. With those inputs,
+it reproduces Figure 3, functional cores,
+Supplementary Tables 6 and 14, and Supplementary Figure 9. See the
+[section-specific methods and execution guide](docs/FUNCTIONAL_REFERENCE.md).
+Gene associations, ordered KO trends and network analyses still await separate
+read-based reanalysis. Large source catalogues and raw reads are not bundled.
 
 ## Analysis workflow
 
@@ -30,7 +34,8 @@ they are distinct from those large source matrices.
 ## Included inputs
 
 - Integrated 51-sample metadata and the fixed historical HI/MHI calibration inputs.
-- Complete KO and PFAM count matrices, stored once.
+- Quantification provenance for corrected KO/PFAM matrices supplied separately.
+- Historical assembled-ORF matrices used only by the unrecalculated 808 branch.
 - The fixed 51-sample × 200-KO CLR matrix for the matched network analysis.
 - Small sample-order and provenance controls required by the gene-CLR producer.
 
@@ -40,7 +45,10 @@ would change the study predictors.
 
 ## Run the available components
 
-Install the versions in `requirements-analysis.txt`, then run from this root:
+Install the versions in `requirements-analysis.txt`, then run from this root.
+Before section 05, supply the four matrices listed in
+[FUNCTIONAL_INPUTS_REQUIRED.tsv](docs/FUNCTIONAL_INPUTS_REQUIRED.tsv) as described
+in the section guide:
 
 ```bash
 set +e
@@ -55,23 +63,32 @@ by the Python modules; those duplicate runtime copies are ignored by Git.
 
 ```bash
 set +e
-# Primary functional composition; requires the R packages imported by the script.
+# Corrected composition, reference proximity, cores, validation and local figures.
 bash workflow/05_functional_reference/05_00_run_primary_composition.sh
-# Supplementary functional convergence; computes results and resampling draws.
+# Historical 808 reproduction; still uses assembled-ORF matrices.
 bash workflow/05_functional_reference/05_04_run_convergence_sensitivity.sh
-# Functional networks; includes substantial reconstruction resampling.
+# Historical networks; not yet updated to read-based quantification.
 bash workflow/07_networks/07_01_run_residual_networks.sh
 ```
 
-Outputs are timestamped. The launchers report progress and propagate failures.
+The corrected section writes to `local_runs/functional_reference/` and refuses
+to overwrite an existing primary run. Set `FUNCTIONAL_OUT_ROOT` to a fresh local
+directory for a repeat. Progress is reported every 30 seconds; failures stop the
+pipeline. Other launchers retain their historical output conventions.
 The network code reconstructs the exact archived permutation schedule using
 seed 1032 and the fixed sample order; previous 802/803 fitted objects are unnecessary.
 
 ## Server inputs for the later data upload
 
-The large functional source matrices are intentionally deferred. Their transfer
-from the server will be handled separately from this code delivery. Once uploaded,
-their download locations, byte sizes and SHA-256 checksums should be recorded here.
+The four corrected KO/PFAM input matrices are external inputs, not included in
+this code update. Their expected filenames, sizes and SHA-256 values are in
+`docs/FUNCTIONAL_INPUTS_REQUIRED.tsv`; quantification provenance is included.
+Place the verified TSV files in `source_data/functional/read_based/` before
+running section 05. The launcher reports missing or altered matrices and stops.
+Once those matrices are supplied, reproducing section 05 does not require
+the large gene catalogue or another read-mapping run. Rebuilding quantification
+from FASTQ still requires the reads, reference sequences, mapping outputs and
+annotation links held on the analysis server.
 
 The canonical `001_phyloseq_canon_51.rds` and full
 `044_protein_filtered_counts_51samples.tsv.gz` were not available for inclusion.

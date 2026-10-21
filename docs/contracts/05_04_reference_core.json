@@ -1,0 +1,22 @@
+{
+  "script": "05_functional_reference/05_04_reference_core.R",
+  "methods": "docs/FUNCTIONAL_REFERENCE.md",
+  "purpose": "Core definition, coverage, exact stage intersections and core reference-proximity tests",
+  "inputs": [
+    "source_data/functional/read_based/*_complete_RPK.tsv",
+    "602_composition_reference/rds/602_primary_preprocessed_data.rds",
+    "602_composition_reference/rds/602_*_reference_permutations.rds"
+  ],
+  "outputs": [
+    "605_reference_core"
+  ],
+  "parameters": {
+    "relative_threshold": 0.0001,
+    "prevalence": "all nine Conserved samples",
+    "denominator": "complete annotation layer",
+    "core_CLR_pseudocount": 1,
+    "reduction": "matched Degraded-to-Conserved minus sample-to-Conserved",
+    "inference": "14 site means; locality-only residuals permuted within locality"
+  },
+  "execution": "PASS: full corrected workflow run from repository paths on 2026-10-21; see docs/FUNCTIONAL_REFERENCE_VALIDATION.json"
+}

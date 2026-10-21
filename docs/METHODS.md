@@ -1,8 +1,8 @@
 # Methods represented by the repository
 
-This map follows the final manuscript and supplementary PDFs supplied on
-18 September 2026 (`SOURCE_DOCUMENTS.tsv`). `METHODS_CODE_CROSSWALK.tsv`
-identifies renamed scripts, original hashes and the scope of review.
+The map was established from the September 2026 manuscript. Section 05 now
+documents the corrected October read-based reanalysis and current online
+supplement. `CODE_PROVENANCE.tsv` records current code hashes and changes.
 
 ## Study design and indices
 
@@ -43,7 +43,12 @@ database snapshots. Section 02 inventories, filters and aggregates the existing
 annotated gene-abundance data. Current 502/504 scripts are maintained successors;
 saved 044/082A matrices retain their original provenance; the minimal publication
 keeps the current source implementations and documents the source hashes.
-Recovered 082A counts are included in `source_data/functional/tables`.
+Recovered 082A values count assembled ORF cluster members and remain in
+`source_data/functional/tables` only for historical reproduction. Corrected
+read-based counts and length-adjusted values must be supplied separately in
+`source_data/functional/read_based`; section 05 uses only these corrected inputs.
+Its quantification rules are documented in `FUNCTIONAL_REFERENCE.md` and
+`source_data/functional/read_based/QUANTIFICATION.json`.
 
 ## Taxonomic structure and change points
 
@@ -64,16 +69,33 @@ the historical predictor-lineage section of `REPRODUCIBILITY.md` affect archived
 
 ## Functional composition and reference proximity
 
-Primary 602/603/604 analyses retain 7,126 KOs and 6,681 PFAMs with prevalence
->=26 samples, total abundance >=10 and positive log(1+abundance) variance.
-CLR is calculated within each retained layer with pseudocount 1. Models condition
-on locality and depth, preserve profiles in resampling and test dispersion
-separately. Reference distances use the complete feature space and a conserved
-sample matched by locality and depth. Conserved self-distances are excluded from
-inference. Negative restored-minus-Degraded contrasts indicate greater proximity
-to that reference, not measured ecosystem-process recovery.
+The corrected 602/603/604 analyses retain 7,802 KOs and 7,190 PFAM features.
+Filtering requires occurrence in at least 26 samples, summed fractional fragment
+count at least 10 and positive log(1 + length-adjusted value) variance. CLR uses
+length-adjusted values plus one separately within each layer. The models account
+for locality and depth and use 9,999 distinct whole-profile permutations within
+locality. Dispersion is tested separately with the same permutation matrix.
 
-The recovered 808 sensitivity uses 7,129 prevalence-filtered KOs. It fits stage,
+Reference tests use three-depth means from 14 non-conserved sites, adjusting for
+locality (stage/residual degrees of freedom 3, 8). Each reference is Conserved
+from the same locality and depth. Figure 3 uses sample distance minus the local
+Degraded distance, so negative values mean closer proximity. Contrasts are
+descriptive and do not measure temporal or ecosystem-process recovery.
+
+All four preprocessing checks are reported. Stage significance depends on
+preprocessing: after rescaling the complete layer to one million before adding
+one and taking CLR, P values are 0.0558 and 0.0626. A normalization-independent
+stage effect is not established.
+
+The reference core uses relative length-adjusted values at least 0.01% in all
+nine Conserved samples, with the complete layer as denominator. There are 1,647
+KO and 1,620 PFAM core features; Degraded median coverage is 99.4536% and 99.4444%.
+Core distance reductions use Degraded distance minus sample distance, the opposite
+sign to Figure 3. These are distance differences, not percentages. The new
+`05_04_reference_core.R` reproduces core coverage, overlap and site-level tests.
+Full methods and commands are in `FUNCTIONAL_REFERENCE.md`.
+
+The historical, unrecalculated 808 sensitivity uses 7,129 prevalence-filtered KOs from assembled-ORF counts. It fits stage,
 depth and locality to 42 non-conserved samples, with 9,999 Freedman–Lane profile
 permutations and 4,999 profile bootstraps. Its five-test Holm family and nine
 exploratory depth-contrast BH family are specified in the bundled protocol.
@@ -81,6 +103,8 @@ It is not the producer of Figure 3. One reference profile per locality leaves
 reference uncertainty unestimated.
 
 ## Gene-level associations
+
+The following describes the historical analysis; read-based reanalysis is pending.
 
 Section 06 centres CLR against the full filtered catalogue of 1,475,487 genes
 before selecting 100,000 variable genes. REML mixed models use locality,
@@ -92,6 +116,8 @@ unusable/singular focal fits. Annotation supplies putative functions, not eviden
 of expression or activity. Figure 4 reproduces saved statistics without refitting.
 
 ## Functional networks
+
+The following describes the historical analysis; read-based reanalysis is pending.
 
 Final analysis 809 holds 200 KOs fixed. Three constructions compare original CLR,
 locality/depth residuals, and residuals additionally adjusted for four environmental

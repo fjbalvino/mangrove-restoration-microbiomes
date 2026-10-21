@@ -1,7 +1,7 @@
 #!/usr/bin/env Rscript
 # ============================================================
 # 05_02_partial_dbRDA.R
-# Status: REVIEW CANDIDATE; see docs/REPRODUCIBILITY.md
+# Read-based functional reanalysis; see docs/FUNCTIONAL_REFERENCE.md
 # Constrained ordination of the frozen 602 functional matrices; Fig. 3a,b.
 # Inputs (source expressions; complete list in docs/contracts/05_02_partial_dbRDA.json):
 #   check <- read.delim(inputs[["summary"]], check.names = FALSE)
@@ -23,8 +23,7 @@
 #   McArdle & Anderson (2001), doi:10.1890/0012-9658(2001)082[0290:FMMTCD]2.0.CO;2.
 # Source SHA-256: 3995341c2c2a70d0c3683a4c842dd710a0ed669dfcf3b6b6fb2a23ab57c3ed2a
 # AI-assisted code curation: OpenAI Codex (OpenAI, 2026).
-# Changes in this copy: descriptive filename and this documentation header only.
-# Original body and internal output names are preserved exactly.
+# Revision: explicit CLI inputs and canonical local output paths; numerical analysis retained.
 # ============================================================
 
 options(stringsAsFactors = FALSE, warn = 1)
@@ -32,11 +31,15 @@ options(stringsAsFactors = FALSE, warn = 1)
 library(vegan)
 library(ggplot2)
 
-BASE <- "/home/fjbalvino/Tipping_points/resultados_finales"
-RUN602 <- file.path(
-  BASE,
-  "602_validar_composicion_funcional_splitplot_20260914_230452"
-)
+args <- commandArgs(trailingOnly=TRUE)
+get_arg <- function(flag, default=NULL) {
+  i <- which(args==flag)
+  if (!length(i)) return(default)
+  if (length(i)!=1L || i==length(args)) stop("Invalid argument: ",flag)
+  args[[i+1L]]
+}
+BASE <- get_arg("--out_root", file.path(getwd(), "local_runs", "functional_reference"))
+RUN602 <- get_arg("--run602", file.path(BASE, "602_composition_reference"))
 SCRIPT_ID <- "603_dbRDA_funcional_parcial_restauracion"
 SEED <- 123L
 
@@ -124,7 +127,7 @@ valid_perm <- apply(perms, 1L, function(p) {
 stopifnot(all(valid_perm))
 
 stamp <- format(Sys.time(), "%Y%m%d_%H%M%S", tz = "UTC")
-OUT <- file.path(BASE, paste0(SCRIPT_ID, "_", stamp))
+OUT <- file.path(BASE, "603_partial_dbRDA")
 if (dir.exists(OUT)) stop("Output directory already exists")
 for (sub in c("tables", "figures", "rds", "provenance")) {
   dir.create(file.path(OUT, sub), recursive = TRUE)

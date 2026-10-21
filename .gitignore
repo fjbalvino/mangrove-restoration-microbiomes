@@ -11,3 +11,15 @@ workflow/08_figures_tables/figure4_bundle/inputs/
 workflow/08_figures_tables/figure4_bundle/outputs/
 validation/
 config/*.local.json
+# Generated figures and fitted objects stay local.
+*.png
+*.jpg
+*.jpeg
+*.tif
+*.tiff
+*.svg
+*.pdf
+*.rds
+*.RData
+# Read-based source matrices and sample-level audit data are supplied separately.
+source_data/functional/read_based/*.tsv

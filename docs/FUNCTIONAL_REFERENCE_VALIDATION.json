@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "validation_date_utc": "2026-10-21",
+  "base_commit": "560f15a4eba7e94837aeeaf703e2e1ac2749b960",
+  "execution": "Full section runner from repository paths, including 9999 permutations, four preprocessing sensitivities, reference cores and figure assembly",
+  "numerical_expectations_checked": 200,
+  "independently_reconstructed_Figure_3_contrasts": 84,
+  "checks": [
+    "51 samples and 17 complete profiles",
+    "9999 valid distinct profile permutations",
+    "full-rank composition model",
+    "reviewed numerical expectations",
+    "84 contrasts independently reconstructed",
+    "KO and PFAM are distinct matrices"
+  ],
+  "input_checksums": "docs/INPUTS_MINIMAL.tsv (shipped); docs/FUNCTIONAL_INPUTS_REQUIRED.tsv (external matrices)",
+  "code_checksums": "docs/CODE_PROVENANCE.tsv",
+  "scope_excluded": [
+    "FASTQ remapping",
+    "gene-environment association reanalysis",
+    "ordered KO trend reanalysis",
+    "functional network reanalysis"
+  ],
+  "publication": "Code, numerical fixture, documentation and aggregate quantification provenance only; read-based matrices and sample-level coverage are external. Images, PDFs and fitted objects remain local.",
+  "packaging": "Analysis validated with local matrices; publication requires the same four external matrices for reproduction."
+}

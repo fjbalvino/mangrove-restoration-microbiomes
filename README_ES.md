@@ -4,14 +4,23 @@ Repositorio mínimo: código, configuración y entradas analíticas disponibles.
 Las figuras, tablas estadísticas, modelos ajustados y remuestreos se generan
 localmente; no forman parte de los archivos publicados.
 
-La entrega actual de código y entradas pequeñas está terminada. Las matrices
-funcionales grandes del servidor se subirán por separado en una etapa posterior.
-Los agregados KO/PFAM ya incluidos ocupan unos 1,8 MB comprimidos y son distintos
-de esas matrices de origen. Cuando se complete la transferencia, se añadirán
-las ubicaciones de descarga, tamaños y sumas SHA-256.
+La sección 05 usa las matrices corregidas de fragmentos mapeados: conteos y
+valores ajustados por longitud para KO y PFAM. Reproduce composición, proximidad
+a referencias, núcleo funcional y las figuras desde un solo comando, una vez
+aportadas las cuatro matrices externas. Esta actualización publica el código;
+las matrices de lecturas se suministran por separado. Sus nombres, tamaños y
+SHA-256 están en [FUNCTIONAL_INPUTS_REQUIRED.tsv](docs/FUNCTIONAL_INPUTS_REQUIRED.tsv).
+El programa comprueba las entradas antes de iniciar el análisis. Se incluye
+una tabla pequeña de valores esperados para comprobar la reproducción. Las imágenes
+y PDF se generan localmente y no se suben.
+
+Los análisis de genes, tendencias de KO y redes aún requieren su actualización.
+Las matrices 082A y la entrada de redes son históricas y están identificadas como
+tales. No alimentan el flujo primario corregido. Los detalles están en
+[FUNCTIONAL_REFERENCE.md](docs/FUNCTIONAL_REFERENCE.md).
 
 Se incluyen los metadatos de 51 muestras, las calibraciones fijas de HI/MHI,
-las matrices completas KO/PFAM y la matriz CLR de los 200 KO usados en redes.
+las matrices históricas KO/PFAM y la matriz CLR de los 200 KO usados en redes.
 Cada entrada está documentada con su SHA-256 en
 [INPUTS_MINIMAL.tsv](docs/INPUTS_MINIMAL.tsv).
 
@@ -26,5 +35,6 @@ necesarios: se reconstruyen el orden de aristas y las permutaciones desde los
 inputs y semillas originales.
 
 Consulta [README.md](README.md) para los comandos, dependencias y alcance de
-cada componente. El código R conserva parámetros y rutas históricas; deben
-indicarse explícitamente las entradas y salidas de cada ejecución.
+cada componente. El flujo corregido de composición utiliza rutas relativas al
+repositorio, conserva los perfiles de tres profundidades en las permutaciones y
+reporta progreso cada 30 segundos. Sus salidas quedan en `local_runs/functional_reference/`.

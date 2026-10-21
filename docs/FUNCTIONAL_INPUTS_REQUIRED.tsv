@@ -1,0 +1,5 @@
+path	bytes	sha256	role
+source_data/functional/read_based/KO_complete_RPK.tsv	5618894	40ffa464ac84e97955c39f268e461dfe81b237feb29d9b3e302c5762564ed408	Corrected read-based section 05 input or quantification provenance
+source_data/functional/read_based/KO_complete_counts.tsv	3095152	5eb8b36e3f4c31454289061277380eda465e4d09f382006499e6848a53b19b0b	Corrected read-based section 05 input or quantification provenance
+source_data/functional/read_based/PFAM_complete_RPK.tsv	5264015	e6edbbb3203541792f0d6f766b9c100226adf01ff1dfe836400b8580fa59af32	Corrected read-based section 05 input or quantification provenance
+source_data/functional/read_based/PFAM_complete_counts.tsv	3343651	8acfaa83798ca7662c2f73fb10618d7f77ab3e6fc3855443fc7ff283133ac538	Corrected read-based section 05 input or quantification provenance

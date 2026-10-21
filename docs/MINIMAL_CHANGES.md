@@ -22,7 +22,12 @@
   required metadata/QC controls. Unknown inventory sizes are allowed, but actual
   copied bytes and SHA-256 are always recorded. Original files are not modified.
 
-R execution and a complete fresh gene-to-figure workflow were not repeated here.
+The corrected functional composition/core R workflow is now provided with
+numerical validation and local figure assembly. Its four read-based source
+matrices are supplied separately; their expected hashes are recorded. The
+launcher verifies these external inputs before fitting models.
+A complete fresh gene-to-Figure-4 workflow remains pending. The historical
+functional implementation is retained in Git history rather than duplicated.
 
 ## Numerical equivalence check
 

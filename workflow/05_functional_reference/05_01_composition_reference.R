@@ -1,13 +1,9 @@
 #!/usr/bin/env Rscript
 # ============================================================
 # 05_01_composition_reference.R
-# Status: REVIEW CANDIDATE; see docs/REPRODUCIBILITY.md
-# 7,126 KO and 6,681 PFAM; composition, dispersion and matched-reference distances. 998 retained composition permutations.
-# Inputs (source expressions; complete list in docs/contracts/05_01_composition_reference.json):
-#   trimws(readLines(hit[[1L]], n = 1L, warn = FALSE))
-#   run202 <- trimws(readLines(pointer202, n = 1L, warn = FALSE))
-#   x <- read.delim(
-#   md <- read.csv(
+# Read-based functional reanalysis; see docs/FUNCTIONAL_REFERENCE.md
+# Retained feature counts and test results are computed from the supplied corrected matrices.
+# Inputs: canonical metadata_003b.csv and complete-consensus counts/RPK matrices.
 # Outputs (source expressions; complete list in contract):
 #   writeLines(
 #   write.table(
@@ -20,13 +16,12 @@
 #   McArdle & Anderson (2001), doi:10.1890/0012-9658(2001)082[0290:FMMTCD]2.0.CO;2.
 # Source SHA-256: bb4462cce0636527c7a39316738c1fcb272eb1412d91cec18e9a2de14c1e0218
 # AI-assisted code curation: OpenAI Codex (OpenAI, 2026).
-# Changes in this copy: descriptive filename and this documentation header only.
-# Original body and internal output names are preserved exactly.
+# Revision: explicit read-based RPK/count inputs, unit-aware filters, portable paths, exact nonidentity permutations and sample-normalization sensitivity.
 # ============================================================
 
 
 # 602: independent global analysis of functional composition.
-# KO is primary; PFAM is cross-ontology confirmation.
+# KO is primary; PFAM is a corroborating annotation layer from the same metagenomes.
 # Complete three-depth profiles are permuted within locality.
 
 options(stringsAsFactors = FALSE, warn = 1)
@@ -35,53 +30,23 @@ args <- commandArgs(trailingOnly = TRUE)
 get_arg <- function(flag, default = NULL) {
   i <- which(args == flag)
   if (!length(i)) return(default)
-  if (i == length(args)) stop("Argument without value: ", flag)
+  if (length(i) != 1L || i == length(args)) stop("Argument without value: ", flag)
   args[[i + 1L]]
 }
-read_latest_any <- function(paths) {
-  hit <- paths[file.exists(paths)]
-  if (!length(hit)) {
-    stop("No LATEST file for 504. Run 504 or provide --run504.")
-  }
-  trimws(readLines(hit[[1L]], n = 1L, warn = FALSE))
-}
+# Explicit read-based inputs; never resolve an archived run implicitly.
+BASE <- get_arg("--base", getwd())
+RESULTS <- get_arg("--out_root", file.path(BASE, "local_runs", "functional_reference"))
+MATRIX_DIR <- get_arg("--matrix_dir", file.path(BASE, "source_data", "functional", "read_based"))
+META_FILE <- get_arg("--meta", file.path(BASE, "source_data", "indices", "metadata_003b.csv"))
+KO_FILE <- file.path(MATRIX_DIR, "KO_complete_RPK.tsv")
+PFAM_FILE <- file.path(MATRIX_DIR, "PFAM_complete_RPK.tsv")
+KO_COUNTS <- file.path(MATRIX_DIR, "KO_complete_counts.tsv")
+PFAM_COUNTS <- file.path(MATRIX_DIR, "PFAM_complete_counts.tsv")
+input_files <- c(metadata=META_FILE, KO=KO_FILE, PFAM=PFAM_FILE,
+                 KO_counts=KO_COUNTS, PFAM_counts=PFAM_COUNTS)
+stopifnot(all(file.exists(input_files)))
 
-# INPUTS_082A_CANON202
-BASE <- get_arg("--base", "/home/fjbalvino/Tipping_points")
-RESULTS <- get_arg("--out_root", file.path(BASE, "resultados_finales"))
-RUN082 <- get_arg(
-  "--run082",
-  file.path(
-    BASE, "Results",
-    "082A_build_complete_functional_matrices_KO_PFAM_20260726_011523"
-  )
-)
-
-META_FILE <- get_arg("--meta", NULL)
-if (is.null(META_FILE)) {
-  pointer202 <- file.path(
-    BASE, "resultados_finales",
-    "LATEST_202_construir_matriz_CLR_y_eje_bimodal.txt"
-  )
-  if (!file.exists(pointer202)) stop("Missing pointer: ", pointer202)
-  run202 <- trimws(readLines(pointer202, n = 1L, warn = FALSE))
-  META_FILE <- file.path(
-    run202, "tables", "202_metadata_raw1031_alineada.csv"
-  )
-}
-
-KO_FILE <- file.path(
-  RUN082, "tables", "082A_KEGG_ko_abundance_samples_x_functions.tsv.gz"
-)
-PFAM_FILE <- file.path(
-  RUN082, "tables", "082A_PFAM_abundance_samples_x_functions.tsv.gz"
-)
-input_files <- c(metadata = META_FILE, KO = KO_FILE, PFAM = PFAM_FILE)
-if (!all(file.exists(input_files))) {
-  stop("Missing inputs: ", paste(input_files[!file.exists(input_files)], collapse = ", "))
-}
-
-N_PERM <- as.integer(get_arg("--n_perm", "999"))
+N_PERM <- as.integer(get_arg("--n_perm", "9999"))
 SEED <- as.integer(get_arg("--seed", "123"))
 MIN_PREV_PRIMARY <- 26L
 MIN_PREV_PERMISSIVE <- 5L
@@ -109,13 +74,8 @@ if (length(missing)) {
 
 stamp <- format(Sys.time(), "%Y%m%d_%H%M%S", tz = "UTC")
 
-OUT <- file.path(
-  RESULTS,
-  paste0(
-    "602_validar_composicion_funcional_splitplot_",
-    stamp
-  )
-)
+OUT <- file.path(RESULTS, "602_composition_reference")
+if (dir.exists(OUT)) stop("Output exists; use an empty --out_root for a fresh execution")
 
 DIRS <- file.path(
   OUT,
@@ -171,7 +131,7 @@ read_matrix <- function(path, label) {
     stop(label, " input not found: ", path)
   }
 
-  con <- gzfile(path, "rt")
+  con <- file(path, "rt")
   on.exit(close(con), add = TRUE)
 
   x <- read.delim(
@@ -188,15 +148,16 @@ read_matrix <- function(path, label) {
     stop(label, " matrix is empty")
   }
 
+  # Input orientation: functions in rows, samples in columns.
   ids <- trimws(as.character(x[[1]]))
   features <- names(x)[-1]
 
   if (any(!nzchar(ids)) || anyDuplicated(ids)) {
-    stop(label, " contains invalid sample IDs")
+    stop(label, " contains invalid feature IDs")
   }
 
   if (any(!nzchar(features)) || anyDuplicated(features)) {
-    stop(label, " contains invalid feature IDs")
+    stop(label, " contains invalid sample columns")
   }
 
   m <- matrix(
@@ -206,6 +167,8 @@ read_matrix <- function(path, label) {
   )
   rownames(m) <- ids
   colnames(m) <- features
+
+  m <- t(m)  # exported read-based tables have functions in rows
 
   if (any(!is.finite(m)) || any(m < 0)) {
     stop(label, " contains invalid abundances")
@@ -218,11 +181,12 @@ read_matrix <- function(path, label) {
   m
 }
 
-feature_qc <- function(m) {
+feature_qc <- function(m, counts) {
+  stopifnot(identical(dimnames(m), dimnames(counts)), all((m > 0) == (counts > 0)))
   data.frame(
     feature = colnames(m),
     prevalence_n = colSums(m > 0),
-    total_abundance = colSums(m),
+    total_abundance = colSums(counts),
     variance_log1p = apply(log1p(m), 2, stats::var),
     stringsAsFactors = FALSE
   )
@@ -652,7 +616,14 @@ if (qr(X_primary)$rank < ncol(X_primary)) {
 
 cat("[3/7] Applying outcome-independent filters\n")
 
-qc <- lapply(raw, feature_qc)
+raw_counts <- list(KEGG_ko=read_matrix(KO_COUNTS, "KO counts"),
+                   PFAM=read_matrix(PFAM_COUNTS, "PFAM counts"))
+raw_counts <- lapply(raw_counts, function(m) m[md$sample_id, , drop=FALSE])
+qc <- lapply(names(raw), function(nm) feature_qc(raw[[nm]], raw_counts[[nm]]))
+names(qc) <- names(raw)
+write_tsv(data.frame(sample_id=md$sample_id,
+  KO_RPK_total=rowSums(raw$KEGG_ko), PFAM_RPK_total=rowSums(raw$PFAM)),
+  file.path(DIRS["tables"], "602_annotation_RPK_totals.tsv"))
 
 filtered <- lapply(
   names(raw),
@@ -763,7 +734,17 @@ perms_raw <- permute::shuffleSet(
   nset = N_PERM,
   control = control
 )
-perms <- as.matrix(unique(as.data.frame(perms_raw)))
+unique_permutations <- function(initial, n, control, size) {
+  p <- as.matrix(unique(as.data.frame(initial)))
+  p <- p[apply(p, 1, function(x) !identical(as.integer(x), seq_len(size))), , drop=FALSE]
+  while (nrow(p) < n) {
+    more <- permute::shuffleSet(size, nset=n - nrow(p) + 20L, control=control)
+    p <- as.matrix(unique(as.data.frame(rbind(p, more))))
+    p <- p[apply(p, 1, function(x) !identical(as.integer(x), seq_len(size))), , drop=FALSE]
+  }
+  p[seq_len(n), , drop=FALSE]
+}
+perms <- unique_permutations(perms_raw, N_PERM, control, nrow(md))
 
 audit_one <- function(p) {
   c(
@@ -869,6 +850,13 @@ specs <- data.frame(
   )
 )
 
+specs$normalization <- "RPK"
+extra <- specs[1, ]
+extra$analysis_id <- "sensitivity_common_RPK_per_million_CLR_pc1"
+extra$role <- "sample_normalization"
+extra$normalization <- "RPK_per_million_full_annotation_layer"
+specs <- rbind(specs, extra)
+
 permanova <- list()
 dispersion <- list()
 pcoa <- list()
@@ -882,6 +870,9 @@ for (ontology in names(filtered)) {
     sp <- specs[s, ]
 
     m <- filtered[[ontology]][[sp$filter]]
+    if (sp$role == "sample_normalization") {
+      m <- sweep(m, 1, rowSums(raw[[ontology]]), "/") * 1e6
+    }
 
     d <- make_distance(
       m,
@@ -1160,7 +1151,8 @@ for (ontology in names(primary_data)[names(primary_data) != "metadata"]) {
   profile_perm_raw <- permute::shuffleSet(
     nrow(profile_out), nset = N_PERM, control = control_profile
   )
-  profile_perm <- as.matrix(unique(as.data.frame(profile_perm_raw)))
+  profile_perm <- unique_permutations(profile_perm_raw, N_PERM, control_profile, nrow(profile_out))
+  saveRDS(profile_perm, file.path(DIRS["rds"], paste0("602_", ontology, "_reference_permutations.rds")))
   observed <- partial_f_stage(profile_out$mean_distance_to_Conserved, profile_out)
   perm_f <- vapply(seq_len(nrow(profile_perm)), function(ii) {
     partial_f_stage(
@@ -1342,13 +1334,16 @@ write_tsv(
     permutations = nrow(perms),
     seed = SEED,
     primary_layer = "KEGG_ko",
-    confirmation_layer = "PFAM",
+    corroborating_layer = "PFAM",
     inference_unit = "complete sediment profile",
     permutation_scheme = paste(
       "profiles within locality;",
       "depth order preserved"
     ),
-    transformation = "CLR",
+    transformation = "CLR of length-adjusted read-based RPK",
+    count_filter_units = "fractionally allocated unique fragments",
+    abundance_units = "RPK",
+    MHI_source_column = "MHI_local; not a predictor in this section",
     pseudocount = PC_PRIMARY,
     scope = paste(
       "functional gene potential;",

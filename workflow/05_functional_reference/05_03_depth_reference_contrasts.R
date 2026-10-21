@@ -1,7 +1,7 @@
 #!/usr/bin/env Rscript
 # ============================================================
 # 05_03_depth_reference_contrasts.R
-# Status: REVIEW CANDIDATE; see docs/REPRODUCIBILITY.md
+# Read-based functional reanalysis; see docs/FUNCTIONAL_REFERENCE.md
 # Locality/depth matched conserved contrasts relative to Degraded; Fig. 3c,d.
 # Inputs (source expressions; complete list in docs/contracts/05_03_depth_reference_contrasts.json):
 #   z <- read.delim(path, colClasses = "character", check.names = FALSE)
@@ -21,15 +21,20 @@
 #   McArdle & Anderson (2001), doi:10.1890/0012-9658(2001)082[0290:FMMTCD]2.0.CO;2.
 # Source SHA-256: c1f2d5ab09569965079a7ce96392d556afa8f450ed415bdf916e86d93251d84b
 # AI-assisted code curation: OpenAI Codex (OpenAI, 2026).
-# Changes in this copy: descriptive filename and this documentation header only.
-# Original body and internal output names are preserved exactly.
+# Revision: explicit CLI inputs and canonical local output paths; numerical analysis retained.
 # ============================================================
 
 suppressPackageStartupMessages(library(ggplot2))
 
-BASE <- "/home/fjbalvino/Tipping_points/resultados_finales"
-RUN602 <- file.path(BASE,
-  "602_validar_composicion_funcional_splitplot_20260914_230452")
+args <- commandArgs(trailingOnly=TRUE)
+get_arg <- function(flag, default=NULL) {
+  i <- which(args==flag)
+  if (!length(i)) return(default)
+  if (length(i)!=1L || i==length(args)) stop("Invalid argument: ",flag)
+  args[[i+1L]]
+}
+BASE <- get_arg("--out_root", file.path(getwd(), "local_runs", "functional_reference"))
+RUN602 <- get_arg("--run602", file.path(BASE, "602_composition_reference"))
 STEM <- "604_distancias_funcionales_por_profundidad"
 LOC <- c("Carmen", "Cozumel", "Tuxpan")
 ONT <- c("KEGG_ko", "PFAM")
@@ -219,9 +224,7 @@ summary_cells <- aggregate(
 )
 names(summary_cells)[5:6] <- c("mean_distance", "mean_delta_distance")
 
-OUT <- file.path(
-  BASE, paste0(STEM, "_", format(Sys.time(), "%Y%m%d_%H%M%S"))
-)
+OUT <- file.path(BASE, "604_depth_reference_contrasts")
 check(!dir.exists(OUT), "Ya existe la carpeta de salida.")
 
 for (folder in c("figures", "tables", "provenance")) {
