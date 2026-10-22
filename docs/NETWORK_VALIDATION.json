@@ -1,0 +1,40 @@
+{
+  "status": "PASS",
+  "date_UTC": "2026-10-22",
+  "n_samples": 51,
+  "n_profiles": 17,
+  "eligible_KO": 7802,
+  "selected_KO": 200,
+  "primary_acceptance_checks": 17,
+  "primary_independent_checks": 122,
+  "algorithm_independent_checks": 7,
+  "primary_weights_checked": 3044700,
+  "alternative_weights_checked": 6089400,
+  "valid_reconstructions_each": 499,
+  "primary_parameters": {
+    "ridge": 0.1,
+    "density": 0.05,
+    "environment_axes": 5
+  },
+  "algorithm_benchmark": {
+    "status": "PASS",
+    "methods": [
+      "ridge_010",
+      "ledoit_wolf",
+      "oas"
+    ],
+    "n_KO": 200,
+    "n_profiles": 17,
+    "n_bootstrap": 200,
+    "n_deletions": 17,
+    "selection_or_evaluation_uses_HI": false,
+    "sklearn": "1.8.0",
+    "code_sha256": "dfd01b68d4bee225f48f4f41741ca2664e971629ebd08a04264251fcc01c5957",
+    "protocol_sha256": "fa25f632234ee972d5b93628b48ff2c9350759cb86704264863d7ad2e0429926",
+    "consistently_more_stable": []
+  },
+  "new_source_data_committed": false,
+  "figures_committed": false,
+  "online_manuscript_modified": false,
+  "validation_scope": "Primary inference, paired algorithm stability, profile-preserving schedules, numerical reconstruction and source hashes. Biological truth and reconstruction-interval coverage are not established."
+}

@@ -19,7 +19,9 @@ are now in sections 06 and 09. They reproduce the current Figures 4 and 5 using
 external inputs. See [GENE_ENVIRONMENT.md](docs/GENE_ENVIRONMENT.md) for commands,
 input requirements, validation and interpretation limits. This update adds only
 code, configuration and documentation: no data matrices, annotation databases,
-figures or binary archives. Ordered-trend and network code updates remain separate.
+figures or binary archives. Section 07 now reconstructs corrected read-based
+networks and compares their stability; see [NETWORKS.md](docs/NETWORKS.md).
+Ordered restoration trends remain a separate historical branch.
 
 ## Analysis workflow
 
@@ -32,7 +34,7 @@ figures or binary archives. Ordered-trend and network code updates remain separa
 | `04_taxonomic_change_points` | Global and depth-wise TITAN2 |
 | `05_functional_reference` | Functional composition and reference proximity |
 | `06_gene_associations` | Corrected read-based gene CLR, mixed models and annotation; older entry points retained as historical |
-| `07_networks` | Residualized ridge/LIONESS networks |
+| `07_networks` | Corrected read-based networks, algorithm stability, sensitivity and independent validation; archived 809 branch retained |
 | `08_figures_tables` | Current Figures 4 and 5 from verified tables; historical Figure 4 bundle retained separately |
 | `09_environment_enrichment` | KO/PFAM overrepresentation and potential KEGG modules by environmental axis and sign |
 
@@ -41,7 +43,7 @@ figures or binary archives. Ordered-trend and network code updates remain separa
 - Integrated 51-sample metadata and the fixed historical HI/MHI calibration inputs.
 - Quantification provenance for corrected KO/PFAM matrices supplied separately.
 - Historical assembled-ORF matrices used only by the unrecalculated 808 branch.
-- The fixed 51-sample × 200-KO CLR matrix for the matched network analysis.
+- The historical 51-sample × 200-KO CLR matrix, retained for archived networks only.
 - Small sample-order and provenance controls required by the gene-CLR producer.
 
 [INPUTS_MINIMAL.tsv](docs/INPUTS_MINIMAL.tsv) records each input's role, bytes and
@@ -72,8 +74,10 @@ set +e
 bash workflow/05_functional_reference/05_00_run_primary_composition.sh
 # Historical 808 reproduction; still uses assembled-ORF matrices.
 bash workflow/05_functional_reference/05_04_run_convergence_sensitivity.sh
-# Historical networks; not yet updated to read-based quantification.
-bash workflow/07_networks/07_01_run_residual_networks.sh
+# Corrected networks; use the same separately supplied KO matrices as section 05.
+bash workflow/07_networks/07_02_run_read_based.sh \
+  /path/to/corrected/matrices source_data/indices/metadata_003b.csv \
+  local_runs/read_based_networks
 ```
 
 The corrected section writes to `local_runs/functional_reference/` and refuses

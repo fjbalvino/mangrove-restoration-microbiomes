@@ -1,6 +1,7 @@
-# Verified numerical environment for corrected gene models, enrichment and Figures 4/5.
+# Verified numerical environment for corrected genes, enrichment and networks.
 # Also retains the versions used for historical 808/809 reproduction.
 numpy==2.3.5
 pandas==2.2.3
 scipy==1.17.0
 matplotlib==3.10.8
+scikit-learn==1.8.0

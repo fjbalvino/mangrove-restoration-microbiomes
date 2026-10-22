@@ -27,7 +27,8 @@ the files actually transferred.
 | Taxonomic analyses | Canonical phyloseq plus metadata | Phyloseq still required from the analysis server |
 | Corrected functional composition and core | Read-based KO/PFAM fragment counts, length-adjusted values and canonical metadata | Code included and validated with local inputs; four read-based matrices must be supplied separately |
 | Historical supplementary 808 | Assembled-ORF matrices, current and historical labels | Historical reproduction only; read-based update pending |
-| Historical networks 809 | Fixed 200-KO CLR matrix and integrated metadata | Read-based update pending; prior fitted objects not required |
+| Historical networks 809 | Fixed historical 200-KO CLR and metadata | Historical reproduction only |
+| Current networks | Corrected KO RPK/count matrices and calibrated 51-row metadata | Current code, algorithm benchmark and independent validation included; matrices external |
 | Current read-based gene models | Per-sample gene export, QC controls and historical annotation dictionary | Code included; full source inputs supplied externally; legacy 06_01–06_04 retained separately |
 | Environmental enrichment | Complete verified common-slope tables, tested-gene annotations and KEGG/PFAM snapshots | Current code and input hashes included; data and databases external |
 | Current Figures 4 and 5 | Verified gene-model/figure tables and enrichment tables | Current renderers included; PNG/PDF/SVG generated locally |
@@ -40,6 +41,14 @@ The corrected section 05 is a runnable pipeline after supplying the four verifie
 see `FUNCTIONAL_REFERENCE.md`. Its launcher does not read historical 082A matrices.
 Other R analyses retain historical CLI defaults and output names. Consult their
 command-line arguments and `docs/contracts/` before executing those stages.
+
+## Current network execution
+
+Use `07_02_run_read_based.sh` with the two corrected KO matrices and canonical
+metadata. It selects current features, rebuilds networks and resampling, compares
+parameter settings and algorithms, independently audits the primary results and
+renders PNG/PDF/SVG locally. See `NETWORKS.md` for commands and limitations.
+The old `07_00`, `07_01` and `network809/` remain historical.
 
 ## Current gene/environment execution
 

@@ -16,7 +16,8 @@ figures, fitted results or binary archives. All analyses write local outputs.
 
 The earlier `06_01`–`06_04` scripts and `08_01`, `08_02` and `figure4_bundle/`
 remain historical. They do not produce the current manuscript statistics.
-Ordered restoration trends and network updates are outside this code release.
+Ordered restoration trends remain separate. Current network execution is
+documented in `NETWORKS.md`; it does not change the gene-model/enrichment branch.
 
 ## External inputs
 

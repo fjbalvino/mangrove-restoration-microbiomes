@@ -25,13 +25,17 @@ Los comandos, las entradas externas y los alcances de la validación están en
 [GENE_ENVIRONMENT.md](docs/GENE_ENVIRONMENT.md). El flujo actual de genes comienza
 en `06_05_run_read_based.sh`; los programas `06_01`–`06_04` y el paquete anterior
 de la figura 4 se conservan únicamente para reproducción histórica.
-La actualización del código de tendencias ordenadas y redes queda separada.
+Las redes corregidas ya tienen su propio flujo reproducible, con comparación
+de algoritmos, remuestreo por perfil y validación independiente. Consulta
+[NETWORKS.md](docs/NETWORKS.md). Las tendencias ordenadas quedan separadas.
 Las matrices 082A y la entrada de redes son históricas y están identificadas como
 tales. No alimentan el flujo primario corregido. Los detalles están en
 [FUNCTIONAL_REFERENCE.md](docs/FUNCTIONAL_REFERENCE.md).
 
 Se incluyen los metadatos de 51 muestras, las calibraciones fijas de HI/MHI,
-las matrices históricas KO/PFAM y la matriz CLR de los 200 KO usados en redes.
+las matrices históricas KO/PFAM y la matriz CLR de los 200 KO de las redes
+históricas. Las redes actuales vuelven a seleccionar los KO desde las matrices
+corregidas externas; no reutilizan ese objeto CLR histórico.
 Cada entrada está documentada con su SHA-256 en
 [INPUTS_MINIMAL.tsv](docs/INPUTS_MINIMAL.tsv).
 

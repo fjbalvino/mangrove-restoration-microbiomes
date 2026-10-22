@@ -155,25 +155,39 @@ completeness, expression, activity or process rates. See `GENE_ENVIRONMENT.md`.
 
 ## Functional networks
 
-The following describes the historical analysis; read-based reanalysis is pending.
+The current `07_02` entry point starts from corrected read-derived KO counts and
+RPK. Eligibility retains 7,802 KOs; the 200 largest CLR variances are selected
+without using HI, MHI or restoration stage. CLR is recalculated over that set.
+All 51 samples and 17 complete profiles retain their original HI/MHI calibration.
+The old `07_00`, `07_01` and `network809/` describe archived inputs and results.
 
-Final analysis 809 holds 200 KOs fixed. Three constructions compare original CLR,
-locality/depth residuals, and residuals additionally adjusted for four environmental
-axes. NDMI is not added to that four-axis design. Nuisance fits and standardisation
-are repeated within leave-one-out and full bootstrap reconstructions. Precision
-matrices invert `0.9*S + (0.1 + 1e-8)*I`: regularisation is fixed, not estimated.
+Three current constructions compare original CLR, locality/depth residuals,
+and residuals additionally adjusted for all five environmental axes, including
+NDMI. Nuisance fits and standardization are repeated within each leave-one-out
+or reconstructed bootstrap network. Primary precision matrices invert
+`0.9*S + (0.1 + 1e-8)*I`. LIONESS weights are
+`n*w_full - (n-1)*w_leave_one_out`. Each sample retains the 995 strongest absolute
+weights of 19,900 possible edges; edge count and unweighted mean degree are fixed.
 
-LIONESS sample weights are `n*w_full - (n-1)*w_leave_one_out`. Each sample retains
-995 of 19,900 edges by absolute weight. Mean weight and weighted natural
-connectivity describe weights, not changing edge counts or measured resilience.
-Primary tests use 99,999 within-locality profile permutations; fixed-network
-intervals use 4,999 profile draws, with 499 additional full reconstructions.
-Joint correction families, consensus masks and global tests are specified in
-`workflow/07_networks/network809/PROTOCOL.md`.
+Mean absolute weight and weighted natural connectivity describe statistical
+coabundance weights, not process rates or ecosystem resilience. Primary tests
+use 99,999 within-locality profile permutations. Intervals use 4,999 conditional
+profile draws and 499 complete reconstructions with features and indices fixed.
+Configuration tests use full absolute/signed vectors or retained-edge Jaccard
+distance. Both Holm and maxT corrections span the two adjusted constructions.
+Consensus edges require frequency >=0.50 and sign consistency >=0.80 in 200
+profile bootstraps. All three-depth profiles remain intact in resampling.
 
-All three constructions and corrected results are retained. Network associations
-do not identify confirmed individual KO drivers. HFR has insufficient held-out
-coverage and remains an excluded ancillary branch in `workflow/supplementary/hfr`.
+Prespecified one-factor checks vary ridge, density, feature count, environmental
+adjustment and abundance scaling. A later, explicitly separate algorithm
+benchmark compares fixed ridge with Ledoit–Wolf and OAS using paired bootstrap
+and profile-deletion stability without HI selection. A graphical-lasso screen
+distinguishes numerical convergence from empirical sampling stability.
+`NETWORKS.md` and the two `read_based/` protocols define inputs, comparisons,
+correction families, practical stability criteria and interpretation limits.
+
+All constructions and alternatives are retained. Individual KO drivers and causal
+interactions are not confirmed. HFR remains an excluded ancillary branch.
 
 ## Method references
 

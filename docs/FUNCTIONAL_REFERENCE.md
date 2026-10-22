@@ -34,7 +34,8 @@ The old `082A_*` matrices count assembled ORF cluster members. They remain only
 because the unrecalculated 808 branch consumes them. The fixed network input
 also remains historical. Neither is used by the corrected primary launcher.
 The corrected gene associations and environmental enrichment are documented in
-`GENE_ENVIRONMENT.md`. Ordered-trend and network code updates remain separate.
+`GENE_ENVIRONMENT.md`; corrected network execution is documented in `NETWORKS.md`.
+Ordered restoration trends remain separate.
 The section 05 launcher does not rerun read mapping or those other blocks.
 
 ## Statistical design
