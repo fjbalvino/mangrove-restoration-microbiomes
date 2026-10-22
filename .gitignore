@@ -23,3 +23,41 @@ config/*.local.json
 *.RData
 # Read-based source matrices and sample-level audit data are supplied separately.
 source_data/functional/read_based/*.tsv
+# Gene/environment updates publish code and documentation only.
+# Already tracked historical inputs are unaffected by these rules.
+external_inputs/
+prepared/
+sample_cache/
+models/
+figures/
+deliverables/
+source_data/
+*.csv
+*.tsv
+*.gz
+*.zip
+*.tar
+*.bz2
+*.xz
+*.npy
+*.npz
+*.h5
+*.hdf5
+*.parquet
+*.feather
+*.fa
+*.fna
+*.fasta
+*.fastq
+*.fq
+*.bam
+*.sam
+*.cram
+*.db
+*.sqlite*
+*.xlsx
+*.docx
+*.pptx
+*.gif
+*.webp
+*.eps

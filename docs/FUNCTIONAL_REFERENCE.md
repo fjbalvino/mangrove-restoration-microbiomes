@@ -33,8 +33,9 @@ potential, not expression or process rates. They do not report assembly quality.
 The old `082A_*` matrices count assembled ORF cluster members. They remain only
 because the unrecalculated 808 branch consumes them. The fixed network input
 also remains historical. Neither is used by the corrected primary launcher.
-Gene associations, ordered KO trends and networks still require separate
-read-based reanalysis. This update does not rerun read mapping or those blocks.
+The corrected gene associations and environmental enrichment are documented in
+`GENE_ENVIRONMENT.md`. Ordered-trend and network code updates remain separate.
+The section 05 launcher does not rerun read mapping or those other blocks.
 
 ## Statistical design
 

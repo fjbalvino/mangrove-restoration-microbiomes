@@ -1,0 +1,72 @@
+{
+  "scope": "External input checksums for the October 2026 Figure 4A enrichment; no matrices, annotations or databases are bundled in this update",
+  "reference_retrieved_utc": "2026-10-22",
+  "files": [
+    {
+      "root": "analysis",
+      "path": "prepared/selected_genes.tsv",
+      "bytes": 9961397,
+      "sha256": "0c0488866e4e4245a1c45b9f4cbdb52ef2165b205cebff23a04f8e782bacf5f0"
+    },
+    {
+      "root": "analysis",
+      "path": "prepared/metadata.csv",
+      "bytes": 44978,
+      "sha256": "59cddba77dfb438a959510d0809cf8fc07a7c228bc3d4dc68e49972d79b5543d"
+    },
+    {
+      "root": "analysis",
+      "path": "models/vegetation_landscape_PC1_all_results.tsv.gz",
+      "bytes": 50745962,
+      "sha256": "626908d0b5e1a9f40632ef4697e7e7e320f2438c15d8fe11ea1156674d8e0e84"
+    },
+    {
+      "root": "analysis",
+      "path": "models/water_inundation_PC1_all_results.tsv.gz",
+      "bytes": 51176944,
+      "sha256": "9a9f9bc8ba9026193295dc91797a199e524c28a97783ac088a0ea6acb9ac1e96"
+    },
+    {
+      "root": "analysis",
+      "path": "models/moisture_stress_PC1_all_results.tsv.gz",
+      "bytes": 51428833,
+      "sha256": "ed6dc83bd54f80f35471c3e67c8818209c63359e97bd47be4a49f0c83e714c5a"
+    },
+    {
+      "root": "analysis",
+      "path": "models/physicochemical_PC1_all_results.tsv.gz",
+      "bytes": 51552022,
+      "sha256": "7d863dd0786e8b474eb55ff5354204a8f195b21a92f00850256819ce85d159f7"
+    },
+    {
+      "root": "analysis",
+      "path": "models/nutrients_redox_PC1_all_results.tsv.gz",
+      "bytes": 52209127,
+      "sha256": "5b796585752516d39598cce6c7414e4c78968df9ebe617b2306c6b42611241c1"
+    },
+    {
+      "root": "reference",
+      "path": "kegg_ko_names.tsv",
+      "bytes": 1651593,
+      "sha256": "0b7d1ea1a6457abde565dfbb1d634611fc611becf6b6175a8d01f07c8c925c54"
+    },
+    {
+      "root": "reference",
+      "path": "kegg_module_names.tsv",
+      "bytes": 36815,
+      "sha256": "27fcb9d94bde34ab6c25c41f8021106c465b0a45e3ada771511d3b3b7f05142f"
+    },
+    {
+      "root": "reference",
+      "path": "kegg_ko_module_links.tsv",
+      "bytes": 86160,
+      "sha256": "774d4072e6da661cdb815f89c56fe2199e21ac48e9900368bdaf5b9962d0450d"
+    },
+    {
+      "root": "reference",
+      "path": "Pfam-A.clans.tsv.gz",
+      "bytes": 553777,
+      "sha256": "86062b7ef1a0e0caee0c28cef479ac0d294c80789c51cbf75e513b368ce3a6f6"
+    }
+  ]
+}

@@ -5,10 +5,11 @@
 The current delivery comprises code, configuration, metadata and the shipped
 inputs listed in `INPUTS_MINIMAL.tsv`. The corrected read-based KO/PFAM matrices
 required by section 05 are supplied separately; their expected names, sizes and
-hashes are recorded in `FUNCTIONAL_INPUTS_REQUIRED.tsv`. Large gene-level source matrices remain
-on the analysis server for a separate later upload, as requested by the project
-owner. Their transfer is not required to finish this code delivery, but the
-analyses that depend on them still require access to those files.
+hashes are recorded in `FUNCTIONAL_INPUTS_REQUIRED.tsv`. The current gene/environment
+update adds code and documentation only. Gene matrices, annotation snapshots,
+model-result tables and figures remain external. Their transfer is not required
+to finish this code delivery, but execution still requires those files.
+`GENE_ENVIRONMENT.md` describes the current sections 06, 08 and 09.
 
 The canonical phyloseq and upstream metadata/QC files listed in
 `MISSING_INPUTS.tsv` also remain to be supplied. The collection command in the
@@ -27,9 +28,9 @@ the files actually transferred.
 | Corrected functional composition and core | Read-based KO/PFAM fragment counts, length-adjusted values and canonical metadata | Code included and validated with local inputs; four read-based matrices must be supplied separately |
 | Historical supplementary 808 | Assembled-ORF matrices, current and historical labels | Historical reproduction only; read-based update pending |
 | Historical networks 809 | Fixed 200-KO CLR matrix and integrated metadata | Read-based update pending; prior fitted objects not required |
-| Protein models | Full filtered protein counts and four 044 metadata/QC controls | Still required from the analysis server |
-| Gene annotation | Matching annotation catalogue and regenerated model-audit inputs | Server input/preparation still required |
-| Figure 4 | Regenerated model-statistic tables and plotting configuration | Plotting code included; fitted result tables deliberately absent |
+| Current read-based gene models | Per-sample gene export, QC controls and historical annotation dictionary | Code included; full source inputs supplied externally; legacy 06_01–06_04 retained separately |
+| Environmental enrichment | Complete verified common-slope tables, tested-gene annotations and KEGG/PFAM snapshots | Current code and input hashes included; data and databases external |
+| Current Figures 4 and 5 | Verified gene-model/figure tables and enrichment tables | Current renderers included; PNG/PDF/SVG generated locally |
 
 `tools/prepare_runtime_inputs.py` makes byte-identical local copies for the two
 Python analysis bundles; it refuses to replace conflicting runtime inputs.
@@ -40,7 +41,16 @@ see `FUNCTIONAL_REFERENCE.md`. Its launcher does not read historical 082A matric
 Other R analyses retain historical CLI defaults and output names. Consult their
 command-line arguments and `docs/contracts/` before executing those stages.
 
-## Protein CLR preparation
+## Current gene/environment execution
+
+Use `06_05_run_read_based.sh` for corrected gene preparation and models and
+`09_00_run_enrichment.sh` for the verified Figure 4A enrichment. The current
+renderers are `08_03_read_based_figure4.py` and
+`08_04_environment_enrichment_figure5.py`. Their commands, external input layout,
+validation scope and interpretation limits are in `GENE_ENVIRONMENT.md`.
+The earlier gene scripts and Figure 4 bundle described below are historical.
+
+## Historical protein CLR preparation
 
 `06_01_full_catalogue_CLR.py` requires `--run044` containing the full filtered
 count matrix and four metadata/QC tables under `tables/`. Its `--run003b` must
@@ -50,7 +60,7 @@ Pass the included `202_metadata_raw1031_alineada.csv` to `--canon`.
 These are checked against the original hashes and QC totals; missing controls
 must not be fabricated. It generates the selected 100,000-gene CLR and count matrices.
 
-## Annotation and figure preparation
+## Historical annotation and Figure 4 bundle
 
 The annotation script exposes `--annotation`, `--run-603c` and `--audit-dir`.
 Its archived catalogue is
@@ -65,8 +75,8 @@ Figure rendering requires `Figure4_counts_q010_q005.tsv`,
 `Figure4_two_candidates_sample_data.tsv` and their `SHA256SUMS.json` in the
 figure bundle's runtime `inputs/` directory. These are derived analysis products,
 not independent source data, and are intentionally excluded from this repository.
-No automated conversion from a fresh complete gene-model run to every figure
-input has been demonstrated in this minimal publication.
+This describes only the historical bundle. The corrected renderer can read
+current model tables directly; see the current gene/environment execution above.
 
 ## Historical predictor lineage
 

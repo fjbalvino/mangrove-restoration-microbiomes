@@ -1,5 +1,5 @@
-# Numerical versions observed in the recovered 808/809 environment.
-# Figure 4 retains its more detailed requirements-lock.txt in its bundle.
+# Verified numerical environment for corrected gene models, enrichment and Figures 4/5.
+# Also retains the versions used for historical 808/809 reproduction.
 numpy==2.3.5
 pandas==2.2.3
 scipy==1.17.0

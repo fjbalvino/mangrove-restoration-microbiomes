@@ -62,5 +62,6 @@
     "tools"
   ],
   "resolution": "static expressions; runtime arguments and branches not asserted to be resolved",
-  "execution_here": "not rerun"
+  "execution_here": "not rerun",
+  "current_status": "Historical assembled-ORF workflow; superseded for the current read-based manuscript by docs/GENE_ENVIRONMENT.md"
 }

@@ -1,8 +1,8 @@
 # Methods represented by the repository
 
-The map was established from the September 2026 manuscript. Section 05 now
-documents the corrected October read-based reanalysis and current online
-supplement. `CODE_PROVENANCE.tsv` records current code hashes and changes.
+The map was established from the September 2026 manuscript. Sections 05, 06 and
+09 now document the corrected October read-based analyses and environmental
+enrichment. `CODE_PROVENANCE.tsv` records current code hashes and changes.
 
 ## Study design and indices
 
@@ -104,16 +104,54 @@ reference uncertainty unestimated.
 
 ## Gene-level associations
 
-The following describes the historical analysis; read-based reanalysis is pending.
+The current section 06 uses uniquely assigned fragments and length-adjusted
+abundance (RPK). Retention requires detection in at least five samples and at
+least ten fragments across the cohort. Of 22,456,116 detected clusters, 12,540,513
+are retained. Natural-log CLR with pseudocount one is centred over this entire
+retained catalogue before selecting the 100,000 genes with greatest CLR variance.
+Selection does not use stage or any predictor.
 
-Section 06 centres CLR against the full filtered catalogue of 1,475,487 genes
-before selecting 100,000 variable genes. REML mixed models use locality,
-categorical depth and a profile random intercept, comparing common slopes and
-predictor-by-depth interactions. Satterthwaite tests and BH adjustment use
-declared families: five environmental axes pooled separately for common slopes,
-interactions and depth slopes; MHI remains separate. Primary discoveries exclude
-unusable/singular focal fits. Annotation supplies putative functions, not evidence
-of expression or activity. Figure 4 reproduces saved statistics without refitting.
+Gaussian REML models adjust for locality and categorical depth, with a profile
+random intercept. Each predictor is tested separately, with a common slope and
+predictor-by-depth interaction. Slopes are expressed per predictor SD and response
+SD. Satterthwaite t tests assess slopes; a two-degree-of-freedom F test assesses
+interaction. The five environmental axes share separate BH families of 500,000
+common slopes, 500,000 interactions and 1,500,000 depth slopes. MHI uses separate
+families of 100,000, 100,000 and 300,000 tests. Singular/unusable fits receive
+P=1 within adjustment and are excluded from primary discoveries.
+
+At q <=0.10, the current results contain 42,222 common associations, 63,942
+depth-specific associations and 1,234 interactions, involving 48,580 distinct
+genes. MHI has no primary discoveries. Figure 4 uses these statistics and the
+K00619 and K03621 examples. The older top-level `06_01`–`06_04` programs and
+figure bundle remain historical; `06_05_run_read_based.sh` is the current entry.
+
+## Functional enrichment by environmental axis
+
+Section 09 tests common-slope genes from Figure 4A separately by axis and slope
+sign. The background contains the tested, usable, nonsingular genes with an
+annotation in the relevant ontology. Terms with at least ten background genes
+enter one-sided Fisher tests, including terms with zero selected genes. BH is
+applied to all 42,770 KO/PFAM tests across five axes and two signs, separately
+for gene q cutoffs of 0.10 and 0.05. Terms are reported at enrichment q <=0.10
+with at least five selected genes, after adjustment. Fold enrichment compares
+the fraction of selected genes assigned to a term with its background fraction;
+it is not an abundance fold change.
+
+KEGG modules form a separate exploratory family of 2,606 tests per gene cutoff.
+Eligibility requires ten background genes and two distinct KOs; reporting also
+requires five selected genes and two selected KOs. Genes assigned multiple KOs
+are excluded from both the selected set and background in an annotation sensitivity.
+There are 102 KO/PFAM contrasts (96 terms) and 11 module contrasts (10 modules).
+None of the module contrasts survives the single-KO sensitivity; all remain
+potential functional candidates. Figure 5 presents KO terms and these candidates
+separately from Figure 4. Full PFAM results remain external supplementary data.
+
+Stored axis signs define direction. Descriptive correlations help interpret these
+signs; they are not refitted PCA loadings. Shared genes and correlated axes do not
+represent independent processes. Gene dependence can make nominal enrichment
+FDR optimistic. DNA abundance supports functional potential, not pathway
+completeness, expression, activity or process rates. See `GENE_ENVIRONMENT.md`.
 
 ## Functional networks
 

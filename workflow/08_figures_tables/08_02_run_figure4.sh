@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# HISTORICAL: use 08_03_read_based_figure4.py for the current manuscript Figure 4.
 # Inputs: figure4_bundle/inputs and config/plot.json (derived tables must be generated first).
 # Outputs: FIG4_OUT_ROOT/604d_reproducir_figura4_A_D_*/.
 # Method: plots frozen mixed-model results; no model refitting.
