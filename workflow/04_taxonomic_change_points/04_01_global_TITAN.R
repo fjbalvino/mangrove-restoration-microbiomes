@@ -2,7 +2,7 @@
 # ============================================================
 # 04_01_global_TITAN.R
 # Status: REVIEW CANDIDATE; see docs/REPRODUCIBILITY.md
-# Global profile-mean TITAN2. Archived MHI branch uses pre-003b values; five other axes match corrected metadata.
+# Global profile-mean TITAN2 using canonical 003b metadata.
 # Inputs (source expressions; complete list in docs/contracts/04_01_global_TITAN.json):
 #   df <- readr::read_csv(
 #   trimws(readLines(f, warn = FALSE, n = 1L))
@@ -15,7 +15,7 @@
 #   readr::write_csv(
 #   readr::write_csv(profile_audit, file.path(DIR_TABLES, "401_auditoria_perfiles.csv"))
 #   readr::write_csv(meta, file.path(DIR_TABLES, "401_metadata_used.csv"))
-#   readr::write_csv(taxa_used, file.path(DIR_TABLES, "401_nonviral_bimodal_taxa_used.csv"))
+#   readr::write_csv(taxa_used, file.path(DIR_TABLES, "401_bimodal_taxa_used.csv"))
 #   readr::write_csv(sample_counts, file.path(DIR_TABLES, "401_sample_counts.csv"))
 #   saveRDS(
 # Algorithmic provenance:
@@ -23,8 +23,7 @@
 #   Baker & King (2010), doi:10.1111/j.2041-210X.2009.00007.x.
 # Source SHA-256: 511ae14dbcf5cf115de939168a89ca0e9ad4e9e9a3188b5ffc5d25d37d618b8b
 # AI-assisted code curation: OpenAI Codex (OpenAI, 2026).
-# Changes in this copy: descriptive filename and this documentation header only.
-# Original body and internal output names are preserved exactly.
+# Revision: canonical metadata gate and auditable TITAN2 extraction; see README.md.
 # ============================================================
 
 
@@ -40,7 +39,7 @@
 #   - Conserva los 1031 taxa; estado viral como anotacion
 #
 # Gradientes principales:
-#   - ECI_PC1
+#   - MHI_local
 #   - nutrients_redox_PC1
 #   - physicochemical_PC1
 #   - moisture_stress_PC1
@@ -250,23 +249,16 @@ sanitize_name <- function(x) {
 }
 
 extract_titan_table <- function(titan_obj) {
-  out <- tryCatch({
-    x <- as.data.frame(TITAN2::titan.out(titan_obj))
-    x %>% rownames_to_column("taxon")
-  }, error = function(e) {
-    tibble(error = e$message)
-  })
-  out
+  x <- as.data.frame(titan_obj$sppmax, check.names = FALSE)
+  required <- c("zenv.cp", "maxgrp", "purity", "reliability", "filter")
+  stopifnot(all(required %in% names(x)), !anyDuplicated(rownames(x)))
+  x %>% rownames_to_column("taxon")
 }
 
 extract_sumz_table <- function(titan_obj) {
-  out <- tryCatch({
-    sx <- as.data.frame(titan_obj$sumz)
-    sx %>% rownames_to_column("row")
-  }, error = function(e) {
-    tibble(error = e$message)
-  })
-  out
+  x <- as.data.frame(titan_obj$sumz.cp, check.names = FALSE)
+  stopifnot(all(c("sumz-", "sumz+", "fsumz-", "fsumz+") %in% rownames(x)))
+  x %>% rownames_to_column("component")
 }
 
 safe_titan <- function(env, taxa_mat, nboot, ncpus, min_splt, num_permutations) {
@@ -356,7 +348,7 @@ plot_indicator_taxa <- function(ind_tbl, gradient_name, out_base, top_n = 40) {
   if (!all(c("taxon") %in% names(ind_tbl))) return(invisible(NULL))
 
   # TITAN2 column names vary slightly across versions.
-  cp_col <- intersect(c("obs.cp", "cp", "env.cp", "env.cp.obs"), names(ind_tbl))[1]
+  cp_col <- intersect(c("zenv.cp", "obs.cp", "cp", "env.cp", "env.cp.obs"), names(ind_tbl))[1]
   z_col  <- intersect(c("zscore", "obs.z", "z", "maxgrp"), names(ind_tbl))[1]
   dir_col <- intersect(c("maxgrp", "grp", "direction"), names(ind_tbl))[1]
   pur_col <- intersect(c("purity", "pur"), names(ind_tbl))[1]
@@ -375,8 +367,8 @@ plot_indicator_taxa <- function(ind_tbl, gradient_name, out_base, top_n = 40) {
     filter(is.finite(change_point)) %>%
     mutate(
       direction = case_when(
-        direction_raw %in% c("1", "z+", "+", "pos", "positive") ~ "z+",
-        direction_raw %in% c("2", "z-", "-", "neg", "negative") ~ "z-",
+        direction_raw %in% c("2", "z+", "+", "pos", "positive") ~ "z+",
+        direction_raw %in% c("1", "z-", "-", "neg", "negative") ~ "z-",
         TRUE ~ direction_raw
       ),
       score_for_rank = ifelse(is.finite(z_value), abs(z_value), 0)
@@ -425,13 +417,14 @@ latest_output <- function(root, id) {
 RUN001 <- latest_output(RESULTS_DIR, "001_auditar_estructura_metadata")
 DEFAULT_PS <- if (!is.na(RUN001)) file.path(RUN001, "rds", "001_phyloseq_canon_51.rds") else NA_character_
 DEFAULT_OUT202 <- latest_output(RESULTS_DIR, "202_construir_matriz_CLR_y_eje_bimodal")
-RUN101 <- latest_output(RESULTS_DIR, "101_construir_ejes_ambientales_por_bloque")
-RUN003 <- latest_output(RESULTS_DIR, "003_integrar_ejes_ECI_HI_en_metadata")
-DEFAULT_META <- if (!is.na(RUN003)) {
-  file.path(RUN003, "tables", "003_metadata_integrada_canon_51.csv")
-} else if (!is.na(RUN101)) {
-  file.path(RUN101, "tables", "101_metadata_with_env_axes.csv")
-} else NA_character_
+SCRIPT_DIR <- dirname(normalizePath(sub("^--file=", "", grep("^--file=", commandArgs(FALSE), value=TRUE)), mustWork=TRUE))
+source(file.path(SCRIPT_DIR, "validated_metadata.R"))
+if (get_arg("--stream_permutations", "false") == "true") {
+  stopifnot(as.character(packageVersion("TITAN2")) == "2.4.4")
+  source(file.path(SCRIPT_DIR, "stream_permutations.R"))
+  assignInNamespace("getivz", stream_getivz, ns = "TITAN2")
+}
+DEFAULT_META <- canonical_titan_metadata(SCRIPT_DIR)
 
 PS_RDS <- get_arg("--ps", DEFAULT_PS)
 OUT202 <- get_arg("--out202", DEFAULT_OUT202)
@@ -478,10 +471,28 @@ on.exit(sink(), add = TRUE)
 
 writeLines(
   OUT_DIR,
-  file.path(OUT_ROOT, paste0("LATEST_", SCRIPT_BASENAME, ".txt"))
+  file.path(OUT_ROOT, paste0("LATEST_", SCRIPT_BASENAME, "_ATTEMPT.txt"))
 )
 
 set.seed(SEED)
+RNG_STATE_FILE <- get_arg("--rng_state", NULL)
+if (!is.null(RNG_STATE_FILE)) {
+  stopifnot(length(GRADIENTS) == 1L)
+  rng_record <- readRDS(RNG_STATE_FILE)
+  stopifnot(identical(rng_record$gradient, GRADIENTS),
+            identical(rng_record$RNGkind, RNGkind()),
+            identical(rng_record$R, R.version.string),
+            identical(rng_record$TITAN2, as.character(packageVersion("TITAN2"))),
+            rng_record$nBoot == N_BOOT, rng_record$numPerm == N_PERM,
+            rng_record$minSplt == MIN_SPLT)
+  assign(".Random.seed", rng_record$initial, envir = .GlobalEnv)
+}
+CHECKPOINT_ROOT <- get_arg("--checkpoint_root", NULL)
+if (!is.null(CHECKPOINT_ROOT)) {
+  safe_mkdir(CHECKPOINT_ROOT)
+  source(file.path(SCRIPT_DIR, "checkpoint_boot.R"))
+  assignInNamespace("boot.titan", checkpoint_boot_titan, ns = "TITAN2")
+}
 
 msg("Starting script 401")
 msg("PS_RDS: ", PS_RDS)
@@ -524,6 +535,7 @@ readr::write_csv(
 
 meta_raw <- readr::read_csv(META_CSV, show_col_types = FALSE)
 names(meta_raw) <- clean_colnames(names(meta_raw))
+validate_titan_metadata(meta_raw, DEFAULT_META, file.path(DIR_TABLES, "401_metadata_validation.csv"))
 
 sample_col <- intersect(
   c("sample_id", "SampleID", "sample", "id_metagenomics", "run_accession"),
@@ -735,7 +747,7 @@ readr::write_csv(meta, file.path(DIR_TABLES, "401_metadata_used.csv"))
 taxa_used <- tibble(tax_id = colnames(txa)) %>%
   left_join(tax, by = "tax_id")
 
-readr::write_csv(taxa_used, file.path(DIR_TABLES, "401_nonviral_bimodal_taxa_used.csv"))
+readr::write_csv(taxa_used, file.path(DIR_TABLES, "401_bimodal_taxa_used.csv"))
 
 readr::write_csv(
   as.data.frame(txa) %>% rownames_to_column("profile_id"),
@@ -786,6 +798,8 @@ for (grad in GRADIENTS) {
   env <- env[ord]
   txa_use <- txa_use[ord, , drop = FALSE]
 
+  if (!is.null(CHECKPOINT_ROOT)) options(titan.checkpoint.path = file.path(CHECKPOINT_ROOT, paste0("global_", grad, ".rds")))
+  saveRDS(.Random.seed, file.path(DIR_LOGS, paste0("rng_before_", grad, ".rds")))
   titan_obj <- safe_titan(
     env = env,
     taxa_mat = txa_use,
@@ -794,6 +808,9 @@ for (grad in GRADIENTS) {
     min_splt = MIN_SPLT,
     num_permutations = N_PERM
   )
+
+  saveRDS(.Random.seed, file.path(DIR_LOGS, paste0("rng_after_", grad, ".rds")))
+  if (!is.null(RNG_STATE_FILE) && !is.null(titan_obj)) stopifnot(identical(.Random.seed, rng_record$final))
 
   if (is.null(titan_obj)) {
     summary_rows[[grad]] <- tibble(
@@ -826,6 +843,7 @@ for (grad in GRADIENTS) {
     file.path(DIR_TABLES, paste0("401_titan_sumz_", grad_safe, ".csv"))
   )
 
+  if (get_arg("--skip_plots", "false") != "true") {
   # Plot native sum(z)
   plot_sumz_curves(
     titan_obj,
@@ -840,6 +858,7 @@ for (grad in GRADIENTS) {
     out_base = file.path(DIR_PLOTS, paste0("401_titan_indicator_taxa_", grad_safe)),
     top_n = 40
   )
+  }
 
   dir_col <- intersect(c("maxgrp", "grp", "direction"), names(ind_tbl))[1]
   pur_col <- intersect(c("purity", "pur"), names(ind_tbl))[1]
@@ -858,13 +877,13 @@ for (grad in GRADIENTS) {
 
   n_ind <- nrow(indicators)
 
-  n_zplus <- NA_integer_
-  n_zminus <- NA_integer_
+  n_zplus <- 0L
+  n_zminus <- 0L
 
   if (!is.na(dir_col) && nrow(indicators) > 0) {
     d <- as.character(indicators[[dir_col]])
-    n_zplus <- sum(d %in% c("1", "z+", "+", "pos", "positive"), na.rm = TRUE)
-    n_zminus <- sum(d %in% c("2", "z-", "-", "neg", "negative"), na.rm = TRUE)
+    n_zplus <- sum(d %in% c("2", "z+", "+", "pos", "positive"), na.rm = TRUE)
+    n_zminus <- sum(d %in% c("1", "z-", "-", "neg", "negative"), na.rm = TRUE)
   }
 
   summary_rows[[grad]] <- tibble(
@@ -921,7 +940,7 @@ run_info <- tibble(
     paste(GRADIENTS, collapse = ","),
     as.character(nrow(meta)),
     as.character(ncol(txa)),
-    as.character(length(viral_taxa)),
+    as.character(0L),
     "profile_mean_across_5_20_40_cm",
     "sample_Hellinger_then_profile_mean",
     as.character(MIN_PREV_N),
@@ -944,5 +963,7 @@ capture.output(
   file = file.path(DIR_LOGS, "401_sessionInfo.txt")
 )
 
+if (any(summary_tbl$status != "ok")) stop("One or more TITAN2 fits failed; no successful LATEST pointer written.")
+writeLines(OUT_DIR, file.path(OUT_ROOT, paste0("LATEST_", SCRIPT_BASENAME, ".txt")))
 msg("Finished script 401 successfully")
 msg("Output directory: ", OUT_DIR)

@@ -15,6 +15,12 @@ B/C quantities, and recalculates D with the current environmental predictor.
 See [TAXONOMIC_FIGURE1.md](docs/TAXONOMIC_FIGURE1.md). Inputs and figures remain
 external; the original taxonomic scripts are retained for historical reproduction.
 
+Section 04 now includes the verified TITAN2 Figure 2 workflow. It validates
+canonical 003b metadata, retains the 17-profile design and extracts counts and
+change points directly from complete fitted objects. See
+[TAXONOMIC_FIGURE2.md](docs/TAXONOMIC_FIGURE2.md). Data, model objects and rendered
+figures remain external.
+
 Section 05 now uses the corrected read-based KO/PFAM matrices, with separate
 fragment-count and length-adjusted inputs supplied separately. With those inputs,
 it reproduces Figure 3, functional cores,

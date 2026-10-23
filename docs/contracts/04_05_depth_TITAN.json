@@ -2,7 +2,7 @@
   "script": "04_taxonomic_change_points/04_05_depth_TITAN.R",
   "original_source": "/home/fjbalvino/Tipping_points/scripts_finales/405_TITAN2_taxa_bimodales_por_profundidad.R",
   "original_sha256": "787b81f57d0cc8c36fbdea4ab0b187c5f91883a21cfcddf603013c16a1eca5b1",
-  "purpose_and_status": "Depth-specific TITAN2. MHI results require corrected 003b input and rerun.",
+  "purpose_and_status": "Depth-specific TITAN2 with canonical 003b metadata and stable named seeds.",
   "inputs_static_expressions": [
     "trimws(readLines(f, warn = FALSE, n = 1L))",
     "x <- read.csv(f, nrows = 0, check.names = FALSE)",
@@ -20,14 +20,12 @@
     "/home/fjbalvino/Tipping_points/resultados_finales",
     ".txt",
     "001_phyloseq_canon_51.rds",
-    "003_metadata_integrada_canon_51.csv",
-    "101_metadata_with_env_axes.csv",
     "_ATTEMPT.txt",
     "202_CLR_raw1031_muestras_por_taxa.csv",
     "/",
-    "Water / inundation",
+    "Surface-water signal",
     "Vegetation / landscape",
-    "Nutrients / redox",
+    "Nutrients and sulfide",
     "No profile_id/lat_block column found; depth-stratified TITAN2 requires one independent observation per profile.",
     "405_taxonomy_map_from_phyloseq.csv",
     "405_contrato_universo_raw1031.csv",
@@ -46,7 +44,11 @@
     "405_titan_filtered_sumz_by_depth_gradient.csv",
     "Supplementary/Extended Data: taxon-specific change point density by depth",
     "405_figures_index.csv",
-    "405_sessionInfo.txt"
+    "405_sessionInfo.txt",
+    "source_data/indices/metadata_003b.csv",
+    "validated_metadata.R",
+    "checkpoint_boot.R",
+    "stream_permutations.R"
   ],
   "packages_static": [
     "dplyr",
@@ -60,5 +62,6 @@
     "tidyr"
   ],
   "resolution": "static expressions; runtime arguments and branches not asserted to be resolved",
-  "execution_here": "not rerun"
+  "execution_here": "See docs/TAXONOMIC_FIGURE2.md and external 24-fit extraction checks.",
+  "input_validation": "Exact canonical sample IDs, design columns and six environmental predictors checked by sample ID; no historical MHI alias."
 }

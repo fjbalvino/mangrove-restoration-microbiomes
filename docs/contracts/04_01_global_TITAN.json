@@ -2,7 +2,7 @@
   "script": "04_taxonomic_change_points/04_01_global_TITAN.R",
   "original_source": "/home/fjbalvino/Tipping_points/scripts_finales/401_TITAN2_global_taxa_bimodales_gradientes_ambientales.R",
   "original_sha256": "511ae14dbcf5cf115de939168a89ca0e9ad4e9e9a3188b5ffc5d25d37d618b8b",
-  "purpose_and_status": "Global profile-mean TITAN2. Archived MHI branch uses pre-003b values; five other axes match corrected metadata.",
+  "purpose_and_status": "Global profile-mean TITAN2 with canonical 003b metadata and direct validated extraction.",
   "inputs_static_expressions": [
     "df <- readr::read_csv(",
     "trimws(readLines(f, warn = FALSE, n = 1L))",
@@ -16,7 +16,7 @@
     "readr::write_csv(",
     "readr::write_csv(profile_audit, file.path(DIR_TABLES, \"401_auditoria_perfiles.csv\"))",
     "readr::write_csv(meta, file.path(DIR_TABLES, \"401_metadata_used.csv\"))",
-    "readr::write_csv(taxa_used, file.path(DIR_TABLES, \"401_nonviral_bimodal_taxa_used.csv\"))",
+    "readr::write_csv(taxa_used, file.path(DIR_TABLES, \"401_bimodal_taxa_used.csv\"))",
     "readr::write_csv(sample_counts, file.path(DIR_TABLES, \"401_sample_counts.csv\"))",
     "saveRDS("
   ],
@@ -25,8 +25,6 @@
     "/home/fjbalvino/Tipping_points/resultados_finales",
     ".txt",
     "001_phyloseq_canon_51.rds",
-    "003_metadata_integrada_canon_51.csv",
-    "101_metadata_with_env_axes.csv",
     "log.txt",
     "401_taxonomy_with_viral_flag.csv",
     "No pude identificar profile_id/lat_block; TITAN2 global requiere perfiles independientes.",
@@ -37,14 +35,18 @@
     "401_contrato_universo_raw1031.csv",
     "/",
     "401_metadata_used.csv",
-    "401_nonviral_bimodal_taxa_used.csv",
+    "401_bimodal_taxa_used.csv",
     "401_taxa_matrix_profile_mean_hellinger_used.csv",
     "401_sample_counts.csv",
     ".rds",
     ".csv",
     "401_titan_summary_by_gradient.csv",
     "401_run_info.csv",
-    "401_sessionInfo.txt"
+    "401_sessionInfo.txt",
+    "source_data/indices/metadata_003b.csv",
+    "validated_metadata.R",
+    "checkpoint_boot.R",
+    "stream_permutations.R"
   ],
   "packages_static": [
     "TITAN2",
@@ -60,5 +62,6 @@
     "tidyr"
   ],
   "resolution": "static expressions; runtime arguments and branches not asserted to be resolved",
-  "execution_here": "not rerun"
+  "execution_here": "See docs/TAXONOMIC_FIGURE2.md and external 24-fit extraction checks.",
+  "input_validation": "Exact canonical sample IDs, design columns and six environmental predictors checked by sample ID; no historical MHI alias."
 }

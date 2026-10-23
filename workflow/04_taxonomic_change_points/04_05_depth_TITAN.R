@@ -2,12 +2,13 @@
 # ============================================================
 # 04_05_depth_TITAN.R
 # Status: REVIEW CANDIDATE; see docs/REPRODUCIBILITY.md
-# Depth-specific TITAN2. MHI results require corrected 003b input and rerun.
+# Depth-specific TITAN2 using canonical 003b metadata.
 # Inputs (source expressions; complete list in docs/contracts/04_05_depth_TITAN.json):
 #   trimws(readLines(f, warn = FALSE, n = 1L))
 #   x <- read.csv(f, nrows = 0, check.names = FALSE)
 #   ps <- readRDS(ps_file)
 #   meta <- readr::read_csv(meta_csv, show_col_types = FALSE, progress = FALSE)
+#   validate_titan_metadata(meta, CANONICAL_META, file.path(tables_dir, "405_metadata_validation.csv"), sample_id_col)
 # Outputs (source expressions; complete list in contract):
 #   writeLines(out_dir, sub("\\.txt$", "_ATTEMPT.txt", latest_file))
 #   readr::write_csv(as.data.frame(x), path, na = "")
@@ -19,8 +20,7 @@
 #   Baker & King (2010), doi:10.1111/j.2041-210X.2009.00007.x.
 # Source SHA-256: 787b81f57d0cc8c36fbdea4ab0b187c5f91883a21cfcddf603013c16a1eca5b1
 # AI-assisted code curation: OpenAI Codex (OpenAI, 2026).
-# Changes in this copy: descriptive filename and this documentation header only.
-# Original body and internal output names are preserved exactly.
+# Revision: canonical metadata gate and auditable TITAN2 extraction; see README.md.
 # ============================================================
 
 # RAW1031_405_V1
@@ -190,16 +190,15 @@ out202_dir <- arg_chr(
   default = latest_output(results_root, "202_construir_matriz_CLR_y_eje_bimodal")
 )
 
-run101 <- latest_output(results_root, "101_construir_ejes_ambientales_por_bloque")
-run003 <- latest_output(results_root, "003_integrar_ejes_ECI_HI_en_metadata")
-meta_csv <- arg_chr(
-  "meta_csv",
-  default = if (!is.na(run003)) {
-    file.path(run003, "tables", "003_metadata_integrada_canon_51.csv")
-  } else if (!is.na(run101)) {
-    file.path(run101, "tables", "101_metadata_with_env_axes.csv")
-  } else NA_character_
-)
+SCRIPT_DIR <- dirname(normalizePath(sub("^--file=", "", grep("^--file=", commandArgs(FALSE), value=TRUE)), mustWork=TRUE))
+source(file.path(SCRIPT_DIR, "validated_metadata.R"))
+if (arg_lgl("stream_permutations", FALSE)) {
+  stopifnot(as.character(packageVersion("TITAN2")) == "2.4.4")
+  source(file.path(SCRIPT_DIR, "stream_permutations.R"))
+  assignInNamespace("getivz", stream_getivz, ns = "TITAN2")
+}
+CANONICAL_META <- canonical_titan_metadata(SCRIPT_DIR)
+meta_csv <- arg_chr("meta_csv", default = CANONICAL_META)
 
 gradients <- split_csv(arg_chr(
   "gradients",
@@ -223,6 +222,12 @@ n_boot <- arg_int("n_boot", default = 500L)
 n_perm <- arg_int("n_perm", default = 999L)
 ncpus <- arg_int("ncpus", default = 1L)
 seed <- arg_int("seed", default = 123L)
+checkpoint_root <- arg_chr("checkpoint_root", default = NULL)
+if (!is.null(checkpoint_root)) {
+  dir.create(checkpoint_root, recursive=TRUE, showWarnings=FALSE)
+  source(file.path(SCRIPT_DIR, "checkpoint_boot.R"))
+  assignInNamespace("boot.titan", checkpoint_boot_titan, ns="TITAN2")
+}
 
 auto_relax <- arg_lgl("auto_relax", default = FALSE)
 relaxed_min_prev_n <- arg_int("relaxed_min_prev_n", default = 3L)
@@ -617,11 +622,11 @@ nice_gradient_label <- function(x) {
     x,
     "ECI_PC1" = "Integrated environmental condition",
     "MHI_local" = "Mangrove Health Index (MHI)",
-    "water_inundation_PC1" = "Water / inundation",
+    "water_inundation_PC1" = "Surface-water signal",
     "vegetation_landscape_PC1" = "Vegetation / landscape",
     "physicochemical_PC1" = "Physicochemical",
-    "nutrients_redox_PC1" = "Nutrients / redox",
-    "moisture_stress_PC1" = "Moisture stress",
+    "nutrients_redox_PC1" = "Nutrients and sulfide",
+    "moisture_stress_PC1" = "Moisture (NDMI)",
     .default = x
   )
 }
@@ -645,6 +650,7 @@ cat("Metadata: ", meta_csv, "\n", sep = "")
 
 ps <- readRDS(ps_file)
 meta <- readr::read_csv(meta_csv, show_col_types = FALSE, progress = FALSE)
+validate_titan_metadata(meta, CANONICAL_META, file.path(tables_dir, "405_metadata_validation.csv"), sample_id_col)
 
 if (!sample_id_col %in% names(meta)) stop("sample_id column not found: ", sample_id_col, call. = FALSE)
 if (!depth_col %in% names(meta)) stop("depth column not found: ", depth_col, call. = FALSE)
@@ -745,7 +751,8 @@ stopifnot(identical(rownames(counts), meta2$.sample_id),
           all(rowSums(counts) > 0),
           !anyNA(meta2$.profile_raw), all(nzchar(meta2$.profile_raw)),
           !anyNA(meta2$.locality), all(nzchar(meta2$.locality)),
-          setequal(depth_levels, c("5", "20", "40")))
+          length(depth_levels) > 0L, !anyDuplicated(depth_levels),
+          all(depth_levels %in% c("5", "20", "40")))
 for (g in gradients) {
   if (any(!is.finite(safe_numeric_gradient(meta2[[g]])))) {
     stop("Gradiente incompleto: ", g,
@@ -1004,6 +1011,7 @@ n_taxa_retained <- ncol(txa_filtered)
 
           rds_path <- file.path(rds_dir, paste0("405_titan_", titan_id, ".rds"))
 
+          if (!is.null(checkpoint_root)) options(titan.checkpoint.path = file.path(checkpoint_root, paste0(titan_id, ".rds")))
           titan_obj <- tryCatch(
             {
               safe_titan(
@@ -1013,7 +1021,9 @@ n_taxa_retained <- ncol(txa_filtered)
                 n_perm = n_perm,
                 n_boot = n_boot,
                 ncpus = ncpus,
-                seed = seed + analysis_index
+                seed = seed + (match(as.character(depth_i), c("5", "20", "40")) - 1L) * 6L +
+                  match(grad, c("MHI_local", "moisture_stress_PC1", "nutrients_redox_PC1",
+                                "physicochemical_PC1", "vegetation_landscape_PC1", "water_inundation_PC1"))
               )
             },
             error = function(e) {
@@ -1165,7 +1175,8 @@ if (nrow(indval_annotated) > 0) {
   reliable_summary <- indval_annotated %>%
     group_by(depth_cm, gradient, gradient_label, response) %>%
     summarise(
-      n_indicators = n(),
+      n_taxa_tested = n(),
+      n_indicators = sum(reliable_custom, na.rm = TRUE),
       n_reliable90 = sum(reliable90, na.rm = TRUE),
       n_reliable95 = sum(reliable95, na.rm = TRUE),
       n_reliable_custom = sum(reliable_custom, na.rm = TRUE),
@@ -1226,6 +1237,7 @@ write_csv_safe(
 # Plots
 # ------------------------------------------------------------------------------
 
+if (!arg_lgl("skip_plots", FALSE)) {
 theme_405 <- function(base_size = 11) {
   theme_classic(base_size = base_size) +
     theme(
@@ -1449,6 +1461,7 @@ if (nrow(indval_annotated) > 0) {
 # ------------------------------------------------------------------------------
 # Figure index
 # ------------------------------------------------------------------------------
+}
 
 fig_index <- tibble(
   figure = c(

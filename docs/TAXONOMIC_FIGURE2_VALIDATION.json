@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-23",
+  "analysis": "Taxonomic TITAN2 and Figure 2; no functional matrices",
+  "runtime": {
+    "R": "4.3.3",
+    "TITAN2": "2.4.4",
+    "ncpus_per_fit": 1
+  },
+  "sampling": {
+    "profiles": 17,
+    "samples": 51,
+    "depths_cm": [
+      5,
+      20,
+      40
+    ],
+    "global_taxa": 1031,
+    "depth_taxa": {
+      "5": 1015,
+      "20": 978,
+      "40": 997
+    }
+  },
+  "fits_completed": 24,
+  "permutations_per_fit": 999,
+  "bootstraps_per_fit": 500,
+  "metadata": "All sample IDs, design columns and six predictors match canonical 003b by sample ID.",
+  "reference": "Original five-axis results plus the previously corrected 003b MHI analysis; not obsolete MHI.",
+  "reproduction": {
+    "fits": 24,
+    "taxon_gradient_tests": 24126,
+    "figure_rows": 48,
+    "indicator_count_changes": 0,
+    "community_missingness_changes": 0,
+    "indicator_selection_changes": 0,
+    "taxon_direction_changes": 0,
+    "taxon_reliability_values_changed": 1436,
+    "max_taxon_reliability_difference": 0.020000000000000018,
+    "retained_reliability_values_changed": 2,
+    "max_retained_reliability_difference": 0.0020000000000000018,
+    "max_community_cp_difference": 2.220446049250313e-15,
+    "max_community_quantile_difference": 4.884981308350689e-15
+  },
+  "execution_equivalence": "All 13 object components and final RNG state identical for native, memory-bounded and interrupted/resumed execution; synthetic and actual 17-profile inputs.",
+  "historical_reliability_precision": "Raw reliability differs in some taxon-gradient rows, without changing any selection. A five-bootstrap MHI replay matches archived arrays exactly under reference BLAS; OpenBLAS changes permutation ties. See the numerical-precision guide and external audit.",
+  "global_rng": "All six fits match expected final states in the continuous historical seed-123 stream.",
+  "depth_rng": "Seeds 124-141 are assigned by fixed depth/gradient position.",
+  "figure": "Six gradients; each shows global and three depth estimates. Zero-indicator thresholds are suppressed.",
+  "limitations": [
+    "Exploratory univariate associations; no joint locality/predictor adjustment.",
+    "Purity/reliability filtering is not across-taxon/gradient FDR control.",
+    "Depth contrasts are descriptive, not formal tests.",
+    "Intervals are central 80% and 90% bootstrap ranges."
+  ],
+  "repository_scope": "Code and documentation only; no matrices, fitted objects, result tables, images or decorative assets."
+}

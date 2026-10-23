@@ -15,7 +15,8 @@ checks. All networks in section 07 are now historical and excluded from the
 current manuscript. No marker analysis depends on network outputs.
 
 The canonical phyloseq and upstream metadata/QC files listed in
-`MISSING_INPUTS.tsv` also remain to be supplied. The collection command in the
+`MISSING_INPUTS.tsv` are not bundled. Figures 1 and 2 were rerun using recovered,
+hash-verified external copies; future executions must supply these inputs. The collection command in the
 README creates a local archive on the server; it does not publish that archive.
 After the data upload, record the actual filenames, download locations, byte
 sizes and SHA-256 checksums. Archived inventory sizes should be checked against
@@ -27,7 +28,7 @@ the files actually transferred.
 |---|---|---|
 | Historical HI | Historical CLR, metadata and fixed HI values | Included; numerical reconstruction verified |
 | Environmental MHI | Original 57-row calibration and 51-row metadata | Included; numerical reconstruction verified |
-| Taxonomic analyses | Canonical phyloseq plus metadata | Phyloseq still required from the analysis server |
+| Taxonomic analyses and Figures 1–2 | Canonical phyloseq, fixed candidate IDs and 003b metadata | Validated with recovered external inputs; matrices and figures remain external; see TAXONOMIC_FIGURE1.md and TAXONOMIC_FIGURE2.md |
 | Corrected functional composition and core | Read-based KO/PFAM fragment counts, length-adjusted values and canonical metadata | Code included and validated with local inputs; four read-based matrices must be supplied separately |
 | Historical supplementary 808 | Assembled-ORF matrices, current and historical labels | Historical reproduction only; read-based update pending |
 | Historical networks 809 | Fixed historical 200-KO CLR and metadata | Historical reproduction only |
@@ -43,7 +44,7 @@ Primary functional composition reads the canonical matrix paths directly.
 
 The corrected section 05 is a runnable pipeline after supplying the four verified matrices;
 see `FUNCTIONAL_REFERENCE.md`. Its launcher does not read historical 082A matrices.
-Other R analyses retain historical CLI defaults and output names. Consult their
+The current TITAN scripts use validated 003b defaults and retain historical output prefixes. Other R analyses may retain historical CLI defaults. Consult their
 command-line arguments and `docs/contracts/` before executing those stages.
 
 ## Historical network execution
@@ -104,7 +105,9 @@ current model tables directly; see the current gene/environment execution above.
 
 ## Historical predictor lineage
 
-The archived TITAN MHI branch used pre-003b MHI values, and the archived depth-wise
-variance partition used an ECI vector different from current integrated metadata.
-Choose and document the intended calibration before rerunning those branches.
-Publishing source code and inputs does not resolve these scientific lineage differences.
+The archived TITAN MHI branch used pre-003b MHI values. Current TITAN fitting
+scripts validate all six predictors against 003b; the Figure 2 rerun and its
+interpretation limits are documented in `TAXONOMIC_FIGURE2.md`. The archived
+depth-wise variance partition used a different ECI vector; the corrected
+Figure 1 workflow is documented in `TAXONOMIC_FIGURE1.md`. These historical
+inputs must not be silently substituted for current predictors.
