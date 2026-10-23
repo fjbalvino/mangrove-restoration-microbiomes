@@ -28,15 +28,12 @@ python3 workflow/03_taxonomic_structure/03_05_figure1.py \
 
 Python 3.12 and the listed package versions were used for verification.
 CairoSVG also needs the Cairo shared library. The output directory must be new.
-For the original supplied 1605 x 2048 PNG, optionally append
-`--source-figure /path/to/Figure_1.png --panel-a-bottom 460 --standardize-panel-a-swatches`
-to create the complete assembly. The last flag overlays the five stage colour
-keys in the original A with the Figure 3 palette; it only supports the original
-1605 x 2048 image and the 460-pixel crop. The embedded A artwork is otherwise
-unchanged. Omit this flag for other source artwork. The crop retains all non-white pixels of A
-and stops before the old B label. B-D are vector artwork in SVG and PDF; A
-remains an embedded raster from the supplied figure, not an editable reconstruction
-of the Inkscape source. PNG outputs are 4380 pixels wide at 600 dpi.
+The renderer produces only `Figure1_B-D.png`, `Figure1_B-D.pdf`,
+`Figure1_B-D.svg` and a PNG preview. B-D remain vector artwork in SVG and PDF;
+the PNG is 4380 pixels wide at 600 dpi. Panel A is maintained separately in
+Inkscape. Combining that artwork with B-D is an editorial step outside this
+repository; the launcher and renderer do not accept a source image or generate
+a complete A-D assembly.
 
 ## What is recomputed and what is retained
 
@@ -98,8 +95,7 @@ Stage colours, locality shapes and depth sizes match
 `workflow/05_functional_reference/05_06_assemble_figures.py` (blob
 `aeffa71527a927d89dcbeb4020d4188b8b3287be`). Colours are Degraded `#C54C43`,
 Early `#D59127`, Intermediate `#8870B3`, Advanced `#26867B` and Conserved
-`#3273A5`. These same colours are used in B, C, their shared legend and the
-optional stage-key overlay in A.
+`#3273A5`. These same colours are used in B, C and their shared legend.
 
 Both C ordinations include the same 68% descriptive normal data ellipses as
 Figure 3: sample covariance, centre at the stage mean, and radius
@@ -117,3 +113,4 @@ The figure caption, Results and relevant supplementary labels should be
 reconciled together when integrating the revision into the manuscript. The
 old 03_04 script and its contract are retained for historical reproduction;
 use 03_05 for the current figure.
+

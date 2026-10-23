@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render validated Figure 1 B-D; optionally retain the supplied raster panel A."""
+"""Render validated Figure 1 panels B-D from audited numerical tables."""
 from __future__ import annotations
 import argparse
 import io
@@ -63,10 +63,7 @@ def export(fig,path,formats=('png','pdf','svg')):
 
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--audit',required=True)
-    ap.add_argument('--output',required=True);ap.add_argument('--source-figure')
-    ap.add_argument('--panel-a-bottom',type=int,default=460)
-    ap.add_argument('--standardize-panel-a-swatches',action='store_true',
-                    help='Match five stage swatches in the supplied 1605 x 2048 Figure 1 to Figure 3')
+    ap.add_argument('--output',required=True)
     args=ap.parse_args();root=Path(args.audit);out=Path(args.output);out.mkdir(parents=True,exist_ok=True)
     import json
     assert json.loads((root/'audit_summary.json').read_text())['all_checks_passed']
@@ -199,41 +196,13 @@ def main():
     # Intermediate standalone BC and D are not user deliverables.
     for stem in ['Figure1_BC','Figure1_D']:
         (out/(stem+'.svg')).unlink()
-    if args.source_figure:
-        import base64
-        source=Image.open(args.source_figure).convert('RGB')
-        crop=source.crop((0,0,source.width,args.panel_a_bottom))
-        a_buf=io.BytesIO();crop.save(a_buf,format='PNG')
-        aw=width*72; ah=aw*crop.height/crop.width
-        complete=ET.Element('{'+ns+'}svg',{'width':f'{aw}pt','height':f'{ah+final_height}pt','viewBox':f'0 0 {aw} {ah+final_height}'})
-        ET.SubElement(complete,'{'+ns+'}rect',{'width':'100%','height':'100%','fill':'white'})
-        ET.SubElement(complete,'{'+ns+'}image',{'width':str(aw),'height':str(ah),
-                      'href':'data:image/png;base64,'+base64.b64encode(a_buf.getvalue()).decode()})
-        if args.standardize_panel_a_swatches:
-            # The original Inkscape artwork remains embedded unchanged. Only
-            # the five stage keys are overlaid with exact vector colour keys.
-            assert source.size==(1605,2048) and args.panel_a_bottom==460
-            keys=ET.SubElement(complete,'{'+ns+'}g',{'id':'a_stage_keys',
-                 'transform':f'scale({aw/source.width})'})
-            for stage,cx in zip(STAGES,[710,830,955.5,1086.5,1215]):
-                ET.SubElement(keys,'{'+ns+'}rect',{'x':str(cx-24),'y':'126',
-                     'width':'48','height':'49','fill':'white'})
-                ET.SubElement(keys,'{'+ns+'}circle',{'cx':str(cx),'cy':'150.5',
-                     'r':'21','fill':COLORS[stage],'stroke':'#3C4145','stroke-width':'1.1'})
-        group=ET.SubElement(complete,'{'+ns+'}g',{'transform':f'translate(0 {ah})'})
-        for child in svg:group.append(child)
-        data=ET.tostring(complete,encoding='utf-8',xml_declaration=True)
-        atomic(out/'Figure1_complete.svg',data)
-        atomic(out/'Figure1_complete.pdf',cairosvg.svg2pdf(bytestring=data))
-        atomic(out/'Figure1_complete.png',cairosvg.svg2png(bytestring=data,output_width=4380))
-    for name in ['Figure1_B-D','Figure1_complete']:
-        path=out/(name+'.png')
-        if path.exists():
-            with Image.open(path) as im:
-                im.load();buffer=io.BytesIO();im.save(buffer,format='PNG',dpi=(600,600))
-                atomic(path,buffer.getvalue())
-                preview=im.copy();preview.thumbnail((1000,1600));preview.save(out/(name+'_preview.png'))
-                print(name,im.size)
+    path=out/'Figure1_B-D.png'
+    with Image.open(path) as im:
+        im.load();buffer=io.BytesIO();im.save(buffer,format='PNG',dpi=(600,600))
+        atomic(path,buffer.getvalue())
+        preview=im.copy();preview.thumbnail((1000,1600));preview.save(out/'Figure1_B-D_preview.png')
+        print('Figure1_B-D',im.size)
     plt.close('all')
 
 if __name__=='__main__':main()
+
