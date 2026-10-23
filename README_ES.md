@@ -4,6 +4,13 @@ Repositorio mínimo: código, configuración y entradas analíticas disponibles.
 Las figuras, tablas estadísticas, modelos ajustados y remuestreos se generan
 localmente; no forman parte de los archivos publicados.
 
+La sección 03 incorpora la Figura 1 revisada. El nuevo programa `03_05_figure1.py`
+verifica los conteos originales y los metadatos, comprueba los paneles B/C y
+recalcula D con el índice ambiental actual. Genera PNG, PDF y SVG localmente.
+La guía y el alcance de la comprobación están en
+[TAXONOMIC_FIGURE1.md](docs/TAXONOMIC_FIGURE1.md). Las entradas se aportan por
+separado; esta revisión no sube matrices, bases de datos ni figuras.
+
 La sección 05 usa las matrices corregidas de fragmentos mapeados: conteos y
 valores ajustados por longitud para KO y PFAM. Reproduce composición, proximidad
 a referencias, núcleo funcional y las figuras desde un solo comando, una vez
@@ -51,9 +58,11 @@ localmente; esta actualización publica únicamente código y documentación.
 Cada entrada histórica está documentada con su SHA-256 en
 [INPUTS_MINIMAL.tsv](docs/INPUTS_MINIMAL.tsv).
 
-Faltan el phyloseq canónico, la matriz proteica completa y cuatro archivos
-auxiliares de metadatos/QC que el código 601b comprueba antes de transformar
-los conteos. Sus rutas están en [MISSING_INPUTS.tsv](docs/MISSING_INPUTS.tsv).
+El phyloseq canónico y las entradas taxonómicas se recuperaron y verificaron;
+se conservan como entradas externas. La matriz proteica completa y cuatro
+archivos auxiliares de metadatos/QC que el código 601b comprueba siguen
+listados, junto con el estado actualizado del phyloseq, en
+[MISSING_INPUTS.tsv](docs/MISSING_INPUTS.tsv).
 La anotación de genes requiere además su catálogo funcional en el servidor.
 
 El flujo corregido selecciona 100.000 genes después de centrar el CLR sobre
@@ -69,3 +78,4 @@ Consulta [README.md](README.md) para los comandos, dependencias y alcance de
 cada componente. El flujo corregido de composición utiliza rutas relativas al
 repositorio, conserva los perfiles de tres profundidades en las permutaciones y
 reporta progreso cada 30 segundos. Sus salidas quedan en `local_runs/functional_reference/`.
+

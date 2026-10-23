@@ -9,6 +9,12 @@ inputs and functional matrices. Figures, PDFs, fitted models, permutation/bootst
 draws and full statistical result tables are generated locally. A compact numerical
 fixture is included to verify the corrected functional section.
 
+Section 03 now includes the verified Figure 1 revision. Its current entry point
+checks the unchanged taxonomic counts and sample metadata, validates archived
+B/C quantities, and recalculates D with the current environmental predictor.
+See [TAXONOMIC_FIGURE1.md](docs/TAXONOMIC_FIGURE1.md). Inputs and figures remain
+external; the original taxonomic scripts are retained for historical reproduction.
+
 Section 05 now uses the corrected read-based KO/PFAM matrices, with separate
 fragment-count and length-adjusted inputs supplied separately. With those inputs,
 it reproduces Figure 3, functional cores,
@@ -104,10 +110,13 @@ the large gene catalogue or another read-mapping run. Rebuilding quantification
 from FASTQ still requires the reads, reference sequences, mapping outputs and
 annotation links held on the analysis server.
 
-The canonical `001_phyloseq_canon_51.rds` and full
-`044_protein_filtered_counts_51samples.tsv.gz` were not available for inclusion.
-The unchanged gene-CLR producer also checks four upstream 044 metadata/QC files.
-[MISSING_INPUTS.tsv](docs/MISSING_INPUTS.tsv) lists the six exact paths.
+The canonical `001_phyloseq_canon_51.rds` has now been recovered and verified
+against its original input hash; it remains external to GitHub. The current
+Figure 1 input manifest and execution guide are in
+[TAXONOMIC_FIGURE1.md](docs/TAXONOMIC_FIGURE1.md). The full
+`044_protein_filtered_counts_51samples.tsv.gz` and four upstream 044 metadata/QC
+files remain listed alongside the recovered taxonomic object in
+[MISSING_INPUTS.tsv](docs/MISSING_INPUTS.tsv).
 
 ```bash
 set +e
@@ -142,3 +151,4 @@ the current manuscript figure. No script uploads its local outputs.
 See [execution requirements](docs/REPRODUCIBILITY.md),
 [methods](docs/METHODS.md), [code changes](docs/MINIMAL_CHANGES.md), and
 [Español](README_ES.md). A complete raw-read-to-paper rerun is not claimed.
+
