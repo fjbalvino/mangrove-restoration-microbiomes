@@ -13,6 +13,8 @@ def main():
     parser.add_argument('--output-dir',required=True)
     parser.add_argument('--source-figure',help='Optional original 1605 x 2048 PNG containing panel A')
     parser.add_argument('--panel-a-bottom',type=int,default=460)
+    parser.add_argument('--standardize-panel-a-swatches',action='store_true',
+                        help='Overlay Figure 3 stage colours on the original Figure 1 panel A keys')
     args=parser.parse_args()
     here=Path(__file__).resolve().parent/'figure1'
     inputs=Path(args.input_dir).resolve();output=Path(args.output_dir).resolve()
@@ -42,6 +44,7 @@ def main():
     if args.source_figure:
         source=Path(args.source_figure).resolve()
         command += ['--source-figure',str(source),'--panel-a-bottom',str(args.panel_a_bottom)]
+        if args.standardize_panel_a_swatches:command += ['--standardize-panel-a-swatches']
         (output/'panel_a_source_sha256.txt').write_text(hashlib.sha256(source.read_bytes()).hexdigest()+'\n')
     subprocess.run(command,check=True)
     print(f'Completed Figure 1: {output}',flush=True)

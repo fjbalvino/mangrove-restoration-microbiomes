@@ -29,8 +29,11 @@ python3 workflow/03_taxonomic_structure/03_05_figure1.py \
 Python 3.12 and the listed package versions were used for verification.
 CairoSVG also needs the Cairo shared library. The output directory must be new.
 For the original supplied 1605 x 2048 PNG, optionally append
-`--source-figure /path/to/Figure_1.png --panel-a-bottom 460` to preserve panel A
-and create the complete assembly. The crop retains all non-white pixels of A
+`--source-figure /path/to/Figure_1.png --panel-a-bottom 460 --standardize-panel-a-swatches`
+to create the complete assembly. The last flag overlays the five stage colour
+keys in the original A with the Figure 3 palette; it only supports the original
+1605 x 2048 image and the 460-pixel crop. The embedded A artwork is otherwise
+unchanged. Omit this flag for other source artwork. The crop retains all non-white pixels of A
 and stops before the old B label. B-D are vector artwork in SVG and PDF; A
 remains an embedded raster from the supplied figure, not an editable reconstruction
 of the Inkscape source. PNG outputs are 4380 pixels wide at 600 dpi.
@@ -67,9 +70,12 @@ values are attached to these descriptive fractions.
   D: locality's unique fractions are 6.4%, 11.9% and 27.4% at 5, 20 and 40 cm.
   The corresponding stage fractions are 8.1%, 3.3% and 3.8%; environment is
   8.5%, -1.1% and 3.4%. These percentages refer to total variation.
-- D no longer rescales the three fractions to 100%. The negative estimate is
-  retained as an adjusted estimate, not interpreted as a negative ecological
-  effect. Shared and residual fractions are not shown.
+- D displays the relative shares of the three unique adjusted fractions,
+  rescaled to 100% separately at each depth. Negative estimates are set to zero
+  for this display only; the raw negative environmental estimate at 20 cm
+  remains in the audit. Shared and unexplained fractions are excluded.
+  Thus, the displayed shares are not percentages of total variation.
+  `variance_partition_display.csv` records raw, nonnegative and rescaled values.
 - The former 40-cm asterisk came from an unrestricted, sequential stage test
   with stage entered before ECI. It did not test the unique adjusted fraction
   displayed in D. Its archived across-depth BH q was 0.060. The new figure
@@ -85,6 +91,23 @@ values are attached to these descriptive fractions.
 - The candidate P = 0.030 remains nominal and exploratory. A supported result
   in one matrix and an unsupported result in the other is not a formal test
   of a difference between their stage effects.
+
+## Shared appearance with Figure 3
+
+Stage colours, locality shapes and depth sizes match
+`workflow/05_functional_reference/05_06_assemble_figures.py` (blob
+`aeffa71527a927d89dcbeb4020d4188b8b3287be`). Colours are Degraded `#C54C43`,
+Early `#D59127`, Intermediate `#8870B3`, Advanced `#26867B` and Conserved
+`#3273A5`. These same colours are used in B, C, their shared legend and the
+optional stage-key overlay in A.
+
+Both C ordinations include the same 68% descriptive normal data ellipses as
+Figure 3: sample covariance, centre at the stage mean, and radius
+`sqrt(2 * F.ppf(0.68, 2, n - 1))`, where n is the number of plotted samples
+in that stage. They describe the plotted sample distribution and are not
+confidence intervals for stage means or an additional significance test.
+All three depths remain visible; inference still uses the archived
+profile-level permutation design. The axes are PCoA, not PCA.
 
 Local outputs include the version comparison, numerical validation, input hashes,
 existing taxonomy inventory, source tables and PNG/PDF/SVG figures. Online
