@@ -61,3 +61,6 @@ source_data/
 *.gif
 *.webp
 *.eps
+# Compact C/N/S inputs and local execution snapshots remain external.
+workflow/10_functional_cycles/inputs/
+workflow/10_functional_cycles/run/

@@ -25,18 +25,30 @@ Los comandos, las entradas externas y los alcances de la validación están en
 [GENE_ENVIRONMENT.md](docs/GENE_ENVIRONMENT.md). El flujo actual de genes comienza
 en `06_05_run_read_based.sh`; los programas `06_01`–`06_04` y el paquete anterior
 de la figura 4 se conservan únicamente para reproducción histórica.
-Las redes corregidas ya tienen su propio flujo reproducible, con comparación
-de algoritmos, remuestreo por perfil y validación independiente. Consulta
-[NETWORKS.md](docs/NETWORKS.md). Las tendencias ordenadas quedan separadas.
+La nueva sección `10_functional_cycles` continúa el enriquecimiento ambiental
+con marcadores de carbono, nitrógeno y azufre. Reproduce la Figura 6, la Figura
+suplementaria 10 y las tablas de origen de las Tablas suplementarias 16–17.
+Sustituye las redes en el manuscrito; toda la sección 07 se conserva como código
+histórico y no es necesaria para ejecutar el panel. Las tendencias ordenadas
+quedan separadas. Consulta [FUNCTIONAL_CYCLES.md](docs/FUNCTIONAL_CYCLES.md).
 Las matrices 082A y la entrada de redes son históricas y están identificadas como
 tales. No alimentan el flujo primario corregido. Los detalles están en
 [FUNCTIONAL_REFERENCE.md](docs/FUNCTIONAL_REFERENCE.md).
 
 Se incluyen los metadatos de 51 muestras, las calibraciones fijas de HI/MHI,
 las matrices históricas KO/PFAM y la matriz CLR de los 200 KO de las redes
-históricas. Las redes actuales vuelven a seleccionar los KO desde las matrices
-corregidas externas; no reutilizan ese objeto CLR histórico.
-Cada entrada está documentada con su SHA-256 en
+históricas. La rama histórica de redes basadas en lecturas selecciona sus KO
+desde las matrices corregidas externas; no reutiliza ese objeto CLR anterior.
+El panel de C/N/S usa entradas externas compactas verificadas por SHA-256.
+Normaliza con 76 genes de referencia y mantiene como provisionales cinco
+marcadores con asignación fraccionada. Los 17 perfiles, no las 51 profundidades
+ni los remuestreos, son las unidades independientes. La familia Holm contiene
+33 pruebas y las 19 asociaciones ambientales forman una familia BH separada.
+Es una exploración posterior a los análisis generales, no una validación
+independiente ni una demostración de tasas metabólicas. Las figuras se generan
+localmente; esta actualización publica únicamente código y documentación.
+
+Cada entrada histórica está documentada con su SHA-256 en
 [INPUTS_MINIMAL.tsv](docs/INPUTS_MINIMAL.tsv).
 
 Faltan el phyloseq canónico, la matriz proteica completa y cuatro archivos

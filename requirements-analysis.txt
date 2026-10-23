@@ -1,4 +1,5 @@
-# Verified numerical environment for corrected genes, enrichment and networks.
+# Verified numerical environment for corrected genes, enrichment and C/N/S markers.
+# scikit-learn is retained for the historical network branch.
 # Also retains the versions used for historical 808/809 reproduction.
 numpy==2.3.5
 pandas==2.2.3

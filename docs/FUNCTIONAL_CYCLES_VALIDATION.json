@@ -1,0 +1,101 @@
+{
+  "status": "PASS",
+  "release_date_utc": "2026-10-23",
+  "section": "workflow/10_functional_cycles",
+  "base_commit": "a322287e904228b0805f9eca90f95c309d298074",
+  "external_compact_inputs_reconstructed_and_verified": 15,
+  "external_inputs_including_optional_comparison_verified": 18,
+  "scientific_tables_numerically_matched_to_reviewed_results": 31,
+  "numerical_tolerance": {
+    "relative": 1e-09,
+    "absolute": 1e-11
+  },
+  "profile_inference_checks": {
+    "status": "PASS",
+    "profiles": 17,
+    "samples": 51,
+    "primary_tests_per_variant": 33,
+    "environment_tests_per_variant": 19,
+    "quantification_variants": 5,
+    "independently_reconstructed_depth_tests": 110,
+    "reference_tables_compared": [
+      "all_primary_and_sensitivity_tests.tsv",
+      "allocation_effect_bounds.tsv",
+      "both_mates_76_normalized.tsv",
+      "depth_effects_for_reporting.tsv",
+      "environment_tests.tsv",
+      "fractional_76_normalized.tsv",
+      "leave_one_out_effects.tsv",
+      "marker_detection.tsv",
+      "marker_function_guide.tsv",
+      "marker_registry.tsv",
+      "mixed_model_crosscheck.tsv",
+      "model_diagnostics.tsv",
+      "normalization_comparison.tsv",
+      "previous_analysis_marker_comparison.tsv",
+      "primary_76_normalized.tsv",
+      "primary_tests.tsv",
+      "profile_environment.tsv",
+      "profile_manifest.tsv",
+      "profile_marker_values.tsv",
+      "restoration_contrasts.tsv",
+      "restoration_permutation_sensitivity.tsv",
+      "sample_manifest.tsv",
+      "sensitivity_input_changes.tsv",
+      "sensitivity_summary_40_vs_5.tsv",
+      "single_KO_normalized_lower.tsv",
+      "single_KO_normalized_upper.tsv",
+      "strict_reference_56_normalized.tsv",
+      "supported_fractional_76_normalized.tsv",
+      "supporting_subunits.tsv",
+      "supporting_subunits_normalized.tsv",
+      "verification_results.tsv"
+    ],
+    "complete_figure_files_verified": [
+      "Figura_CNS_profundidad.png",
+      "Figura_CNS_profundidad.pdf",
+      "Figura_CNS_profundidad.svg",
+      "Figura_CNS_sensibilidad.png",
+      "Figura_CNS_sensibilidad.pdf",
+      "Figura_CNS_sensibilidad.svg"
+    ],
+    "scope": "All generated scientific tables compared when a reference is supplied; simulations and raw-read reconstruction are separate."
+  },
+  "reviewed_PNGs_byte_identical": {
+    "Figura_CNS_profundidad.png": true,
+    "Figura_CNS_sensibilidad.png": true
+  },
+  "bootstrap_and_permutation_arrays_identical_to_reviewed_run": true,
+  "complete_binary_export_writing": "In-memory serialization, fsync, atomic replacement and stored SHA-256 verification; PNG decoding and PDF/SVG completeness checked before acceptance",
+  "negative_checks": [
+    "missing external inputs rejected before output creation",
+    "modified input hash rejected before output creation",
+    "existing output rejected",
+    "duplicated samples and profile-depth observations rejected",
+    "inconsistent profile IDs rejected"
+  ],
+  "independent_checks": [
+    "HC3 matrix formula",
+    "explicit restricted-null bootstrap",
+    "pairing invariant to row order",
+    "zero differences in exact sign tests",
+    "33-test Holm and 19-test BH families",
+    "17 independent profile weights, shared across their three depths"
+  ],
+  "scientific_source_scripts_copied_byte_for_byte": 8,
+  "source_scripts_changed_only_for_binary_writing": 2,
+  "new_supplementary_table_assemblies_verified": {
+    "Supplementary_Table16_CNS.tsv": 11,
+    "Supplementary_Table17_CNS.tsv": 19
+  },
+  "input_lineage_matches_current_section_05": true,
+  "not_rerun": [
+    "raw-read processing or mapping",
+    "full gene catalogue or broad gene models",
+    "historical networks",
+    "statistical design-calibration simulations",
+    "independent R validation for this marker panel",
+    "sequence-level marker validation"
+  ],
+  "publication_scope": "Code, configuration, input hashes and documentation only; no data values, images, annotation databases or archives added"
+}

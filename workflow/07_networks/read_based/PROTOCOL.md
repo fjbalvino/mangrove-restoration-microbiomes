@@ -1,5 +1,10 @@
 # Corrected read-based functional networks — fixed analysis plan
 
+Historical protocol: this network analysis has been withdrawn from the current
+manuscript. The C/N/S marker section now occupies its place; see
+[FUNCTIONAL_CYCLES.md](../../../docs/FUNCTIONAL_CYCLES.md). The specification
+below is retained as the record of the earlier analysis.
+
 This is an exploratory sensitivity analysis specified before inspecting the new network–index results. The hypotheses and resampling budgets below are fixed for this execution; no scenario will be selected on significance. Networks are not assumed to measure recovery or activity.
 
 ## Three matched constructions

@@ -1,0 +1,96 @@
+{
+  "source_scripts": [
+    {
+      "path": "workflow/10_functional_cycles/code/calibrar_y_verificar.py",
+      "sha256": "e6ceb1fbefa4249007f99acb8724a65038c6f054003aac4554400cade50b91aa",
+      "source": "reviewed CNS analysis producer",
+      "change": "none; executed from a local run snapshot",
+      "source_sha256": "e6ceb1fbefa4249007f99acb8724a65038c6f054003aac4554400cade50b91aa"
+    },
+    {
+      "path": "workflow/10_functional_cycles/code/verificar_intervalos_HC3.py",
+      "sha256": "675fd5d182b02fac300f0b6364694e45b57e3349c5200eabb43745793afd4270",
+      "source": "reviewed CNS analysis producer",
+      "change": "none; executed from a local run snapshot",
+      "source_sha256": "675fd5d182b02fac300f0b6364694e45b57e3349c5200eabb43745793afd4270"
+    },
+    {
+      "path": "workflow/10_functional_cycles/code/ejecutar_cns.py",
+      "sha256": "f0193532121c11cad8ba8e44ed3f29a009273b042c8d9b8e42bcee1bd61e36b8",
+      "source": "reviewed CNS analysis producer",
+      "change": "Binary-output writing only: serialize in memory, fsync, atomic replace and stored SHA-256 check; numerical calculations and figure layout unchanged",
+      "source_sha256": "5071d94ac8394d7bb5e8fcab5815801efb1b2e891f9ea1ba3076a71cad7ca511"
+    },
+    {
+      "path": "workflow/10_functional_cycles/code/stats_cns.py",
+      "sha256": "36df157db575dd6f9d718eb7c00be79662223490a48d0bea40ac6f95d00d46e8",
+      "source": "reviewed CNS analysis producer",
+      "change": "none; executed from a local run snapshot",
+      "source_sha256": "36df157db575dd6f9d718eb7c00be79662223490a48d0bea40ac6f95d00d46e8"
+    },
+    {
+      "path": "workflow/10_functional_cycles/code/fit_random_intercept.py",
+      "sha256": "d97afc2bab5b565850cf80ec83641af631448d1f1935ceccf88f64982b9320ec",
+      "source": "reviewed CNS analysis producer",
+      "change": "none; executed from a local run snapshot",
+      "source_sha256": "d97afc2bab5b565850cf80ec83641af631448d1f1935ceccf88f64982b9320ec"
+    },
+    {
+      "path": "workflow/10_functional_cycles/code/verificar_resultados.py",
+      "sha256": "08426368f663df714b98ddb253d21152bd70cc8367d85a2b5d8eabd522b7b294",
+      "source": "reviewed CNS analysis producer",
+      "change": "none; executed from a local run snapshot",
+      "source_sha256": "08426368f663df714b98ddb253d21152bd70cc8367d85a2b5d8eabd522b7b294"
+    },
+    {
+      "path": "workflow/10_functional_cycles/code/subunidades_apoyo.py",
+      "sha256": "5455e39871cb686976b9bdec59d5de2496bfef4979d7ccd18ed293df8cf3d96c",
+      "source": "reviewed CNS analysis producer",
+      "change": "none; executed from a local run snapshot",
+      "source_sha256": "5455e39871cb686976b9bdec59d5de2496bfef4979d7ccd18ed293df8cf3d96c"
+    },
+    {
+      "path": "workflow/10_functional_cycles/code/comparar_analisis_previos.py",
+      "sha256": "82e08bb1d9a509e66a34cf22f830ad358b3cd3c68da9f5f2bb7a80f1df6afa41",
+      "source": "reviewed CNS analysis producer",
+      "change": "none; executed from a local run snapshot",
+      "source_sha256": "82e08bb1d9a509e66a34cf22f830ad358b3cd3c68da9f5f2bb7a80f1df6afa41"
+    },
+    {
+      "path": "workflow/10_functional_cycles/code/marker_annotations.py",
+      "sha256": "7192e6735d35937f851a8c2081fd6e95eb987f32085e9abcc45472a1e4e0c0ca",
+      "source": "reviewed CNS analysis producer",
+      "change": "none; executed from a local run snapshot",
+      "source_sha256": "7192e6735d35937f851a8c2081fd6e95eb987f32085e9abcc45472a1e4e0c0ca"
+    },
+    {
+      "path": "workflow/10_functional_cycles/code/figuras_cns.py",
+      "sha256": "2d4f16eb6c24f3f2241f86435d57ad20dd1691c58cdcd1e97f5eb650cae3c30d",
+      "source": "reviewed CNS analysis producer",
+      "change": "Binary-output writing only: serialize in memory, fsync, atomic replace and stored SHA-256 check; numerical calculations and figure layout unchanged",
+      "source_sha256": "3908a5ff348dfd0a3064db76604e65f239c38ed0da049b80334cbc70df95ed81"
+    }
+  ],
+  "configuration_changes": "Execution/reporting status and portable source path only; numerical settings unchanged",
+  "numerical_source_specification_sha256": "84fe1a0266606022ee9d7f8760b5bb1dc7e6d37f15818131ca884bd423d435e5",
+  "software": {
+    "python": "3.12.14",
+    "packages": {
+      "numpy": "2.3.5",
+      "pandas": "2.2.3",
+      "scipy": "1.17.0",
+      "matplotlib": "3.10.8",
+      "python-docx": "1.2.0"
+    },
+    "scope": "Scientific calculation and figure/document generation; DOCX rendering is a separate visual QA step."
+  },
+  "note": "python-docx belonged to separate editorial exports; it is not needed by the repository workflow.",
+  "added_helpers": [
+    "10_00_run_cycles.py",
+    "10_01_prepare_inputs.py",
+    "code/output_io.py",
+    "code/report_tables.py",
+    "checks/check_functional_cycles_inputs.py",
+    "checks/verify_functional_cycles.py"
+  ]
+}

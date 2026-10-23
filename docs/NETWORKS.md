@@ -1,6 +1,13 @@
-# Corrected functional networks
+# Historical corrected functional networks
 
-`workflow/07_networks/07_02_run_read_based.sh` is the current entry point. It
+This analysis has been withdrawn from the current manuscript and replaced by
+the C/N/S marker section in [FUNCTIONAL_CYCLES.md](FUNCTIONAL_CYCLES.md).
+Code, methods and audit records are retained for traceability. Figure numbers
+below refer to the former network draft; current Supplementary Figure 10 is
+the marker quantification sensitivity. These scripts are not prerequisites
+for any current marker result.
+
+`workflow/07_networks/07_02_run_read_based.sh` is the read-based historical entry point. It
 prepares networks from corrected read-derived KO abundances. The older `07_00`,
 `07_01` and `network809/` inputs and scripts remain historical reproductions.
 No new input matrix, fitted object, statistical table or figure is published in

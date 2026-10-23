@@ -16,8 +16,9 @@ figures, fitted results or binary archives. All analyses write local outputs.
 
 The earlier `06_01`–`06_04` scripts and `08_01`, `08_02` and `figure4_bundle/`
 remain historical. They do not produce the current manuscript statistics.
-Ordered restoration trends remain separate. Current network execution is
-documented in `NETWORKS.md`; it does not change the gene-model/enrichment branch.
+Ordered restoration trends remain separate. The next current manuscript
+section is the C/N/S marker panel in `FUNCTIONAL_CYCLES.md`. All networks in
+section 07 are historical; their code remains documented in `NETWORKS.md`.
 
 ## External inputs
 
@@ -190,7 +191,7 @@ enrichment evidence; correlated axes and shared genes are not independent
 ecological mechanisms. K05889 annotation does not establish plastic pollution.
 
 Figure 4 remains the gene-association figure. Figure 5 is a separate functional
-interpretation figure, preserving readable panel sizes. Supplementary Table 19
+interpretation figure, preserving readable panel sizes. Supplementary Table 15
 summarizes the potential modules; full PFAM, gene membership, background and
 sensitivity tables belong in external Supplementary Data 1. The manuscript and
 supplement remain their existing online documents; no copies are added to GitHub.

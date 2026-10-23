@@ -1,0 +1,200 @@
+{
+  "schema_version": 1,
+  "scope": "External inputs only; no matrices or annotation contents are published",
+  "core": [
+    {
+      "path": "KO_complete_RPK.tsv",
+      "bytes": 70822,
+      "sha256": "9f9c76440340f9016932c3b48c28ad8f9167076950aa71b1b4b6ed11ddc2c120"
+    },
+    {
+      "path": "KO_complete_both_RPK.tsv",
+      "bytes": 70773,
+      "sha256": "ad704a8e45891fa396c885f8c9c8b08a8d1bf47915235adf4d6024a16230fd6f"
+    },
+    {
+      "path": "KO_complete_both_counts.tsv",
+      "bytes": 36875,
+      "sha256": "7afda07c7859908f22fe51cd5e213323f322bae53d4b035fa2ac81f0993c7a1a"
+    },
+    {
+      "path": "KO_complete_counts.tsv",
+      "bytes": 37757,
+      "sha256": "3dfcc2d420d0757e38f23293e599b1dec5fb88747ad4a2692cdeb4d925247ddd"
+    },
+    {
+      "path": "KO_complete_full_terms_RPK.tsv",
+      "bytes": 70815,
+      "sha256": "cee1bbbfe6bde8b60a2ea95775a6b6be49cf2f55f3f5f88ddc1b45dac1fd56c7"
+    },
+    {
+      "path": "KO_complete_full_terms_both_RPK.tsv",
+      "bytes": 70799,
+      "sha256": "b6dfa3174574707205c3da8cba979e24623528bf965db1b36cc3cef8ae244e4a"
+    },
+    {
+      "path": "KO_complete_full_terms_both_counts.tsv",
+      "bytes": 27020,
+      "sha256": "fb6dfa5f63c5ed2a4975aa5d473c812f6a3238bab354233f5d65e7c858ca18f2"
+    },
+    {
+      "path": "KO_complete_full_terms_counts.tsv",
+      "bytes": 27669,
+      "sha256": "51a1488d23dfb6cab185d2c585f727771d5d0c782d46420a38b18d33b2a40475"
+    },
+    {
+      "path": "KO_supported_RPK.tsv",
+      "bytes": 70798,
+      "sha256": "9d1ca59cbd555d88306f9182780f93d43b0a0c4c79b2d7fe770cbeab1ef9ae8a"
+    },
+    {
+      "path": "KO_supported_counts.tsv",
+      "bytes": 37890,
+      "sha256": "13f13107534f45d85060b1eeff11f920fa8dd1c560876bc670c3f0cb882a35c7"
+    },
+    {
+      "path": "KO_supported_full_terms_RPK.tsv",
+      "bytes": 70830,
+      "sha256": "a35f73cdc7fb1b127fca88b846b8e2dc9372e575b210ca46e0a3ab279685f729"
+    },
+    {
+      "path": "KO_supported_full_terms_counts.tsv",
+      "bytes": 27932,
+      "sha256": "ecf6096c2e2bff6998b440372399f754239e1c975e5100bf29d0da8f54f87804"
+    },
+    {
+      "path": "metadata_003b.csv",
+      "bytes": 44937,
+      "sha256": "d9fb0bef5be343d76cdf0bd4ef5b4c7059386e9102e3a670dd67b34a1b3aaf1b"
+    },
+    {
+      "path": "annotation_patterns_selected.json",
+      "bytes": 59930,
+      "sha256": "638ca3d8608e5e954cbe6e8da8ca3d3cfd9c9f20f18efde6d318daaa9f4f0b48"
+    },
+    {
+      "path": "uscg_76_kegg_min_2313.lst",
+      "bytes": 532,
+      "sha256": "b34870d49b2d4793554e45274a2ebfdac763f69f286c6425e2f39a607aea7d88"
+    }
+  ],
+  "previous_comparison": [
+    {
+      "path": "previous_marker_restoration_tests.tsv",
+      "bytes": 22295,
+      "sha256": "e7630f0b78805c7a5852041b0cc7e8c2dd75fb06872a5fa3bb4eb5534d37741f"
+    },
+    {
+      "path": "previous_network_200_KOs.tsv",
+      "bytes": 1403,
+      "sha256": "34bf0d7fc381e9f72fc86354af91dd44239dd01da5225f0c3a693047c4839a58"
+    },
+    {
+      "path": "full_KO_RPK_totals.tsv",
+      "bytes": 1273,
+      "sha256": "24798bc3601690f642c1e39751c63944521f7d1b98ced4c280f485fdfd563c51"
+    }
+  ],
+  "full_source": [
+    {
+      "path": "matrices/KO_complete_counts.tsv",
+      "sha256": "5eb8b36e3f4c31454289061277380eda465e4d09f382006499e6848a53b19b0b",
+      "rows": 8416,
+      "samples": 51,
+      "subset_path": "KO_complete_counts.tsv"
+    },
+    {
+      "path": "matrices/KO_complete_RPK.tsv",
+      "sha256": "40ffa464ac84e97955c39f268e461dfe81b237feb29d9b3e302c5762564ed408",
+      "rows": 8416,
+      "samples": 51,
+      "subset_path": "KO_complete_RPK.tsv"
+    },
+    {
+      "path": "matrices/KO_complete_full_terms_counts.tsv",
+      "sha256": "cb218190a2134128976cbb8d5cdf97cf429227adfe0e443b4e52238246ba4e8a",
+      "rows": 8416,
+      "samples": 51,
+      "subset_path": "KO_complete_full_terms_counts.tsv"
+    },
+    {
+      "path": "matrices/KO_complete_full_terms_RPK.tsv",
+      "sha256": "a03b6d77eeaa3b97d39ea1991fd1062f8c135c7e2c1900636fe65ad43e15e3f5",
+      "rows": 8416,
+      "samples": 51,
+      "subset_path": "KO_complete_full_terms_RPK.tsv"
+    },
+    {
+      "path": "matrices/KO_supported_counts.tsv",
+      "sha256": "ad33ca74b801784e71fe7cc96084807216444d8a2bc81438f70360cdc6768837",
+      "rows": 8416,
+      "samples": 51,
+      "subset_path": "KO_supported_counts.tsv"
+    },
+    {
+      "path": "matrices/KO_supported_RPK.tsv",
+      "sha256": "aff7a7cdf7820d66785792e2f39dd4392c0bf2381280c97cc1f0c2fb8d6d6ac7",
+      "rows": 8416,
+      "samples": 51,
+      "subset_path": "KO_supported_RPK.tsv"
+    },
+    {
+      "path": "matrices/KO_supported_full_terms_counts.tsv",
+      "sha256": "77a9cdcddc21955ea10120b58900989783e6714b60fef962aca34182291b899a",
+      "rows": 8416,
+      "samples": 51,
+      "subset_path": "KO_supported_full_terms_counts.tsv"
+    },
+    {
+      "path": "matrices/KO_supported_full_terms_RPK.tsv",
+      "sha256": "a9d6a1ad513ecf6a724e591cf10dd31fcde057e2388e345e9e763d33f18a6c08",
+      "rows": 8416,
+      "samples": 51,
+      "subset_path": "KO_supported_full_terms_RPK.tsv"
+    },
+    {
+      "path": "matrices/KO_complete_both_counts.tsv",
+      "sha256": "93ec916ec0f3570a71bae6d2d66639c7cffbadd4ac71b25d7e44cd7706395d6f",
+      "rows": 8416,
+      "samples": 51,
+      "subset_path": "KO_complete_both_counts.tsv"
+    },
+    {
+      "path": "matrices/KO_complete_both_RPK.tsv",
+      "sha256": "46558dea5de6037f479cdc5a2fe54e44ec48ce9575fe59810bd832dc4e2f1cec",
+      "rows": 8416,
+      "samples": 51,
+      "subset_path": "KO_complete_both_RPK.tsv"
+    },
+    {
+      "path": "matrices/KO_complete_full_terms_both_counts.tsv",
+      "sha256": "db8d988a52cee66d6f1003b4391c668a65124b5ed6e21845ce1148a5d246827d",
+      "rows": 8416,
+      "samples": 51,
+      "subset_path": "KO_complete_full_terms_both_counts.tsv"
+    },
+    {
+      "path": "matrices/KO_complete_full_terms_both_RPK.tsv",
+      "sha256": "86e77511758feb495cc56af6a8e33487e16fc7799d8ba4a82cb969a70662aec2",
+      "rows": 8416,
+      "samples": 51,
+      "subset_path": "KO_complete_full_terms_both_RPK.tsv"
+    },
+    {
+      "path": "03_unit_annotations/annotation_patterns.json",
+      "sha256": "57eef46cd3c6eacbcef39ad2e9f95486f2e157248224d14dc64d5b73259088d8",
+      "patterns": 34154,
+      "subset_patterns": 489
+    },
+    {
+      "path": "metadata_003b.csv",
+      "sha256": "d9fb0bef5be343d76cdf0bd4ef5b4c7059386e9102e3a670dd67b34a1b3aaf1b"
+    }
+  ],
+  "reference_list": {
+    "origin": "MUSiCC official 76 universal single-copy KO list",
+    "filename": "uscg_76_kegg_min_2313.lst",
+    "git_blob": "bb3ee3de596284e52b8e853c3f87c6b264c8e38d"
+  },
+  "specification_source_sha256": "84fe1a0266606022ee9d7f8760b5bb1dc7e6d37f15818131ca884bd423d435e5"
+}

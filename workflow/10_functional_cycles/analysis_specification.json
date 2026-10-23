@@ -1,0 +1,138 @@
+{
+  "status": "TARGETED_EXPLORATORY_FOLLOW_UP",
+  "scope": "51 samples, 17 complete sediment profiles, 3 localities, 5 observational restoration categories",
+  "candidate_primary_markers": [
+    "K02588",
+    "K00368",
+    "K15864",
+    "K00376",
+    "K03385",
+    "K04561",
+    "K11180",
+    "K00394",
+    "K17224",
+    "K01601",
+    "K14138"
+  ],
+  "support_markers": [
+    "K02586",
+    "K02591",
+    "K11181",
+    "K00395",
+    "K00855",
+    "K02305"
+  ],
+  "descriptive_or_pending_markers": [
+    "K00399",
+    "K00401",
+    "K00402",
+    "K10944",
+    "K10945",
+    "K10946",
+    "K16157",
+    "K28504",
+    "K00370",
+    "K02567",
+    "K00958"
+  ],
+  "marker_gate": "Exact single-KO recovery or resolved quantitative ambiguity is required before final copies-per-genome claims. Sequence specificity remains unvalidated without FASTA. Broad enzyme-family interpretations are permitted when clearly labelled.",
+  "primary_normalization": "RPK divided by fixed 76-USCG median; label as marker-normalized genomic representation until single-KO and domain sensitivity are assessed. Ratios are not absolute abundance per sediment mass.",
+  "single_KO_identifiability": "If every multilabel pattern containing a KO has size k, singleton abundance is (k*fractional-full)/(k-1). Otherwise report algebraic lower and upper bounds, not a fabricated point estimate. Bounds are not confidence intervals.",
+  "zero_policy": "Absent and sparse markers remain descriptive; no CLR, arbitrary +1, or low-prevalence network filter applied to targeted marker tests. Positive resolved markers use log2 ratios.",
+  "restoration_estimand": "Mean log2 marker representation over the three sampled horizons, with equal weight to each horizon in each profile. Analyze 17 profile summaries with locality and categorical restoration; no assumed chronological trend.",
+  "restoration_model": "profile_mean_log2 ~ locality + restoration_category; rank 7, residual df 10. Primary planned omnibus test: null-restricted wild bootstrap with independent Rademacher weights at the 17-profile level, HC2-scaled reduced-model residuals and HC3-studentized four-coefficient Wald statistic; 99999 draws and plus-one correction. Whole-profile permutations within locality are a sensitivity analysis, valid under within-locality exchangeability. Neither method has universal finite-sample guarantees. Diagnose influential profiles, residual shape, spatial dependence and variance structure; if these make inference unreliable, retain descriptive effects without declaring restoration associations.",
+  "depth_estimand": "Typical paired log2 change, 20 versus 5 cm and 40 versus 5 cm, summarized by the median over 17 profile differences. Planned two-sided exact sign test with an explicitly stated common-null-median/independent-sign assumption; order-statistic interval [5th,13th] has 95.0958% coverage under the continuous common-median model. Report mean log2 changes and paired-t intervals as secondary estimates, without choosing an estimand or test by significance. This is an overall sampled-profile contrast, not a locality-specific or restoration-specific depth effect.",
+  "mixed_model_crosscheck": "log2 marker ratio ~ locality + restoration_category + depth_category + (1|profile). Gaussian REML, small-sample Satterthwaite or Kenward-Roger inference. Check covariance assumptions and boundary fits. Do not substitute asymptotic Wald z or an uncalibrated chi-square LRT. Executed as a sensitivity check with the archived Python REML implementation; no new R comparison was made for this panel.",
+  "environment_estimand": "Exploratory between-profile associations: profile mean log2 ratio ~ locality + one declared profile-mean environmental variable, n=17 and residual df=13. Null-restricted wild-bootstrap P values and pointwise HC3-t13 intervals; actual-design calibration is retained separately. The field redox_shallow_mv does not support depth-specific measurement claims. No adjustment for restoration condition is made in these models.",
+  "environment_candidates": {
+    "K02588": [
+      "n_nh4plus_umol_l"
+    ],
+    "K00368": [
+      "redox_shallow_mv",
+      "n_no3_umol_l"
+    ],
+    "K15864": [
+      "redox_shallow_mv",
+      "n_no3_umol_l"
+    ],
+    "K00376": [
+      "redox_shallow_mv",
+      "n_no3_umol_l"
+    ],
+    "K03385": [
+      "redox_shallow_mv",
+      "n_no3_umol_l"
+    ],
+    "K04561": [
+      "redox_shallow_mv",
+      "n_no3_umol_l"
+    ],
+    "K11180": [
+      "redox_shallow_mv",
+      "s_2_umol"
+    ],
+    "K00394": [
+      "redox_shallow_mv",
+      "s_2_umol"
+    ],
+    "K17224": [
+      "redox_shallow_mv",
+      "s_2_umol"
+    ],
+    "K01601": [
+      "redox_shallow_mv"
+    ],
+    "K14138": [
+      "redox_shallow_mv"
+    ]
+  },
+  "multiplicity": "Holm jointly across three planned primary tests per finalized marker (restoration omnibus and two depth contrasts). Environmental tests form a separately declared exploratory family with BH q; never select correction by significance. Support subunits are concordance checks, not independent confirmations.",
+  "sensitivity": [
+    "single-KO abundance versus fractional allocation",
+    "all 76 marker median versus exact-single-KO reference subset",
+    "both-mates versus all unique fragments",
+    "complete versus supported annotation consensus",
+    "leave one profile out",
+    "leave one locality out descriptively"
+  ],
+  "interpretation": "Potential encoded by annotated genes, not measured flux, expression, ecosystem resilience, whole-genome pathway completeness or causal restoration effects. Report all prespecified markers and null findings. An absence in current annotation does not establish biological absence.",
+  "audit_revision": "2026-10-22; amended after null simulations, before any ecological association tests",
+  "depth_ties": "Report zero differences explicitly. For sign testing, drop exact zeros and recompute the binomial effective n; interpretation is conditional on nonzero differences. Recompute order-statistic bounds from the full n for a population-median interval, allowing ties to make coverage conservative. Do not insert pseudocounts to remove zeros.",
+  "uncertainty_reporting": "Effect estimates and 95% intervals must identify their target and assumptions. A nominal 95% interval is pointwise, not simultaneous; do not present it as multiplicity-adjusted. Holm controls the prespecified testing family when component P values are valid. Holm does not repair a misspecified model.",
+  "normalization_sensitivity": "All 76 official USCGs are present. Allocation bounds on their median have maximum width 1.052% relative to the original denominator; 56 have exactly recoverable positive single-KO abundance in all 51 samples. The 56-gene subset is an audit sensitivity, not a newly validated universal genome normalizer. Do not call these values full MUSiCC inter+intra correction or MicrobeCensus output.",
+  "post_audit_quantification_groups": {
+    "exact_single_KO_positive_primary_candidates": [
+      "K15864",
+      "K03385",
+      "K04561",
+      "K11180",
+      "K00394",
+      "K01601"
+    ],
+    "primary_candidates_with_nonzero_allocation_bounds": [
+      "K02588",
+      "K00368",
+      "K00376",
+      "K17224",
+      "K14138"
+    ]
+  },
+  "reporting_gate": "Report all 11 markers, 33 primary tests and 19 environmental tests, including null findings. Sequence specificity, pathway completeness and process rates remain unvalidated.",
+  "date": "2026-10-22",
+  "analysis_family_n": 33,
+  "environment_family_n": 19,
+  "main_matrix": "Six recoverable primary markers use exact single-KO RPK divided by the original 76-reference median; five unresolved candidates use fractional RPK over the same denominator and are explicitly provisional. Holm covers all 33 tests across both tiers, avoiding preferential selection.",
+  "bootstrap_draws": 99999,
+  "bootstrap_seed": 2026102201,
+  "environment_processing": "Arithmetic mean over the three depths per profile; log2 positive nitrate, ammonium and sulfide concentrations, leave redox in mV; standardize each predictor across 17 profiles. Fixed locality adjustment; no causal claim or claim independent of restoration condition.",
+  "intervals": "Depth: prespecified order-statistic interval and exact sign test. Environmental slopes: pointwise HC3 Student-t interval with 13 residual degrees of freedom, plus HC3-t tests as sensitivity to the primary restricted wild P values. The unrestricted studentized bootstrap intervals undercovered in design calibration and are NOT used for ecological reporting. Pairwise restoration coefficients are descriptive only, without pairwise significance tests or unreliable bootstrap intervals; the prespecified global bootstrap test remains primary.",
+  "mixed_model_source": {
+    "path": "workflow/06_gene_associations/read_based/fit_random_intercept.py",
+    "sha256": "d97afc2bab5b565850cf80ec83641af631448d1f1935ceccf88f64982b9320ec"
+  },
+  "resampling_unit": "One independent sign per whole profile. Three depths never receive independent bootstrap signs. Within-locality permutations move complete profiles. Draw count does not enter model degrees of freedom.",
+  "calibration_revision_before_ecological_tests": "The new interval calibration showed undercoverage of unrestricted bootstrap-t intervals (as low as 91% for environmental slopes). Replaced before empirical outcome testing by nominal pointwise HC3-t13 intervals for exploratory environmental associations; stress-test coverage 94.632\u201398.550%. Restoration contrasts retain descriptive estimates, profile-level raw data, and the calibrated global test.",
+  "status_at_panel_definition": "LOCKED_BEFORE_EMPIRICAL_CNS_TESTS",
+  "analysis_history": "The marker panel and its statistical families were fixed before their own empirical tests, after the broader functional analyses. This is not original-study preregistration or independent validation."
+}

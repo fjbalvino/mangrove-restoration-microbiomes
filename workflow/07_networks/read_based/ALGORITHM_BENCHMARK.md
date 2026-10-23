@@ -1,5 +1,9 @@
 # Algorithm stability comparison
 
+Historical benchmark: all network analyses have been withdrawn from the current
+manuscript. This audit is preserved for traceability and does not select or
+validate the C/N/S marker models in section 10.
+
 Added at the user's request after the corrected ridge primary analysis was
 completed. The criteria below are fixed before comparing alternative-method
 stability or testing their HI associations. This is an exploratory benchmark,

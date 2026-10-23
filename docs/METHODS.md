@@ -28,11 +28,13 @@ and final scores. +1 denotes the smallest observed distance in that locality;
 zero is the midpoint of its distance range. They are not ecological thresholds
 or a common absolute scale across localities.
 
-HI/RBMA1 is the fixed first principal component of taxonomic CLR residuals after
+The historical HI/RBMA1 is the fixed first principal component of taxonomic CLR residuals after
 categorical locality/depth adjustment, using 1,467 historical taxa and centred,
 unscaled PCA. Its sign places the Conserved median above Degraded. Zero is an
 ordination origin. The current 1,031-taxon screen does not redefine HI.
 `checks/verify_historical_hi.py` reconstructs HI using QR residualisation and SVD.
+HI is retained for archived network reproduction and is not used by the current
+C/N/S marker section or described as a current manuscript index.
 
 ## Metagenomic inputs
 
@@ -153,41 +155,42 @@ represent independent processes. Gene dependence can make nominal enrichment
 FDR optimistic. DNA abundance supports functional potential, not pathway
 completeness, expression, activity or process rates. See `GENE_ENVIRONMENT.md`.
 
-## Functional networks
+## Carbon, nitrogen and sulfur markers
 
-The current `07_02` entry point starts from corrected read-derived KO counts and
-RPK. Eligibility retains 7,802 KOs; the 200 largest CLR variances are selected
-without using HI, MHI or restoration stage. CLR is recalculated over that set.
-All 51 samples and 17 complete profiles retain their original HI/MHI calibration.
-The old `07_00`, `07_01` and `network809/` describe archived inputs and results.
+Section 10 follows the environmental enrichment with an exploratory panel of
+11 markers. Six use recoverable single-KO abundance; five retain fractional
+assignment and are explicitly provisional. Length-adjusted abundances are
+divided by the median of 76 reference KOs. This estimates marker-normalized
+genomic representation, not absolute abundance, complete pathways or process
+rates. It is not the full MUSiCC inter- and intra-sample bias correction.
 
-Three current constructions compare original CLR, locality/depth residuals,
-and residuals additionally adjusted for all five environmental axes, including
-NDMI. Nuisance fits and standardization are repeated within each leave-one-out
-or reconstructed bootstrap network. Primary precision matrices invert
-`0.9*S + (0.1 + 1e-8)*I`. LIONESS weights are
-`n*w_full - (n-1)*w_leave_one_out`. Each sample retains the 995 strongest absolute
-weights of 19,900 possible edges; edge count and unweighted mean degree are fixed.
+Restoration tests use the mean log2 representation across each profile's three
+horizons, with fixed locality and categorical condition (17 profiles; residual
+df 10). Null-restricted wild bootstrap uses 99,999 draws, one Rademacher weight
+per profile, HC2-scaled null residuals and an HC3 Wald statistic. Depth uses
+paired differences (20 or 40 versus 5 cm), two-sided exact sign tests and
+pointwise order-statistic intervals with 95.0958% common-median coverage.
+One Holm family includes all 11 restoration and 22 depth tests.
 
-Mean absolute weight and weighted natural connectivity describe statistical
-coabundance weights, not process rates or ecosystem resilience. Primary tests
-use 99,999 within-locality profile permutations. Intervals use 4,999 conditional
-profile draws and 499 complete reconstructions with features and indices fixed.
-Configuration tests use full absolute/signed vectors or retained-edge Jaccard
-distance. Both Holm and maxT corrections span the two adjusted constructions.
-Consensus edges require frequency >=0.50 and sign consistency >=0.80 in 200
-profile bootstraps. All three-depth profiles remain intact in resampling.
+Nineteen declared marker–environment associations use profile means, fixed
+locality and one standardized predictor per model (residual df 13). Positive
+concentrations are log2-transformed after averaging; redox stays on its original
+scale before standardization. Wild-bootstrap P values share one BH family;
+pointwise intervals use HC3-t13. Profiles must be independent after the stated
+adjustment. Draw counts do not increase the biological sample size.
 
-Prespecified one-factor checks vary ridge, density, feature count, environmental
-adjustment and abundance scaling. A later, explicitly separate algorithm
-benchmark compares fixed ridge with Ledoit–Wolf and OAS using paired bootstrap
-and profile-deletion stability without HI selection. A graphical-lasso screen
-distinguishes numerical convergence from empirical sampling stability.
-`NETWORKS.md` and the two `read_based/` protocols define inputs, comparisons,
-correction families, practical stability criteria and interpretation limits.
+Five quantification variants use the same profiles. Leave-one-profile/locality
+checks, supporting subunits and a REML mean-effect crosscheck are retained.
+The smaller panel, paired depth question and reference normalization differ
+from earlier global, environmental and network questions. The study-wide search
+was not preregistered; this remains an exploratory follow-up. See
+`FUNCTIONAL_CYCLES.md` for the complete specification and interpretation limits.
 
-All constructions and alternatives are retained. Individual KO drivers and causal
-interactions are not confirmed. HFR remains an excluded ancillary branch.
+## Historical network methods
+
+All network analyses have been withdrawn from the current manuscript. Their
+source code and detailed methods remain in `workflow/07_networks/` and
+`NETWORKS.md` for historical reproduction. They do not feed section 10.
 
 ## Method references
 
@@ -197,6 +200,7 @@ interactions are not confirmed. HFR remains an excluded ancillary branch.
 - Bates et al. (2015), lme4: https://doi.org/10.18637/jss.v067.i01
 - Kuznetsova et al. (2017), lmerTest: https://doi.org/10.18637/jss.v082.i13
 - Benjamini and Hochberg (1995), FDR: https://doi.org/10.1111/j.2517-6161.1995.tb02031.x
-- Kuijjer et al. (2019), LIONESS: https://doi.org/10.1016/j.isci.2019.03.021
+- Manor and Borenstein (2015), MUSiCC reference normalization: https://doi.org/10.1186/s13059-015-0610-8
+- Davidson and Flachaire (2008), wild bootstrap: https://doi.org/10.1016/j.jeconom.2008.08.003
 
 References identify methods, not validation of study-specific indices.

@@ -12,31 +12,35 @@ fixture is included to verify the corrected functional section.
 Section 05 now uses the corrected read-based KO/PFAM matrices, with separate
 fragment-count and length-adjusted inputs supplied separately. With those inputs,
 it reproduces Figure 3, functional cores,
-Supplementary Tables 6 and 14, and Supplementary Figure 9. See the
+Supplementary Tables 6 and 10, and Supplementary Figure 9. See the
 [section-specific methods and execution guide](docs/FUNCTIONAL_REFERENCE.md).
 The corrected read-based gene models and environmental functional enrichment
 are now in sections 06 and 09. They reproduce the current Figures 4 and 5 using
 external inputs. See [GENE_ENVIRONMENT.md](docs/GENE_ENVIRONMENT.md) for commands,
 input requirements, validation and interpretation limits. This update adds only
 code, configuration and documentation: no data matrices, annotation databases,
-figures or binary archives. Section 07 now reconstructs corrected read-based
-networks and compares their stability; see [NETWORKS.md](docs/NETWORKS.md).
-Ordered restoration trends remain a separate historical branch.
+figures or binary archives. Section 10 adds the targeted carbon, nitrogen and
+sulfur marker analysis that follows environmental enrichment in the manuscript,
+with Figure 6, Supplementary Figure 10 and Supplementary Tables 16–17. See
+[FUNCTIONAL_CYCLES.md](docs/FUNCTIONAL_CYCLES.md). This exploratory section
+replaces networks in the manuscript; all section 07 code remains historical.
+Ordered restoration trends remain a separate branch.
 
 ## Analysis workflow
 
 | Directory under `workflow/` | Purpose |
 |---|---|
 | `00_preflight` | Sample identity and complete-profile checks |
-| `01_environment_indices` | Environmental axes and fixed HI/MHI calibrations |
+| `01_environment_indices` | Environmental axes and MHI; historical HI calibration retained |
 | `02_metagenomics` | Protein filtering and KO/PFAM aggregation |
 | `03_taxonomic_structure` | Taxonomic screening, diversity and composition |
 | `04_taxonomic_change_points` | Global and depth-wise TITAN2 |
 | `05_functional_reference` | Functional composition and reference proximity |
 | `06_gene_associations` | Corrected read-based gene CLR, mixed models and annotation; older entry points retained as historical |
-| `07_networks` | Corrected read-based networks, algorithm stability, sensitivity and independent validation; archived 809 branch retained |
+| `07_networks` | Historical networks and algorithm audits, withdrawn from the current manuscript |
 | `08_figures_tables` | Current Figures 4 and 5 from verified tables; historical Figure 4 bundle retained separately |
 | `09_environment_enrichment` | KO/PFAM overrepresentation and potential KEGG modules by environmental axis and sign |
+| `10_functional_cycles` | Candidate C/N/S markers, profile-level inference, quantification sensitivities and local Figure 6 / Supplementary Figure 10 |
 
 ## Included inputs
 
@@ -74,18 +78,19 @@ set +e
 bash workflow/05_functional_reference/05_00_run_primary_composition.sh
 # Historical 808 reproduction; still uses assembled-ORF matrices.
 bash workflow/05_functional_reference/05_04_run_convergence_sensitivity.sh
-# Corrected networks; use the same separately supplied KO matrices as section 05.
-bash workflow/07_networks/07_02_run_read_based.sh \
-  /path/to/corrected/matrices source_data/indices/metadata_003b.csv \
-  local_runs/read_based_networks
+# Targeted C/N/S markers; supply the compact verified inputs externally.
+python3 workflow/10_functional_cycles/10_00_run_cycles.py \
+  --input-dir /path/to/CNS/inputs --output-dir local_runs/functional_cycles
 ```
 
 The corrected section writes to `local_runs/functional_reference/` and refuses
 to overwrite an existing primary run. Set `FUNCTIONAL_OUT_ROOT` to a fresh local
 directory for a repeat. Progress is reported every 30 seconds; failures stop the
 pipeline. Other launchers retain their historical output conventions.
-The network code reconstructs the exact archived permutation schedule using
-seed 1032 and the fixed sample order; previous 802/803 fitted objects are unnecessary.
+The marker launcher verifies input hashes and the 17 complete profiles, then
+creates a new local run with its exact code and configuration snapshot. It does
+not require network outputs. Optional historical network commands are in
+[NETWORKS.md](docs/NETWORKS.md).
 
 ## External inputs
 
