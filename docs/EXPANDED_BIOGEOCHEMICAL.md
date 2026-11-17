@@ -110,3 +110,7 @@ There was no new finite-sample calibration of the expanded bootstrap; inference
 remains exploratory. See [validation](EXPANDED_BIOGEOCHEMICAL_VALIDATION.json).
 
 External archive SHA-256: `2c3715162de20de9ec49eafe8cc45af21b208858322b2c422eb061f0de4f54f8`.
+
+## Nitrogen depth extension
+
+The [nitrogen paired-depth follow-up](NITROGEN_DEPTH.md) adds 98 tests of overall paired vertical change. Its combined Holm family contains the preceding 1,311 tests plus these 98 (1,409 total). It does not replace the distinct stage-by-depth-change question above.

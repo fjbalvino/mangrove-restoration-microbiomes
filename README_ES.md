@@ -79,3 +79,7 @@ repositorio, conserva los perfiles de tres profundidades en las permutaciones y
 reporta progreso cada 30 segundos. Sus salidas quedan en `local_runs/functional_reference/`.
 
 
+
+## Nitrogen depth / Profundidad de nitrógeno
+
+El piloto de profundidad de nitrógeno está disponible en `10_02_run_nitrogen_depth.py`: 49 KOs, 17 perfiles emparejados y comparaciones 20/5 y 40/5 cm. Reporta Holm sobre 98 pruebas y la corrección conjunta de 1.409. Consulta [NITROGEN_DEPTH.md](docs/NITROGEN_DEPTH.md). Se actualizaron resultados y métodos; la discusión no cambió.

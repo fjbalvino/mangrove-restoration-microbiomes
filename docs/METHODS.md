@@ -168,6 +168,12 @@ We checked sensitivity to annotation allocation, a denominator of 56 reference K
 
 Technical details, input hashes and execution: [EXPANDED_BIOGEOCHEMICAL.md](EXPANDED_BIOGEOCHEMICAL.md). The former 11-marker analysis remains historical.
 
+## Nitrogen paired-depth follow-up
+
+For the exploratory nitrogen depth analysis, we retained the 49 eligible nitrogen KOs from the expanded panel and compared 20 and 40 cm with 5 cm within each profile. Exact two-sided sign tests assessed the direction of paired log₂ changes across the 17 profiles. We report median ratios and pointwise 95.1% order-statistic intervals under a common-median model; these intervals are not simultaneous, and heterogeneity among profiles limits their interpretation. Holm correction covered the 98 nitrogen depth tests. We also corrected them jointly with the preceding 1,311 tests, giving a combined family of 1,409. This does not cover every analysis explored in the study. We repeated the comparisons with all five quantification variants and retained the same eligible KO set. Within-stage depth summaries were descriptive because each stage contained only three to five profiles. Full results and sensitivity checks accompany Supplementary Table 16.
+
+See [NITROGEN_DEPTH.md](NITROGEN_DEPTH.md) for execution, multiplicity and interpretation.
+
 ## Historical network methods
 
 All network analyses have been withdrawn from the current manuscript. Their

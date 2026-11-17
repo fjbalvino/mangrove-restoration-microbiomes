@@ -1,0 +1,62 @@
+[
+  {
+    "path": "eligibility.tsv",
+    "bytes": 29446,
+    "sha256": "7fdd6c6ee3ef87166275e4485760e31d793b0c2a98c286f808857a9fc33d0cc8"
+  },
+  {
+    "path": "scope.tsv",
+    "bytes": 29456,
+    "sha256": "889db588ea96e5474fb87557518d7c7b8c92f5e87f78c3ed7e3004162a20dc25"
+  },
+  {
+    "path": "samples.tsv",
+    "bytes": 44978,
+    "sha256": "997345a6d7e41c7bacc4462b65018a3447e8be9b27f262f82272f41a5304a578"
+  },
+  {
+    "path": "profiles.tsv",
+    "bytes": 15386,
+    "sha256": "7cf10ff07c7df1228cc2e02fe00cfba4f140a058b1331e315a3dd104e10ee3ff"
+  },
+  {
+    "path": "previous_tests.tsv",
+    "bytes": 665386,
+    "sha256": "704004171b2ecc09e5d2f60331f4f0611eb068dd03ea09310f1ba5b446b2936e"
+  },
+  {
+    "path": "ko00910.xml",
+    "bytes": 75473,
+    "sha256": "afe79296318bdf16cdb19ac546616f0c83657e27328e6445d07558028697a92b"
+  },
+  {
+    "path": "ko00910.png",
+    "bytes": 92432,
+    "sha256": "8cd02e195fd61b30e9a69f997ee49840324630ae4b7d12cda41cc68b7e57b9df"
+  },
+  {
+    "path": "primary_normalized.tsv",
+    "bytes": 47814,
+    "sha256": "d26c098370f23e26b695267fd0f909a1490ec16b11a022eb338aba84398c921f"
+  },
+  {
+    "path": "fractional_normalized.tsv",
+    "bytes": 47814,
+    "sha256": "2b7c17f25a3ed9c7a0dc584e11e9e55e49cc885f25a6d5acd06d01b9323dc08a"
+  },
+  {
+    "path": "reference56_normalized.tsv",
+    "bytes": 47807,
+    "sha256": "3e948ede6988d5cc67afc1cf6d66c23027503e26387f2a661f144273d7019e87"
+  },
+  {
+    "path": "both_mates_normalized.tsv",
+    "bytes": 47812,
+    "sha256": "474131a1b210dc4af68f6ec5fef20efc66033b2996a16288ead1e1f5b173a2d4"
+  },
+  {
+    "path": "supported_fractional_normalized.tsv",
+    "bytes": 47811,
+    "sha256": "97528b6a7f48256e0158c52f2aa771a6f8f57decf5a1afad526dba7531548503"
+  }
+]

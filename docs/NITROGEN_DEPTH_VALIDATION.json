@@ -1,0 +1,13 @@
+{
+  "49_KOs": true,
+  "98_tests_per_variant": true,
+  "five_variants": true,
+  "paired_sign_p_independently_checked": true,
+  "previous_tests": 1311,
+  "combined_family": 1409,
+  "plots_visually_checked": true,
+  "standalone_rerun_identical": true,
+  "repository_launcher_rerun_identical": true,
+  "external_inputs_verified": 12,
+  "discussion_text_unchanged": true
+}

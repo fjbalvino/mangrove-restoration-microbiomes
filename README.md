@@ -174,3 +174,7 @@ Input hashes are checked before analysis. Figures, full statistical tables and
 KEGG assets remain external. The new producer preserves the original reference
 normalisation and five quantification variants; no primary stage test retains
 Holm P < 0.05. Lack of support does not establish equivalence.
+
+## Nitrogen depth / Profundidad de nitrógeno
+
+The nitrogen paired-depth pilot is now available as `10_02_run_nitrogen_depth.py`. It compares 20 and 40 cm with 5 cm across 17 paired profiles (49 KOs), retaining both the 98-test pilot correction and the combined 1,409-test correction. See [NITROGEN_DEPTH.md](docs/NITROGEN_DEPTH.md). This extends Results and Methods; Discussion is unchanged.
