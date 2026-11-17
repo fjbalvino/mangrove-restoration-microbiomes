@@ -1,0 +1,61 @@
+{
+  "ORA": {
+    "status": "PASS",
+    "function_tests_per_cutoff": 42770,
+    "module_tests_per_cutoff": 2606,
+    "function_contrasts": 102,
+    "candidate_module_contrasts": 11,
+    "external_result_tables_compared": [
+      "all_ORA_tests.tsv.gz",
+      "all_module_ORA_tests.tsv.gz",
+      "primary_enriched_terms_named.tsv",
+      "primary_enriched_modules.tsv",
+      "single_KO_functions/all_ORA_tests.tsv.gz",
+      "single_KO_modules/all_module_ORA_tests.tsv.gz"
+    ],
+    "scope": "Enrichment output only; no new full-catalogue reconstruction or full model refit is certified"
+  },
+  "gene_families": {
+    "status": "PASS",
+    "environment_counts": {
+      "common": 42222,
+      "interaction": 1234,
+      "slopes": 63942
+    },
+    "distinct_environment_genes": 48580,
+    "MHI_discoveries": 0,
+    "max_BH_error": 7.109590693943346e-14,
+    "scope": "All archived P values and BH families checked; no new full model fit"
+  },
+  "REML": {
+    "status": "PASS",
+    "model_fits": 714,
+    "contrasts": 1785,
+    "singularity_classification_mismatches": 0,
+    "max_absolute_errors": {
+      "estimate": 7.406146307342709e-09,
+      "se": 3.948697674394097e-09,
+      "df": 0.0008518254055331909,
+      "p": 5.14410210206151e-07
+    },
+    "stable_R_max_absolute_errors": {
+      "df": 8.658862853394567e-07,
+      "p": 1.0266537286973687e-08
+    },
+    "scope": "Fresh Python subset fits compared with archived independent R validation; full models not refitted"
+  },
+  "blocks": {
+    "status": "PASS",
+    "samples": 51,
+    "profiles": 17,
+    "modules": 10,
+    "selected_contrasts": 11,
+    "rule_sample_rows": 3060,
+    "logic_tests": 44,
+    "new_hypothesis_tests": 0,
+    "genes_reannotated": false,
+    "selection": "Post-result selection of 10 modules from 11 original ORA contrasts",
+    "definition_retrieved_utc": "2026-11-17T03:14:34.429105+00:00",
+    "interpretation": "Community component evidence, not within-genome completeness or activity; association coverage is descriptive"
+  }
+}

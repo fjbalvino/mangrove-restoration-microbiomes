@@ -155,6 +155,18 @@ represent independent processes. Gene dependence can make nominal enrichment
 FDR optimistic. DNA abundance supports functional potential, not pathway
 completeness, expression, activity or process rates. See `GENE_ENVIRONMENT.md`.
 
+
+## Environmental module component evidence
+
+The original gene models and ORA remain distinct from the new descriptive component assessment. The current Figure 5a retains all 15 primary KO contrasts. Figure 5b retains all 11 candidate module contrasts and displays their primary and single-KO enrichment q values beside block coverage and per-sample representation. The original module bubble plot remains in the external archive.
+
+The primary ORA was rerun from the pinned inputs. All six complete statistical tables matched the archived reference at the declared numerical tolerances. The result remains 102 KO/PFAM contrasts (96 terms) and 11 module contrasts (10 modules). Ten of those module contrasts remain eligible but nonsignificant in the single-KO sensitivity; M00417 becomes ineligible. The original thresholds and multiplicity families were not relaxed.
+
+The new analysis evaluates the full required/alternative components of the 10 modules, selected after the original enrichment. It uses the complete CF KO matrix for representation and the tested 100,000 genes for associations. Its definitions were retrieved on 16 November 2026 (17 November UTC), separately from the October enrichment reference. All ten definition KO sets match the frozen October KO–module links. Existing annotations were not reassigned.
+
+
+The evaluation preserves gene associations, module enrichment and community representation as separate evidence levels. It adds no block-level hypothesis tests. Full details and commands: [ENVIRONMENT_COMPONENTS.md](ENVIRONMENT_COMPONENTS.md).
+
 ## Expanded biogeochemical pathway and component analysis
 
 We examined carbon, nitrogen, sulfur, methane and phosphorus components using the full matrix of 8,416 KOs. Seven KEGG pathway maps and curated rules defined a panel of 748 unique KOs. The rules specified required subunits and alternative components. We evaluated them separately in each sample as supported, unsupported by the available evidence, or unresolved. Map identifiers and rule definitions are provided with Supplementary Table 16. The panel was fixed before its own tests, after the nitrogen pilot, and remains exploratory. We used the existing annotations without reannotating sequences.
@@ -192,4 +204,5 @@ source code and detailed methods remain in `workflow/07_networks/` and
 - Davidson and Flachaire (2008), wild bootstrap: https://doi.org/10.1016/j.jeconom.2008.08.003
 
 References identify methods, not validation of study-specific indices.
+
 

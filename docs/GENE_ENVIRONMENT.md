@@ -12,12 +12,12 @@ figures, fitted results or binary archives. All analyses write local outputs.
 | Gene preparation and models | `workflow/06_gene_associations/06_05_run_read_based.sh` | Read-derived RPK, full retained-catalogue CLR, selection, REML and BH |
 | Functional enrichment | `workflow/09_environment_enrichment/09_00_run_enrichment.sh` | Figure 4A common slopes; KO/PFAM terms and potential modules |
 | Figure 4 | `workflow/08_figures_tables/08_03_read_based_figure4.py` | Corrected association counts, depth slopes and two gene examples |
-| Figure 5 | `workflow/08_figures_tables/08_04_environment_enrichment_figure5.py` | KO enrichment and exploratory module candidates, blue gradient |
+| Figure 5 | `workflow/09_environment_enrichment/24_plot_environment_blocks.py` | KO enrichment and explicit component evidence |
 
 The earlier `06_01`–`06_04` scripts and `08_01`, `08_02` and `figure4_bundle/`
 remain historical. They do not produce the current manuscript statistics.
 Ordered restoration trends remain separate. The next current manuscript
-section is the C/N/S marker panel in `FUNCTIONAL_CYCLES.md`. All networks in
+section is the expanded biogeochemical panel in `EXPANDED_BIOGEOCHEMICAL.md`. All networks in
 section 07 are historical; their code remains documented in `NETWORKS.md`.
 
 ## External inputs
@@ -195,3 +195,8 @@ interpretation figure, preserving readable panel sizes. Supplementary Table 15
 summarizes the potential modules; full PFAM, gene membership, background and
 sensitivity tables belong in external Supplementary Data 1. The manuscript and
 supplement remain their existing online documents; no copies are added to GitHub.
+
+
+## Component-evidence update
+
+See [ENVIRONMENT_COMPONENTS.md](ENVIRONMENT_COMPONENTS.md) for the current Figure 5, explicit AND/OR rules, observed patterns without new block tests, rerun verification and commands. The original 08_04 renderer remains a historical ORA-only figure; 09_00 by itself still produces that archived layout.
