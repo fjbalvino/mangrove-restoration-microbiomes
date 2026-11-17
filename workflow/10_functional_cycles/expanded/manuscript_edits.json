@@ -1,0 +1,155 @@
+[
+  {
+    "text": "Carbon, nitrogen and sulfur markers vary with sediment depth",
+    "startIndex": 31540,
+    "endIndex": 31600,
+    "tabId": "t.0",
+    "namedStyleType": "HEADING_2",
+    "isListItem": false,
+    "newText": "Biogeochemical gene representation across restoration stages"
+  },
+  {
+    "text": "To connect the broad functional patterns with specific nutrient-cycle capacities, we examined 11 candidate markers in a targeted exploratory analysis of the same 51 metagenomes. The panel covered two carbon, six nitrogen, and three sulfur markers (Fig. 6 and Supplementary Table 16). Abundances were normalised to 76 reference genes to approximate genomic representation. Six markers had recoverable single-KO contributions; five retained unresolved fractional assignments. All comparisons accounted for the three depths within each of the 17 site profiles.",
+    "startIndex": 31601,
+    "endIndex": 32158,
+    "tabId": "t.0",
+    "namedStyleType": "NORMAL_TEXT",
+    "isListItem": false,
+    "newText": "To connect broad functional patterns with nutrient-cycle capacities, we expanded the exploratory analysis to carbon, nitrogen, sulfur, methane and phosphorus in the same 51 metagenomes. Seven reference pathway maps and curated component rules defined a union of 748 KOs, of which 497 had rows in the source matrix. Of these, 437 had positive primary estimates in every sample and were eligible for stage comparisons; 180 used recoverable single-KO contributions and 257 retained provisional fractional assignments. All estimates were normalised to the median RPK of 76 reference genes. The 17 site profiles were the independent units (Fig. 6 and Supplementary Table 16)."
+  },
+  {
+    "text": "The clearest differences occurred between 5 and 40 cm. The nitrogen marker nirS, associated with nitrite or hydroxylamine reduction, and the sulfur marker dsrA, associated with sulfite transformations, were lower at 40 cm in all 17 profiles. The carbon marker rbcL, associated with CO\u2082 incorporation by RuBisCO, was lower in 16 of 17 profiles. Median paired 40/5 cm ratios were 0.32 for nirS (pointwise 95.1% interval 0.10\u20130.47), 0.50 for dsrA (0.30\u20130.72) and 0.37 for rbcL (0.22\u20130.52), corresponding to median reductions of 68%, 50% and 63%. Exact paired sign tests remained significant after Holm correction across the panel\u2019s 33 tests (adjusted P = 0.000504, 0.000504 and 0.008514, respectively).",
+    "startIndex": 32159,
+    "endIndex": 32858,
+    "tabId": "t.0",
+    "namedStyleType": "NORMAL_TEXT",
+    "isListItem": false,
+    "newText": "No eligible KO showed an overall association with restoration stage after locality adjustment and Holm correction across the expanded family of 1,311 tests (all adjusted P = 1.000; minimum unadjusted stage P = 0.00818). Estimated differences nevertheless varied among components and stages. For example, the adjusted nifH ratio was 0.47 in degraded relative to conserved profiles and 1.00 in advanced restoration, whereas nirS ratios were 1.56 and 1.41, respectively. These descriptive contrasts do not establish a directional recovery sequence or statistically supported pairwise differences."
+  },
+  {
+    "text": "These three depth contrasts retained their direction and adjusted significance across four alternative quantification choices, and their median changes remained negative when any profile or locality was omitted. The provisional nitrogen marker nirK and sulfur marker soxB also declined in the primary analysis (both adjusted P = 0.008514), but support depended on processing choices. The rbcL contrast at 20 cm was likewise sensitive to annotation choice (Supplementary Fig. 10).",
+    "startIndex": 32859,
+    "endIndex": 33338,
+    "tabId": "t.0",
+    "namedStyleType": "NORMAL_TEXT",
+    "isListItem": false,
+    "newText": "Depth was examined secondarily through paired 20/5 and 40/5 cm changes within profiles. Neither set of changes showed a supported difference among restoration stages in the primary analysis (all Holm-adjusted P = 1.000). This tests whether vertical patterns differ among stages; it does not test whether an overall depth effect exists. Individual profiles and within-stage distributions are shown in the accompanying depth analysis."
+  },
+  {
+    "text": "No marker showed a supported overall difference among restoration conditions after locality adjustment (all Holm-adjusted P = 1.000; Supplementary Table 16). None of the 19 environmental associations passed false-discovery-rate correction (minimum BH q = 0.354; Supplementary Table 17). The supported contrasts therefore concern sediment depth. They describe annotated genetic potential, without establishing complete pathways, process rates or recovery with restoration. In particular, the nirS KO is not exclusive to denitrification, rbcL does not establish a complete Calvin cycle, and dsrA alone does not resolve sulfur reduction versus oxidation.",
+    "startIndex": 33339,
+    "endIndex": 33990,
+    "tabId": "t.0",
+    "namedStyleType": "NORMAL_TEXT",
+    "isListItem": false,
+    "newText": "Component rules recovered community-level evidence for several nutrient-cycle capacities, including nifHDK, phosphate transport and the sat\u2013apr\u2013dsr component set in all 51 samples under the single-KO lower-bound criterion. By contrast, the methyl-CoM reductase and anammox component sets remained unresolved in all samples because required evidence was unavailable. These states describe the recoverable annotation evidence, not biological absence, pathway completeness within an organism or measured process rates. A stage difference in the paired 40/5 cm change for K01659 appeared only when using full fractional contributions (Holm-adjusted P = 0.01311; primary adjusted P = 1.000), illustrating sensitivity to annotation allocation."
+  },
+  {
+    "text": "Figure 6 | Candidate carbon, nitrogen and sulfur functions across sediment depths. a, Marker/reference ratios for rbcL, nirS and dsrA on logarithmic axes. Lines connect the three depths within each profile; colours identify locality. These examples were selected from the completed panel because their 40 versus 5 cm signals persisted across quantification variants. b, All 11 markers grouped by cycle and associated function. Points show median paired 20/5 cm and 40/5 cm ratios; 1 indicates no change and 1/2 a halving. Bars show pointwise 95.1% order-statistic intervals for 17 independent profiles under a common-median model. Asterisks denote Holm-adjusted P < 0.05 across 11 restoration and 22 depth tests. Open points and daggers mark unresolved fractional assignments; filled points use recoverable single-KO contributions. The denominator is the median RPK of 76 reference genes. Annotations indicate potential functions, not measured rates.",
+    "startIndex": 33993,
+    "endIndex": 34943,
+    "tabId": "t.0",
+    "namedStyleType": "NORMAL_TEXT",
+    "isListItem": false,
+    "newText": "Figure 6 | Biogeochemical gene representation across restoration stages. a, Twelve ecological examples spanning carbon, nitrogen, sulfur, methane/C1 and phosphorus, selected by process identity rather than statistical support. b, All 437 eligible KOs, ordered by KO identifier and counted once even when shared among maps. Colours show locality-adjusted stage/conserved ratios, estimated from the mean log\u2082 normalised abundance across three horizons per profile; conserved equals 1. Both panels use the same log\u2082 colour scale, saturated at ratios of \u00bc and 4. Values in a give the estimated ratios; D, E, I and A in b denote degraded, early, intermediate and advanced stages. Daggers indicate provisional fractional contributions; grey cells lack an eligible estimate. There were 17 independent profiles: three each for degraded, early, advanced and conserved conditions, and five for intermediate restoration. No primary omnibus test retained P < 0.05 after Holm correction across 437 stage tests and 874 tests of stage differences in paired depth changes. The displayed pairwise estimates were not separately tested and do not imply recovery or equivalence. Quantities describe genetic potential, not process rates."
+  },
+  {
+    "text": "Candidate markers of carbon, nitrogen and sulfur cycling",
+    "startIndex": 58922,
+    "endIndex": 58978,
+    "tabId": "t.0",
+    "namedStyleType": "HEADING_2",
+    "isListItem": false,
+    "newText": "Expanded biogeochemical pathway and component analysis"
+  },
+  {
+    "text": "To examine specific nutrient-cycle capacities, we analysed 11 candidate markers: rbcL and acsB for carbon; nifH, nirK, nirS, norB, nosZ and nrfA for nitrogen; and dsrA, aprA and soxB for sulfur (Supplementary Table 16). The panel was fixed before its own association tests, after the broader functional analyses, and is therefore an exploratory follow-up. Functions were checked against KEGG Orthology 22, without sequence reannotation. We retained ambiguous assignments as potential candidates and did not infer complete pathways or activity from individual markers.",
+    "startIndex": 58979,
+    "endIndex": 59546,
+    "tabId": "t.0",
+    "namedStyleType": "NORMAL_TEXT",
+    "isListItem": false,
+    "newText": "We examined carbon, nitrogen, sulfur, methane and phosphorus components using the full matrix of 8,416 KOs. Seven KEGG pathway maps and curated rules defined a panel of 748 unique KOs. The rules specified required subunits and alternative components. We evaluated them separately in each sample as supported, unsupported by the available evidence, or unresolved. Map identifiers and rule definitions are provided with Supplementary Table 16. The panel was fixed before its own tests, after the nitrogen pilot, and remains exploratory. We used the existing annotations without reannotating sequences."
+  },
+  {
+    "text": "Each marker\u2019s length-adjusted fragment abundance was divided by the sample median across 76 MUSiCC reference KOs, all detected in every sample 42. This ratio approximates genomic representation; it is not an absolute concentration or a measurement from reconstructed genomes. We used the reference-gene normalisation step, without MUSiCC\u2019s gene-specific bias correction. Six markers used recoverable single-KO contributions; five used fractional contributions where a reference carried multiple annotations. Positive ratios were log\u2082-transformed without a pseudocount.",
+    "startIndex": 59547,
+    "endIndex": 60115,
+    "tabId": "t.0",
+    "namedStyleType": "NORMAL_TEXT",
+    "isListItem": false,
+    "newText": "We retained the original fragment-based RPK values and normalised them by the sample median across 76 reference KOs 42. We used recoverable single-KO contributions where these could be determined, and otherwise retained fractional contributions as provisional. The 437 KOs with positive primary values in all 51 samples were log\u2082-transformed without adding a pseudocount. Other components remained in the descriptive inventory. These ratios approximate genomic representation; they do not measure absolute abundance or activity. Components detected in a community need not occur in the same organism."
+  },
+  {
+    "text": "Depth comparisons paired 20 and 40 cm with 5 cm within each of the 17 profiles. Exact two-sided sign tests assessed paired log\u2082 differences. We report median ratios and pointwise 95.1% order-statistic intervals. Restoration models used one mean log\u2082 value per profile, with locality and categorical condition as fixed effects. A null-restricted wild bootstrap used 99,999 draws, one weight per profile and heteroscedasticity-robust statistics 43. Holm correction 44 jointly covered 11 restoration and 22 depth tests, including all provisional markers. These corrections concern this panel, not every analysis explored in the study.",
+    "startIndex": 60116,
+    "endIndex": 60747,
+    "tabId": "t.0",
+    "namedStyleType": "NORMAL_TEXT",
+    "isListItem": false,
+    "newText": "Restoration stage was the primary comparison. We averaged log\u2082-normalised values across the three depths of each profile and fitted models with locality and categorical stage, using conserved profiles as the reference. The 17 profiles were the independent units. We then analysed paired 20/5 and 40/5 cm changes to ask whether depth patterns differed among stages. Overall stage tests used a null-restricted wild bootstrap with 99,999 draws and heteroscedasticity-robust statistics 43. Holm correction 44 covered 1,311 tests: 437 stage comparisons and 874 comparisons of depth changes among stages. Shared KOs were counted once. Stage-to-conserved ratios describe estimated differences; they were not tested separately."
+  },
+  {
+    "text": "For 19 specified marker\u2013environment pairs, profile-level models included locality and one standardised predictor: redox, nitrate, ammonium or sulfide. Concentrations were averaged across depths before log\u2082 transformation; redox was averaged without transformation. These models estimated between-profile associations and did not additionally adjust for restoration stage. Wild-bootstrap P values received BH correction across the 19 tests. We checked alternative annotation allocation, reference-gene denominators and read support, together with profile and locality omissions. The paired design, bootstrap construction, interval assumptions and sensitivity analyses are detailed in Supplementary Methods, Supplementary Fig. 10 and Supplementary Tables 16\u201317.",
+    "startIndex": 60748,
+    "endIndex": 61507,
+    "tabId": "t.0",
+    "namedStyleType": "NORMAL_TEXT",
+    "isListItem": false,
+    "newText": "We checked sensitivity to annotation allocation, a denominator of 56 reference KOs with recoverable single-KO contributions, inclusion of only fragments supported by both mates, and inclusion of supported partial-consensus annotations. We also examined residuals and influential profiles, and repeated stage estimates after omitting each profile or locality where the comparison remained estimable. These omission ranges describe sensitivity, not confidence intervals. Bootstrap construction, diagnostics and all quantification alternatives accompany Supplementary Table 16. With only three to five profiles per stage, a lack of statistical support does not establish equivalence."
+  },
+  {
+    "text": "Mangrove restoration aims to recover ecosystem functioning, but microbial responses must be distinguished from natural spatial and environmental variation. We analysed 51 metagenomes from 17 sites across three Mexican localities, three sediment depths and five conditions spanning degradation, restoration and conservation. Environmental characterisation revealed vertical stratification and heterogeneity among conserved references. The unique fraction of community variation associated with locality increased from 3.8% at 5 cm to 32.0% at 40 cm. Environmental associations involved 48,580 genes, and enriched annotations suggested differences in carbohydrate processing, respiration and stress-response potential. A targeted exploratory analysis of carbon, nitrogen and sulfur markers identified lower representation of rbcL, nirS and dsrA at 40 than at 5 cm, with median reductions of 63%, 68% and 50%, respectively. No marker showed a supported overall difference among restoration conditions. Functional proximity to conserved references varied among localities and depths without a consistent ordering across stages, while degraded samples retained median proportions exceeding 99% of conserved-reference KO and PFAM cores. These findings show that widespread retention of annotated capacities can coexist with depth-related differences in their representation and heterogeneous functional composition. They support evaluating microbial restoration responses against local, depth-matched references, while distinguishing genetic potential from measured ecosystem functioning.",
+    "startIndex": 1242,
+    "endIndex": 2824,
+    "tabId": "t.0",
+    "namedStyleType": "NORMAL_TEXT",
+    "isListItem": false,
+    "newText": "Mangrove restoration aims to recover ecosystem functioning, but microbial responses must be distinguished from natural spatial and environmental variation. We analysed 51 metagenomes from 17 sites across three Mexican localities, three sediment depths and five conditions spanning degradation, restoration and conservation. Environmental characterisation revealed vertical stratification and heterogeneity among conserved references. The unique fraction of community variation associated with locality increased from 3.8% at 5 cm to 32.0% at 40 cm. Environmental associations involved 48,580 genes, and enriched annotations suggested differences in carbohydrate processing, respiration and stress-response potential. An expanded exploratory analysis of carbon, nitrogen, sulfur, methane and phosphorus components found no supported overall stage difference among 437 eligible KOs after locality adjustment and multiple-testing correction. Functional proximity to conserved references varied among localities and depths without a consistent ordering across stages, while degraded samples retained median proportions exceeding 99% of conserved-reference KO and PFAM cores. These findings show that widespread retention of annotated capacities can coexist with variation in their representation and heterogeneous functional composition. They support evaluating microbial restoration responses against local, depth-matched references, while distinguishing genetic potential from measured ecosystem functioning."
+  },
+  {
+    "text": "To evaluate these expectations, we analysed 51 mangrove sediment shotgun metagenomes from 17 sites in Carmen, Cozumel and Tuxpan, Mexico, spanning degraded, early, intermediate and advanced restoration, and conserved conditions. Each site was sampled at nominal depths of 5, 20 and 40 cm. Sites were the units for stage comparisons, with depth horizons treated as observations within sites. We asked whether restoration stages share taxonomic compositional patterns after accounting for locality and depth; whether restored sediments are closer in metagenomic functional composition to their local, depth-matched conserved references than degraded sediments; and whether functional compositional differences coincide with reduced coverage of the repertoire detected in conserved references. We also examined taxon-specific change points along environmental gradients using threshold indicator analysis 19, together with associations between environmental gradients and individual gene abundances. As a targeted exploratory follow-up, we examined candidate markers of carbon, nitrogen and sulfur cycling to ask whether their representation differed among sediment depths or restoration conditions. Together, these analyses distinguish the capacities detected in sediments from their relative representation and environmental associations.",
+    "startIndex": 10244,
+    "endIndex": 11581,
+    "tabId": "t.0",
+    "namedStyleType": "NORMAL_TEXT",
+    "isListItem": false,
+    "newText": "To evaluate these expectations, we analysed 51 mangrove sediment shotgun metagenomes from 17 sites in Carmen, Cozumel and Tuxpan, Mexico, spanning degraded, early, intermediate and advanced restoration, and conserved conditions. Each site was sampled at nominal depths of 5, 20 and 40 cm. Sites were the units for stage comparisons, with depth horizons treated as observations within sites. We asked whether restoration stages share taxonomic compositional patterns after accounting for locality and depth; whether restored sediments are closer in metagenomic functional composition to their local, depth-matched conserved references than degraded sediments; and whether functional compositional differences coincide with reduced coverage of the repertoire detected in conserved references. We also examined taxon-specific change points along environmental gradients using threshold indicator analysis 19, together with associations between environmental gradients and individual gene abundances. As an exploratory follow-up, we reconstructed annotated components of carbon, nitrogen, sulfur, methane and phosphorus metabolism, prioritising comparisons among restoration stages and secondarily asking whether paired depth changes differed among stages. Together, these analyses distinguish the capacities detected in sediments from their relative representation and environmental associations."
+  },
+  {
+    "text": "Mangrove restoration seeks to recover the biological processes that sustain carbon storage and nutrient cycling, yet these processes operate across sediments with different histories and environmental conditions. Our observations place locality and depth at the centre of this problem. A broadly shared repertoire of functional genes coexisted with local differences in community composition and consistent vertical changes in selected carbon, nitrogen and sulfur markers. Restoration stage therefore provided an incomplete description of microbial condition. Retaining genes, approaching a conserved community and recovering ecosystem processes are distinct outcomes. Understanding how they are connected requires attention to the sediment habitats in which those genes occur.",
+    "startIndex": 34955,
+    "endIndex": 35732,
+    "tabId": "t.0",
+    "namedStyleType": "NORMAL_TEXT",
+    "isListItem": false,
+    "newText": "Mangrove restoration seeks to recover the biological processes that sustain carbon storage and nutrient cycling, yet these processes operate across sediments with different histories and environmental conditions. Our observations place locality and depth at the centre of this problem. A broadly shared repertoire of functional genes coexisted with local differences in community composition and variation in the representation of biogeochemical components. Restoration stage therefore provided an incomplete description of microbial condition. Retaining genes, approaching a conserved community and recovering ecosystem processes are distinct outcomes. Understanding how they are connected requires attention to the sediment habitats in which those genes occur."
+  },
+  {
+    "text": "The strongest marker evidence concerns vertical differences in carbon, nitrogen and sulfur potential, represented by rbcL (carbon incorporation), nirS (nitrogen transformations) and dsrA (sulfur transformations). Their declines between 5 and 40 cm retained statistical support across quantification alternatives. For carbon, the greater shallow representation of rbcL agrees with Wang et al., who found surface enrichment of Calvin-cycle genes in mangrove sediments 23. Their measured carbon fixation without light nevertheless increased with depth. This distinction shows why the distribution of a carbon-fixation marker cannot by itself predict total fixation or carbon storage.",
+    "startIndex": 40462,
+    "endIndex": 41142,
+    "tabId": "t.0",
+    "namedStyleType": "NORMAL_TEXT",
+    "isListItem": false,
+    "newText": "The expanded biogeochemical analysis strengthens the distinction between retaining an annotated repertoire and recovering ecosystem functioning. Component rules identified evidence for several carbon, nitrogen, sulfur and phosphorus capacities across the sampled communities, while their relative representation varied among profiles. However, the stage comparisons did not support a common restoration-stage signal after accounting for locality and multiplicity. With only three to five profiles per stage, this result does not establish equivalence or exclude smaller, locality-specific responses."
+  },
+  {
+    "text": "For nitrogen, the decline in nirS agrees with the vertical decrease reported by Qian et al. 9. The broad nirS annotation covers more than one nitrogen reaction, so it cannot establish a change in nitrogen removal through denitrification. For sulfur, the dsrA decline contrasts with their lack of a supported depth trend in dsrAB 9, indicating that sulfur-gene distributions need not follow the same vertical pattern across mangroves. Because dsrA can occur in both sulfur-reducing and sulfur-oxidizing organisms, its decline does not establish lower sulfate-reduction rates. The supported markers identify changes in annotated capacities, without resolving complete pathways or their activity.",
+    "startIndex": 41143,
+    "endIndex": 41836,
+    "tabId": "t.0",
+    "namedStyleType": "NORMAL_TEXT",
+    "isListItem": false,
+    "newText": "The ecological interpretation also depends on what each annotation resolves. Components of nitrogen fixation, sulfur transformations and phosphate acquisition provide more informative evidence when their required subunits are considered together. Even then, their occurrence across a metagenome does not show that they belong to one organism. Shared annotations such as Nar/Nxr and Amo/Pmo require additional evidence to distinguish reactions, and dsr components alone do not determine whether sulfur is being reduced or oxidised. Unresolved methyl-CoM reductase and anammox rules identify limits of the available annotation, rather than demonstrated absence of those processes."
+  },
+  {
+    "text": "These marker patterns also cannot be attributed to a uniform redox gradient: redox changed differently among our localities, and none of the tested marker\u2013environment associations retained support after multiple-testing correction (Supplementary Table 17). The targeted panel addresses paired depth differences, which can be detected even when broader community or restoration-stage comparisons show no common pattern. It reused the same samples and remains exploratory; it does not reveal a hidden restoration effect. Depth integrates several habitat properties, and the causes of the marker changes remain unresolved.",
+    "startIndex": 41837,
+    "endIndex": 42456,
+    "tabId": "t.0",
+    "namedStyleType": "NORMAL_TEXT",
+    "isListItem": false,
+    "newText": "Vertical patterns should likewise be evaluated within the restoration comparison. Here, paired depth changes did not differ detectably among stages after correction, although individual profiles showed variation. This does not negate an overall depth gradient; it limits the claim that stages share distinct vertical functional responses. Redox also changed differently among localities, making a single mechanistic interpretation inappropriate. Linking these genetic patterns to recovery will require genomic context, repeated observations and direct measurements of nutrient transformations."
+  }
+]

@@ -34,7 +34,7 @@ unscaled PCA. Its sign places the Conserved median above Degraded. Zero is an
 ordination origin. The current 1,031-taxon screen does not redefine HI.
 `checks/verify_historical_hi.py` reconstructs HI using QR residualisation and SVD.
 HI is retained for archived network reproduction and is not used by the current
-C/N/S marker section or described as a current manuscript index.
+expanded biogeochemical section or described as a current manuscript index.
 
 ## Metagenomic inputs
 
@@ -155,36 +155,18 @@ represent independent processes. Gene dependence can make nominal enrichment
 FDR optimistic. DNA abundance supports functional potential, not pathway
 completeness, expression, activity or process rates. See `GENE_ENVIRONMENT.md`.
 
-## Carbon, nitrogen and sulfur markers
+## Expanded biogeochemical pathway and component analysis
 
-Section 10 follows the environmental enrichment with an exploratory panel of
-11 markers. Six use recoverable single-KO abundance; five retain fractional
-assignment and are explicitly provisional. Length-adjusted abundances are
-divided by the median of 76 reference KOs. This estimates marker-normalized
-genomic representation, not absolute abundance, complete pathways or process
-rates. It is not the full MUSiCC inter- and intra-sample bias correction.
+We examined carbon, nitrogen, sulfur, methane and phosphorus components using the full matrix of 8,416 KOs. Seven KEGG pathway maps and curated rules defined a panel of 748 unique KOs. The rules specified required subunits and alternative components. We evaluated them separately in each sample as supported, unsupported by the available evidence, or unresolved. Map identifiers and rule definitions are provided with Supplementary Table 16. The panel was fixed before its own tests, after the nitrogen pilot, and remains exploratory. We used the existing annotations without reannotating sequences.
 
-Restoration tests use the mean log2 representation across each profile's three
-horizons, with fixed locality and categorical condition (17 profiles; residual
-df 10). Null-restricted wild bootstrap uses 99,999 draws, one Rademacher weight
-per profile, HC2-scaled null residuals and an HC3 Wald statistic. Depth uses
-paired differences (20 or 40 versus 5 cm), two-sided exact sign tests and
-pointwise order-statistic intervals with 95.0958% common-median coverage.
-One Holm family includes all 11 restoration and 22 depth tests.
+We retained the original fragment-based RPK values and normalised them by the sample median across 76 reference KOs 42. We used recoverable single-KO contributions where these could be determined, and otherwise retained fractional contributions as provisional. The 437 KOs with positive primary values in all 51 samples were log₂-transformed without adding a pseudocount. Other components remained in the descriptive inventory. These ratios approximate genomic representation; they do not measure absolute abundance or activity. Components detected in a community need not occur in the same organism.
 
-Nineteen declared marker–environment associations use profile means, fixed
-locality and one standardized predictor per model (residual df 13). Positive
-concentrations are log2-transformed after averaging; redox stays on its original
-scale before standardization. Wild-bootstrap P values share one BH family;
-pointwise intervals use HC3-t13. Profiles must be independent after the stated
-adjustment. Draw counts do not increase the biological sample size.
+Restoration stage was the primary comparison. We averaged log₂-normalised values across the three depths of each profile and fitted models with locality and categorical stage, using conserved profiles as the reference. The 17 profiles were the independent units. We then analysed paired 20/5 and 40/5 cm changes to ask whether depth patterns differed among stages. Overall stage tests used a null-restricted wild bootstrap with 99,999 draws and heteroscedasticity-robust statistics 43. Holm correction 44 covered 1,311 tests: 437 stage comparisons and 874 comparisons of depth changes among stages. Shared KOs were counted once. Stage-to-conserved ratios describe estimated differences; they were not tested separately.
 
-Five quantification variants use the same profiles. Leave-one-profile/locality
-checks, supporting subunits and a REML mean-effect crosscheck are retained.
-The smaller panel, paired depth question and reference normalization differ
-from earlier global, environmental and network questions. The study-wide search
-was not preregistered; this remains an exploratory follow-up. See
-`FUNCTIONAL_CYCLES.md` for the complete specification and interpretation limits.
+We checked sensitivity to annotation allocation, a denominator of 56 reference KOs with recoverable single-KO contributions, inclusion of only fragments supported by both mates, and inclusion of supported partial-consensus annotations. We also examined residuals and influential profiles, and repeated stage estimates after omitting each profile or locality where the comparison remained estimable. These omission ranges describe sensitivity, not confidence intervals. Bootstrap construction, diagnostics and all quantification alternatives accompany Supplementary Table 16. With only three to five profiles per stage, a lack of statistical support does not establish equivalence.
+
+
+Technical details, input hashes and execution: [EXPANDED_BIOGEOCHEMICAL.md](EXPANDED_BIOGEOCHEMICAL.md). The former 11-marker analysis remains historical.
 
 ## Historical network methods
 
@@ -204,3 +186,4 @@ source code and detailed methods remain in `workflow/07_networks/` and
 - Davidson and Flachaire (2008), wild bootstrap: https://doi.org/10.1016/j.jeconom.2008.08.003
 
 References identify methods, not validation of study-specific indices.
+

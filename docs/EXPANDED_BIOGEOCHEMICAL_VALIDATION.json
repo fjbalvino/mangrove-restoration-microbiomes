@@ -1,0 +1,29 @@
+{
+  "unique_scope": 748,
+  "available": 497,
+  "eligible": 437,
+  "exact_eligible": 180,
+  "family": 1311,
+  "nitrogen_p_values_identical": true,
+  "independent_OLS_verified": true,
+  "profiles": 17,
+  "samples": 51,
+  "bootstrap_calibration": "No new expanded-panel finite-sample calibration. Exploratory inference; only 3-5 profiles per stage.",
+  "python": "3.12.14",
+  "stage_support_all_five_variants": 0,
+  "sensitive_depth_signal": {
+    "KO": "K01659",
+    "variant": "fractional",
+    "contrast": "depth40_by_stage",
+    "p_holm": 0.01311,
+    "primary_p_holm": 1
+  },
+  "repository_checks": {
+    "python_syntax": "pass",
+    "external_input_hashes_verified": 28,
+    "sample_design": "51 samples;17 complete profiles",
+    "launcher_staging": "pass",
+    "full_statistical_rerun_for_editorial_update": false,
+    "reason": "Executed statistical producer preserved; no numerical method changes."
+  }
+}

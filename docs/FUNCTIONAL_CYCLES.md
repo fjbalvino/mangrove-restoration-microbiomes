@@ -1,3 +1,5 @@
+> **Current manuscript:** the expanded five-cycle analysis is documented in [EXPANDED_BIOGEOCHEMICAL.md](EXPANDED_BIOGEOCHEMICAL.md). The 11-marker analysis below is retained for historical reproduction; its 33-test family and Figure 6 are superseded.
+
 # Carbon, nitrogen and sulfur markers
 
 Section `10_functional_cycles` produces the current manuscript section
@@ -208,3 +210,4 @@ Invalid input hashes, duplicate profile-depth rows and inconsistent profile IDs
 must fail. `FUNCTIONAL_CYCLES_VALIDATION.json` records the executed checks.
 Raw-read reconstruction, new statistical calibration, and independent sequence
 validation are outside this repository update.
+

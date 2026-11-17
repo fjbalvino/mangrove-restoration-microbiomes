@@ -1,0 +1,142 @@
+[
+  {
+    "path": "panel/data/metadata_003b.csv",
+    "bytes": 44937,
+    "sha256": "d9fb0bef5be343d76cdf0bd4ef5b4c7059386e9102e3a670dd67b34a1b3aaf1b"
+  },
+  {
+    "path": "panel/data/03_unit_annotations/annotation_patterns.json",
+    "bytes": 17971838,
+    "sha256": "57eef46cd3c6eacbcef39ad2e9f95486f2e157248224d14dc64d5b73259088d8"
+  },
+  {
+    "path": "expanded_analysis/uscg_76_kegg_min_2313.lst",
+    "bytes": 532,
+    "sha256": "b34870d49b2d4793554e45274a2ebfdac763f69f286c6425e2f39a607aea7d88"
+  },
+  {
+    "path": "nitrogen_analysis/13_compare_nitrogen_results/tests.tsv",
+    "bytes": 60525,
+    "sha256": "6c5e25e02e139143c0385acc5f31bdcbc9d6f46718251e8d21470f1e23caf702"
+  },
+  {
+    "path": "panel/data/matrices/KO_complete_RPK.tsv",
+    "bytes": 5618894,
+    "sha256": "40ffa464ac84e97955c39f268e461dfe81b237feb29d9b3e302c5762564ed408"
+  },
+  {
+    "path": "panel/data/matrices/KO_complete_full_terms_RPK.tsv",
+    "bytes": 5615975,
+    "sha256": "a03b6d77eeaa3b97d39ea1991fd1062f8c135c7e2c1900636fe65ad43e15e3f5"
+  },
+  {
+    "path": "panel/data/matrices/KO_complete_both_RPK.tsv",
+    "bytes": 5571479,
+    "sha256": "46558dea5de6037f479cdc5a2fe54e44ec48ce9575fe59810bd832dc4e2f1cec"
+  },
+  {
+    "path": "panel/data/matrices/KO_complete_full_terms_both_RPK.tsv",
+    "bytes": 5567908,
+    "sha256": "86e77511758feb495cc56af6a8e33487e16fc7799d8ba4a82cb969a70662aec2"
+  },
+  {
+    "path": "panel/data/matrices/KO_supported_RPK.tsv",
+    "bytes": 5642942,
+    "sha256": "aff7a7cdf7820d66785792e2f39dd4392c0bf2381280c97cc1f0c2fb8d6d6ac7"
+  },
+  {
+    "path": "panel/operational_rules.tsv",
+    "bytes": 18650,
+    "sha256": "43562a30120859ba1dd747253c8909f3921d7d098c2bf95f194c735dbeb454c0"
+  },
+  {
+    "path": "panel/curated_processes.tsv",
+    "bytes": 17229,
+    "sha256": "31ec84726aa401dda6e22c387097520b1e6c7ab78759e1ed7263bd4b9813cbcf"
+  },
+  {
+    "path": "panel/kegg_KO_pathway_links.tsv",
+    "bytes": 2323868,
+    "sha256": "a65eeadfb7d3a4af325b6fff0e89a2474e2d814a90662e3575405d730080b469"
+  },
+  {
+    "path": "panel/10_audit_expanded_panel_results/rule_summary.tsv",
+    "bytes": 131502,
+    "sha256": "3d9ef5b718a7c9c74545cf8ae8041aa01b9f4cb6869f4672d605422180361d19"
+  },
+  {
+    "path": "panel/10_audit_expanded_panel_results/rule_sample_evidence.tsv.gz",
+    "bytes": 88181,
+    "sha256": "e4962111e1556596eef774459ea10e152d11fcab266817008fb949bc4d4d85a8"
+  },
+  {
+    "path": "expanded_analysis/kegg/ko00440.png",
+    "bytes": 152311,
+    "sha256": "d6da07714c3e7199cdc40dbe12f0afdb85e0f27a13021c247c61406479d4917e"
+  },
+  {
+    "path": "expanded_analysis/kegg/ko00440.xml",
+    "bytes": 50388,
+    "sha256": "6baab0497b0992f7090b4d19b9eb30c39b5e7bd990b33f33d35faf95a3baa0f4"
+  },
+  {
+    "path": "expanded_analysis/kegg/ko00680.png",
+    "bytes": 228563,
+    "sha256": "a6b5c0a181a0f66c220087fe46a3e8e3a57b36a880623249677e4a17d6642f68"
+  },
+  {
+    "path": "expanded_analysis/kegg/ko00680.xml",
+    "bytes": 117891,
+    "sha256": "539c3fa37f219f8bdb5d673e24099170dcc77cfb72caed01f85e54ca2792288e"
+  },
+  {
+    "path": "expanded_analysis/kegg/ko00710.png",
+    "bytes": 96530,
+    "sha256": "7f4dc6a1d3700b0d8a417ece334fc75d8608f43559082e888657406484779f39"
+  },
+  {
+    "path": "expanded_analysis/kegg/ko00710.xml",
+    "bytes": 34713,
+    "sha256": "ad9467968a4a0d9fbb976e1c9752ad71213b145e7157bdfa6d85e692ad5710eb"
+  },
+  {
+    "path": "expanded_analysis/kegg/ko00720.png",
+    "bytes": 118927,
+    "sha256": "176d1e6fd0d96bf6a61f01d6762af015474c5b9f8bcfaa39892e609061c7fd9c"
+  },
+  {
+    "path": "expanded_analysis/kegg/ko00720.xml",
+    "bytes": 60499,
+    "sha256": "1941e0bd084d8d68d29d9b5435894d9778b699a830653a238964e3ad612703ea"
+  },
+  {
+    "path": "expanded_analysis/kegg/ko00910.png",
+    "bytes": 92432,
+    "sha256": "8cd02e195fd61b30e9a69f997ee49840324630ae4b7d12cda41cc68b7e57b9df"
+  },
+  {
+    "path": "expanded_analysis/kegg/ko00910.xml",
+    "bytes": 75473,
+    "sha256": "afe79296318bdf16cdb19ac546616f0c83657e27328e6445d07558028697a92b"
+  },
+  {
+    "path": "expanded_analysis/kegg/ko00920.png",
+    "bytes": 155192,
+    "sha256": "4750b68a4af3120a94ffac74f297c1d40bf2843afd9044236206cb494df51523"
+  },
+  {
+    "path": "expanded_analysis/kegg/ko00920.xml",
+    "bytes": 113574,
+    "sha256": "6f4297f9ef79a21cb1d3eef352a97f5b12fc33c6aac87959f8f209c6413f04aa"
+  },
+  {
+    "path": "expanded_analysis/kegg/ko01200.png",
+    "bytes": 256424,
+    "sha256": "79c4d3bd2cefe75aeb4ef75cd2c9650c6eb1ee263f57b39d664643e7a234485b"
+  },
+  {
+    "path": "expanded_analysis/kegg/ko01200.xml",
+    "bytes": 119834,
+    "sha256": "2a667c716d834964b3ccd49aed10eb9d34525a6a14d691a258ea1a42df03722a"
+  }
+]

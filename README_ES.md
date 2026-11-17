@@ -32,12 +32,12 @@ Los comandos, las entradas externas y los alcances de la validación están en
 [GENE_ENVIRONMENT.md](docs/GENE_ENVIRONMENT.md). El flujo actual de genes comienza
 en `06_05_run_read_based.sh`; los programas `06_01`–`06_04` y el paquete anterior
 de la figura 4 se conservan únicamente para reproducción histórica.
-La nueva sección `10_functional_cycles` continúa el enriquecimiento ambiental
-con marcadores de carbono, nitrógeno y azufre. Reproduce la Figura 6, la Figura
-suplementaria 10 y las tablas de origen de las Tablas suplementarias 16–17.
-Sustituye las redes en el manuscrito; toda la sección 07 se conserva como código
-histórico y no es necesaria para ejecutar el panel. Las tendencias ordenadas
-quedan separadas. Consulta [FUNCTIONAL_CYCLES.md](docs/FUNCTIONAL_CYCLES.md).
+La sección `10_functional_cycles` incorpora ahora carbono, nitrógeno, azufre,
+metano/C1 y fósforo. Compara primero los estadios de restauración y, después,
+si los cambios pareados con la profundidad difieren entre estadios. Incluye
+437 KOs elegibles, 17 perfiles independientes y una familia Holm de 1.311 pruebas.
+Consulta [EXPANDED_BIOGEOCHEMICAL.md](docs/EXPANDED_BIOGEOCHEMICAL.md).
+El análisis anterior de 11 marcadores queda conservado como histórico.
 Las matrices 082A y la entrada de redes son históricas y están identificadas como
 tales. No alimentan el flujo primario corregido. Los detalles están en
 [FUNCTIONAL_REFERENCE.md](docs/FUNCTIONAL_REFERENCE.md).
@@ -46,14 +46,13 @@ Se incluyen los metadatos de 51 muestras, las calibraciones fijas de HI/MHI,
 las matrices históricas KO/PFAM y la matriz CLR de los 200 KO de las redes
 históricas. La rama histórica de redes basadas en lecturas selecciona sus KO
 desde las matrices corregidas externas; no reutiliza ese objeto CLR anterior.
-El panel de C/N/S usa entradas externas compactas verificadas por SHA-256.
-Normaliza con 76 genes de referencia y mantiene como provisionales cinco
-marcadores con asignación fraccionada. Los 17 perfiles, no las 51 profundidades
-ni los remuestreos, son las unidades independientes. La familia Holm contiene
-33 pruebas y las 19 asociaciones ambientales forman una familia BH separada.
-Es una exploración posterior a los análisis generales, no una validación
-independiente ni una demostración de tasas metabólicas. Las figuras se generan
-localmente; esta actualización publica únicamente código y documentación.
+El panel ampliado conserva la cuantificación de Ciencia de Frontera y la
+normalización con 76 genes de referencia. Las reglas de componentes distinguen
+subunidades obligatorias, alternativas y evidencia indeterminada. No demuestra
+rutas completas en un organismo ni tasas metabólicas. Código y documentación
+se publican aquí; matrices, mapas de KEGG, figuras y resultados completos se
+mantienen externos. El comando actual es `10_01_run_expanded.py`; comprueba los
+hashes de las entradas antes de ejecutar.
 
 Cada entrada histórica está documentada con su SHA-256 en
 [INPUTS_MINIMAL.tsv](docs/INPUTS_MINIMAL.tsv).
@@ -78,4 +77,5 @@ Consulta [README.md](README.md) para los comandos, dependencias y alcance de
 cada componente. El flujo corregido de composición utiliza rutas relativas al
 repositorio, conserva los perfiles de tres profundidades en las permutaciones y
 reporta progreso cada 30 segundos. Sus salidas quedan en `local_runs/functional_reference/`.
+
 

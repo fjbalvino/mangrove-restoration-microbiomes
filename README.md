@@ -31,11 +31,11 @@ are now in sections 06 and 09. They reproduce the current Figures 4 and 5 using
 external inputs. See [GENE_ENVIRONMENT.md](docs/GENE_ENVIRONMENT.md) for commands,
 input requirements, validation and interpretation limits. This update adds only
 code, configuration and documentation: no data matrices, annotation databases,
-figures or binary archives. Section 10 adds the targeted carbon, nitrogen and
-sulfur marker analysis that follows environmental enrichment in the manuscript,
-with Figure 6, Supplementary Figure 10 and Supplementary Tables 16–17. See
-[FUNCTIONAL_CYCLES.md](docs/FUNCTIONAL_CYCLES.md). This exploratory section
-replaces networks in the manuscript; all section 07 code remains historical.
+figures or binary archives. Section 10 now covers carbon, nitrogen, sulfur, methane/C1 and phosphorus.
+The current analysis compares restoration stages first and paired depth changes
+secondarily, using 437 eligible KOs from 51 samples in 17 profiles. See
+[EXPANDED_BIOGEOCHEMICAL.md](docs/EXPANDED_BIOGEOCHEMICAL.md).
+The former 11-marker analysis is retained for historical reproduction.
 Ordered restoration trends remain a separate branch.
 
 ## Analysis workflow
@@ -52,7 +52,7 @@ Ordered restoration trends remain a separate branch.
 | `07_networks` | Historical networks and algorithm audits, withdrawn from the current manuscript |
 | `08_figures_tables` | Current Figures 4 and 5 from verified tables; historical Figure 4 bundle retained separately |
 | `09_environment_enrichment` | KO/PFAM overrepresentation and potential KEGG modules by environmental axis and sign |
-| `10_functional_cycles` | Candidate C/N/S markers, profile-level inference, quantification sensitivities and local Figure 6 / Supplementary Figure 10 |
+| `10_functional_cycles` | Expanded five-cycle panel, restoration-first inference, quantification sensitivity and local Figure 6 / pathway atlas |
 
 ## Included inputs
 
@@ -90,7 +90,7 @@ set +e
 bash workflow/05_functional_reference/05_00_run_primary_composition.sh
 # Historical 808 reproduction; still uses assembled-ORF matrices.
 bash workflow/05_functional_reference/05_04_run_convergence_sensitivity.sh
-# Targeted C/N/S markers; supply the compact verified inputs externally.
+# Historical 11-marker analysis (superseded); external compact inputs.
 python3 workflow/10_functional_cycles/10_00_run_cycles.py \
   --input-dir /path/to/CNS/inputs --output-dir local_runs/functional_cycles
 ```
@@ -158,3 +158,19 @@ See [execution requirements](docs/REPRODUCIBILITY.md),
 [methods](docs/METHODS.md), [code changes](docs/MINIMAL_CHANGES.md), and
 [Español](README_ES.md). A complete raw-read-to-paper rerun is not claimed.
 
+
+
+## Current expanded biogeochemical panel
+
+```bash
+python3 workflow/10_functional_cycles/10_01_run_expanded.py \
+  --bundle-root /path/to/extracted/reproducibilidad --check-only
+python3 workflow/10_functional_cycles/10_01_run_expanded.py \
+  --bundle-root /path/to/extracted/reproducibilidad \
+  --out-root local_runs/expanded_cycles
+```
+
+Input hashes are checked before analysis. Figures, full statistical tables and
+KEGG assets remain external. The new producer preserves the original reference
+normalisation and five quantification variants; no primary stage test retains
+Holm P < 0.05. Lack of support does not establish equivalence.
